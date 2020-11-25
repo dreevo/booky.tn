@@ -5,29 +5,29 @@
  */
 package com.booky.entities;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author 21655
  */
-public class Auteur {
+public class Pack {
     private int id;
-    private String nom;
-    private String prenom;
-    private int age;
+    private String libelle;
+    private double prix;
     private String description;
+    private ArrayList<Livre> livres = new ArrayList<>();
 
-    public Auteur(int id, String nom, String prenom, int age, String description) {
+    public Pack(int id, String libelle, double prix, String description) {
         this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.age = age;
+        this.libelle = libelle;
+        this.prix = prix;
         this.description = description;
     }
 
-    public Auteur(String nom, String prenom, int age, String description) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.age = age;
+    public Pack(String libelle, double prix, String description) {
+        this.libelle = libelle;
+        this.prix = prix;
         this.description = description;
     }
 
@@ -39,28 +39,20 @@ public class Auteur {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getLibelle() {
+        return libelle;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public double getPrix() {
+        return prix;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public void setPrix(double prix) {
+        this.prix = prix;
     }
 
     public String getDescription() {
@@ -71,15 +63,17 @@ public class Auteur {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Auteur{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", description=" + description + '}';
+    public ArrayList<Livre> getLivres() {
+        return livres;
+    }
+
+    public void setLivres(ArrayList<Livre> livres) {
+        this.livres = livres;
     }
 
     @Override
-    public int hashCode() {
-        int hash = 5;
-        return hash;
+    public String toString() {
+        return "Pack{" + "id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", description=" + description + ", livres=" + livres + '}';
     }
 
     @Override
@@ -93,12 +87,13 @@ public class Auteur {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Auteur other = (Auteur) obj;
+        final Pack other = (Pack) obj;
         if (this.id != other.id) {
             return false;
         }
         return true;
     }
+    
     
     
     

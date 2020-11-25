@@ -5,30 +5,39 @@
  */
 package com.booky.entities;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author 21655
  */
-public class Auteur {
+public class Client {
     private int id;
     private String nom;
     private String prenom;
     private int age;
-    private String description;
+    private String email;
+    private String adresse;
+    private String telephone;
+    private ArrayList<Privilege> privileges = new ArrayList<>();
 
-    public Auteur(int id, String nom, String prenom, int age, String description) {
+    public Client(int id, String nom, String prenom, int age, String email, String adresse, String telephone) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
-        this.description = description;
+        this.email = email;
+        this.adresse = adresse;
+        this.telephone = telephone;
     }
 
-    public Auteur(String nom, String prenom, int age, String description) {
+    public Client(String nom, String prenom, int age, String email, String adresse, String telephone) {
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
-        this.description = description;
+        this.email = email;
+        this.adresse = adresse;
+        this.telephone = telephone;
     }
 
     public int getId() {
@@ -63,25 +72,30 @@ public class Auteur {
         this.age = age;
     }
 
-    public String getDescription() {
-        return description;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "Auteur{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", description=" + description + '}';
+    public String getAdresse() {
+        return adresse;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        return hash;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -93,13 +107,16 @@ public class Auteur {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Auteur other = (Auteur) obj;
+        final Client other = (Client) obj;
         if (this.id != other.id) {
             return false;
         }
         return true;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Client{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", email=" + email + ", adresse=" + adresse + ", telephone=" + telephone + '}';
+    }
     
 }

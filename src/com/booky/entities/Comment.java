@@ -9,25 +9,16 @@ package com.booky.entities;
  *
  * @author 21655
  */
-public class Auteur {
+public class Comment {
     private int id;
-    private String nom;
-    private String prenom;
-    private int age;
     private String description;
 
-    public Auteur(int id, String nom, String prenom, int age, String description) {
+    public Comment(int id, String description) {
         this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.age = age;
         this.description = description;
     }
 
-    public Auteur(String nom, String prenom, int age, String description) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.age = age;
+    public Comment(String description) {
         this.description = description;
     }
 
@@ -37,30 +28,6 @@ public class Auteur {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public String getDescription() {
@@ -73,15 +40,9 @@ public class Auteur {
 
     @Override
     public String toString() {
-        return "Auteur{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", description=" + description + '}';
+        return "Comment{" + "id=" + id + ", description=" + description + '}';
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        return hash;
-    }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -93,12 +54,13 @@ public class Auteur {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Auteur other = (Auteur) obj;
+        final Comment other = (Comment) obj;
         if (this.id != other.id) {
             return false;
         }
         return true;
     }
+    
     
     
     
