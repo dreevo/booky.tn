@@ -19,6 +19,7 @@ public class Client {
     private String email;
     private String adresse;
     private String telephone;
+    private String imageUrl;
     private ArrayList<Privilege> privileges = new ArrayList<>();
 
     public Client(int id, String nom, String prenom, int age, String email, String adresse, String telephone) {
@@ -95,6 +96,27 @@ public class Client {
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public ArrayList<Privilege> getPrivileges() {
+        return privileges;
+    }
+
+    public void setPrivileges(ArrayList<Privilege> privileges) {
+        this.privileges = privileges;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", email=" + email + ", adresse=" + adresse + ", telephone=" + telephone + ", imageUrl=" + imageUrl + ", privileges=" + privileges + '}';
+    }
     
     @Override
     public boolean equals(Object obj) {
@@ -113,10 +135,4 @@ public class Client {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "Client{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", email=" + email + ", adresse=" + adresse + ", telephone=" + telephone + '}';
-    }
-    
 }

@@ -15,6 +15,7 @@ public class Auteur {
     private String prenom;
     private int age;
     private String description;
+    private String imageUrl;
 
     public Auteur(int id, String nom, String prenom, int age, String description) {
         this.id = id;
@@ -71,15 +72,17 @@ public class Auteur {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Auteur{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", description=" + description + '}';
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override
-    public int hashCode() {
-        int hash = 5;
-        return hash;
+    public String toString() {
+        return "Auteur{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", description=" + description + ", imageUrl=" + imageUrl + '}';
     }
 
     @Override

@@ -16,6 +16,7 @@ public class Pack {
     private String libelle;
     private double prix;
     private String description;
+    private String imageUrl;
     private ArrayList<Livre> livres = new ArrayList<>();
 
     public Pack(int id, String libelle, double prix, String description) {
@@ -71,9 +72,17 @@ public class Pack {
         this.livres = livres;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
-        return "Pack{" + "id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", description=" + description + ", livres=" + livres + '}';
+        return "Pack{" + "id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", description=" + description + ", imageUrl=" + imageUrl + ", livres=" + livres + '}';
     }
 
     @Override
@@ -92,9 +101,5 @@ public class Pack {
             return false;
         }
         return true;
-    }
-    
-    
-    
-    
+    }  
 }

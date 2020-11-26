@@ -16,6 +16,7 @@ public class Evenement {
     private String intitule;
     private String description;
     private Calendar date;
+    private String imageUrl;
 
     public Evenement(int id, String intitule, String description, Calendar date) {
         this.id = id;
@@ -62,9 +63,17 @@ public class Evenement {
         this.date = date;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
-        return "Evenement{" + "id=" + id + ", intitule=" + intitule + ", description=" + description + ", date=" + date + '}';
+        return "Evenement{" + "id=" + id + ", intitule=" + intitule + ", description=" + description + ", date=" + date + ", imageUrl=" + imageUrl + '}';
     }
     
     @Override

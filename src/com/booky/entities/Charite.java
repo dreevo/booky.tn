@@ -5,33 +5,38 @@
  */
 package com.booky.entities;
 
+import java.util.HashMap;
+
 /**
  *
  * @author 21655
  */
-public class Livre {
+public class Charite {
     private int id;
-    private String libelle;
-    private double prix;
+    private String title;
     private String description;
-    private boolean enStock;
+    private HashMap<Client, Double> dons = new HashMap<>();
     private String imageUrl;
 
-    public Livre(int id, String libelle, double prix, String description, boolean enStock) {
+    public Charite(int id, String title, String description) {
         this.id = id;
-        this.libelle = libelle;
-        this.prix = prix;
+        this.title = title;
         this.description = description;
-        this.enStock = enStock;
     }
 
-    public Livre(String libelle, double prix, String description, boolean enStock) {
-        this.libelle = libelle;
-        this.prix = prix;
+    public Charite(String title, String description) {
+        this.title = title;
         this.description = description;
-        this.enStock = enStock;
     }
 
+    public HashMap<Client, Double> getDons() {
+        return dons;
+    }
+
+    public void setDons(HashMap<Client, Double> dons) {
+        this.dons = dons;
+    }
+    
     public int getId() {
         return id;
     }
@@ -40,20 +45,12 @@ public class Livre {
         this.id = id;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
-
-    public double getPrix() {
-        return prix;
-    }
-
-    public void setPrix(double prix) {
-        this.prix = prix;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -62,14 +59,6 @@ public class Livre {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public boolean isEnStock() {
-        return enStock;
-    }
-
-    public void setEnStock(boolean enStock) {
-        this.enStock = enStock;
     }
 
     public String getImageUrl() {
@@ -82,7 +71,7 @@ public class Livre {
 
     @Override
     public String toString() {
-        return "Livre{" + "id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", description=" + description + ", enStock=" + enStock + ", imageUrl=" + imageUrl + '}';
+        return "Charite{" + "id=" + id + ", title=" + title + ", description=" + description + ", dons=" + dons + ", imageUrl=" + imageUrl + '}';
     }
 
     @Override
@@ -96,11 +85,13 @@ public class Livre {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Livre other = (Livre) obj;
+        final Charite other = (Charite) obj;
         if (this.id != other.id) {
             return false;
         }
         return true;
     }
-      
+    
+    
+    
 }
