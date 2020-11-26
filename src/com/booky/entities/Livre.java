@@ -14,10 +14,10 @@ public class Livre {
     private String libelle;
     private double prix;
     private String description;
-    private boolean enStock;
+    private int enStock;
     private String imageUrl;
 
-    public Livre(int id, String libelle, double prix, String description, boolean enStock) {
+    public Livre(int id, String libelle, double prix, String description, int enStock) {
         this.id = id;
         this.libelle = libelle;
         this.prix = prix;
@@ -25,7 +25,7 @@ public class Livre {
         this.enStock = enStock;
     }
 
-    public Livre(String libelle, double prix, String description, boolean enStock) {
+    public Livre(String libelle, double prix, String description, int enStock) {
         this.libelle = libelle;
         this.prix = prix;
         this.description = description;
@@ -64,11 +64,11 @@ public class Livre {
         this.description = description;
     }
 
-    public boolean isEnStock() {
+    public int isEnStock() {
         return enStock;
     }
 
-    public void setEnStock(boolean enStock) {
+    public void setEnStock(int enStock) {
         this.enStock = enStock;
     }
 
