@@ -7,19 +7,19 @@ package com.booky.entities;
 
 /**
  *
- * @author 21655
+ * @author gharbimedaziz
  */
 public class Privilege {
     private int id;
-    private String nom;
+    private String privilegeName;
 
-    public Privilege(int id, String nom) {
+    public Privilege(int id, String privilegeName) {
         this.id = id;
-        this.nom = nom;
+        this.privilegeName = privilegeName;
     }
 
-    public Privilege(String nom) {
-        this.nom = nom;
+    public Privilege(String privilegeName) {
+        this.privilegeName = privilegeName;
     }
 
     public int getId() {
@@ -30,17 +30,19 @@ public class Privilege {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getPrivilegeName() {
+        return privilegeName;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setPrivilegeName(String privilegeName) {
+        this.privilegeName = privilegeName;
     }
 
     @Override
-    public String toString() {
-        return "Privilege{" + "id=" + id + ", nom=" + nom + '}';
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + this.id;
+        return hash;
     }
 
     @Override
@@ -59,5 +61,10 @@ public class Privilege {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Privilege{" + "id=" + id + ", privilegeName=" + privilegeName + '}';
     }
 }

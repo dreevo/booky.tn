@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author 21655
+ * @author gharbimedaziz
  */
 public class DataSource {
     private Connection cnx;

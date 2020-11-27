@@ -6,32 +6,35 @@
 package com.booky.entities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
  * @author gharbimedaziz
  */
-public class Pack {
+public class Charity {
     private int id;
-    private String label;
-    private double price;
+    private String title;
     private String description;
+    private ArrayList<Donation> donations;
     private String imageUrl;
-    private ArrayList<Book> books = new ArrayList<>();
+    private Book book;
 
-    public Pack(int id, String label, double price, String description, String imageUrl) {
+    public Charity(int id, String title, String description, ArrayList<Donation> donations, String imageUrl, Book book) {
         this.id = id;
-        this.label = label;
-        this.price = price;
+        this.title = title;
         this.description = description;
+        this.donations = donations;
         this.imageUrl = imageUrl;
+        this.book = book;
     }
 
-    public Pack(String label, double price, String description, String imageUrl) {
-        this.label = label;
-        this.price = price;
+    public Charity(String title, String description, ArrayList<Donation> donations, String imageUrl, Book book) {
+        this.title = title;
         this.description = description;
+        this.donations = donations;
         this.imageUrl = imageUrl;
+        this.book = book;
     }
 
     public int getId() {
@@ -42,20 +45,12 @@ public class Pack {
         this.id = id;
     }
 
-    public String getLabel() {
-        return label;
+    public String getTitle() {
+        return title;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -66,6 +61,14 @@ public class Pack {
         this.description = description;
     }
 
+    public ArrayList<Donation> getDonations() {
+        return donations;
+    }
+
+    public void setDonations(ArrayList<Donation> donations) {
+        this.donations = donations;
+    }
+
     public String getImageUrl() {
         return imageUrl;
     }
@@ -74,19 +77,18 @@ public class Pack {
         this.imageUrl = imageUrl;
     }
 
-    public ArrayList<Book> getBooks() {
-        return books;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBooks(ArrayList<Book> books) {
-        this.books = books;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + this.id;
-        hash = 67 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
+        int hash = 5;
+        hash = 71 * hash + this.id;
         return hash;
     }
 
@@ -101,7 +103,7 @@ public class Pack {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Pack other = (Pack) obj;
+        final Charity other = (Charity) obj;
         if (this.id != other.id) {
             return false;
         }
@@ -110,6 +112,8 @@ public class Pack {
 
     @Override
     public String toString() {
-        return "Pack{" + "id=" + id + ", label=" + label + ", price=" + price + ", description=" + description + ", imageUrl=" + imageUrl + ", books=" + books + '}';
+        return "Charity{" + "id=" + id + ", title=" + title + ", description=" + description + ", donations=" + donations + ", imageUrl=" + imageUrl + ", book=" + book + '}';
     }
+
+    
 }

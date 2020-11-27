@@ -7,19 +7,19 @@ package com.booky.entities;
 
 /**
  *
- * @author 21655
+ * @author gharbimedaziz
  */
-public class Categorie {
+public class Category {
     private int id;
-    private String nomCategorie;
+    private String categoryName;
 
-    public Categorie(int id, String nomCategorie) {
+    public Category(int id, String categoryName) {
         this.id = id;
-        this.nomCategorie = nomCategorie;
+        this.categoryName = categoryName;
     }
 
-    public Categorie(String nomCategorie) {
-        this.nomCategorie = nomCategorie;
+    public Category(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public int getId() {
@@ -30,19 +30,21 @@ public class Categorie {
         this.id = id;
     }
 
-    public String getNomCategorie() {
-        return nomCategorie;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setNomCategorie(String nomCategorie) {
-        this.nomCategorie = nomCategorie;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     @Override
-    public String toString() {
-        return "Categorie{" + "id=" + id + ", nomCategorie=" + nomCategorie + '}';
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + this.id;
+        return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -54,12 +56,15 @@ public class Categorie {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Categorie other = (Categorie) obj;
+        final Category other = (Category) obj;
         if (this.id != other.id) {
             return false;
         }
         return true;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Category{" + "id=" + id + ", categoryName=" + categoryName + '}';
+    }
 }

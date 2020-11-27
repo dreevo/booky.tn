@@ -7,27 +7,27 @@ package com.booky.entities;
 
 /**
  *
- * @author 21655
+ * @author gharbimedaziz
  */
-public class Auteur {
+public class Author {
     private int id;
-    private String nom;
-    private String prenom;
+    private String firstName;
+    private String lastName;
     private int age;
     private String description;
     private String imageUrl;
 
-    public Auteur(int id, String nom, String prenom, int age, String description) {
+    public Author(int id, String firstName, String lastName, int age, String description) {
         this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
         this.description = description;
     }
 
-    public Auteur(String nom, String prenom, int age, String description) {
-        this.nom = nom;
-        this.prenom = prenom;
+    public Author(String firstName, String lastName, int age, String description) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
         this.description = description;
     }
@@ -40,20 +40,20 @@ public class Auteur {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getAge() {
@@ -82,7 +82,15 @@ public class Auteur {
 
     @Override
     public String toString() {
-        return "Auteur{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", description=" + description + ", imageUrl=" + imageUrl + '}';
+        return "Author{" + "id=" + id + ", First Name=" + firstName + ", Last Name=" + lastName + ", age=" + age + ", description=" + description + ", imageUrl=" + imageUrl + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + this.id;
+        hash = 47 * hash + this.age;
+        return hash;
     }
 
     @Override
@@ -96,13 +104,10 @@ public class Auteur {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Auteur other = (Auteur) obj;
+        final Author other = (Author) obj;
         if (this.id != other.id) {
             return false;
         }
         return true;
     }
-    
-    
-    
 }

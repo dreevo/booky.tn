@@ -7,7 +7,7 @@ package com.booky.entities;
 
 /**
  *
- * @author 21655
+ * @author gharbimedaziz
  */
 public class Comment {
     private int id;

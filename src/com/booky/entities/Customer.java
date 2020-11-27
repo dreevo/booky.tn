@@ -9,36 +9,38 @@ import java.util.ArrayList;
 
 /**
  *
- * @author 21655
+ * @author gharbimedaziz
  */
-public class Client {
+public class Customer {
     private int id;
-    private String nom;
-    private String prenom;
+    private String firstName;
+    private String lastName;
     private int age;
     private String email;
-    private String adresse;
+    private String address;
     private String telephone;
     private String imageUrl;
     private ArrayList<Privilege> privileges = new ArrayList<>();
 
-    public Client(int id, String nom, String prenom, int age, String email, String adresse, String telephone) {
+    public Customer(int id, String firstName, String lastName, int age, String email, String address, String telephone, String imageUrl) {
         this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
         this.email = email;
-        this.adresse = adresse;
+        this.address = address;
         this.telephone = telephone;
+        this.imageUrl = imageUrl;
     }
 
-    public Client(String nom, String prenom, int age, String email, String adresse, String telephone) {
-        this.nom = nom;
-        this.prenom = prenom;
+    public Customer(String firstName, String lastName, int age, String email, String address, String telephone, String imageUrl) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
         this.email = email;
-        this.adresse = adresse;
+        this.address = address;
         this.telephone = telephone;
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {
@@ -49,20 +51,20 @@ public class Client {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getAge() {
@@ -81,12 +83,12 @@ public class Client {
         this.email = email;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getTelephone() {
@@ -114,10 +116,13 @@ public class Client {
     }
 
     @Override
-    public String toString() {
-        return "Client{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", email=" + email + ", adresse=" + adresse + ", telephone=" + telephone + ", imageUrl=" + imageUrl + ", privileges=" + privileges + '}';
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + this.id;
+        hash = 29 * hash + this.age;
+        return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -129,10 +134,15 @@ public class Client {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Client other = (Client) obj;
+        final Customer other = (Customer) obj;
         if (this.id != other.id) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", email=" + email + ", address=" + address + ", telephone=" + telephone + ", imageUrl=" + imageUrl + ", privileges=" + privileges + '}';
     }
 }

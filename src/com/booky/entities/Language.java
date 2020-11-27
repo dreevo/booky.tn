@@ -7,23 +7,19 @@ package com.booky.entities;
 
 /**
  *
- * @author 21655
+ * @author gharbimedaziz
  */
-public class BonReduction {
-    
+public class Language {
     private int id;
-    private int valeur;
-    private String code;
+    private String languageName;
 
-    public BonReduction(int id, int valeur, String code) {
+    public Language(int id, String languageName) {
         this.id = id;
-        this.valeur = valeur;
-        this.code = code;
+        this.languageName = languageName;
     }
 
-    public BonReduction(int valeur, String code) {
-        this.valeur = valeur;
-        this.code = code;
+    public Language(String languageName) {
+        this.languageName = languageName;
     }
 
     public int getId() {
@@ -34,20 +30,24 @@ public class BonReduction {
         this.id = id;
     }
 
-    public int getValeur() {
-        return valeur;
+    public String getLanguageName() {
+        return languageName;
     }
 
-    public void setValeur(int valeur) {
-        this.valeur = valeur;
+    public void setLanguageName(String languageName) {
+        this.languageName = languageName;
     }
 
-    public String getCode() {
-        return code;
+    @Override
+    public String toString() {
+        return "Language{" + "id=" + id + ", languageName=" + languageName + '}';
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + this.id;
+        return hash;
     }
 
     @Override
@@ -61,18 +61,10 @@ public class BonReduction {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final BonReduction other = (BonReduction) obj;
+        final Language other = (Language) obj;
         if (this.id != other.id) {
             return false;
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "BonReduction{" + "id=" + id + ", valeur=" + valeur + ", code=" + code + '}';
-    }
-    
-    
-    
 }

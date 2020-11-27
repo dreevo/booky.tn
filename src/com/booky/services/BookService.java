@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.booky.tests;
+package com.booky.services;
+
+import com.booky.utils.DataSource;
+import java.sql.Connection;
 
 /**
  *
  * @author gharbimedaziz
  */
-public class MainProg {
-    public static void main(String[] args) {
+public class BookService {
+    Connection cnx = DataSource.getInstance().getCnx();
+    
 
-    }
 }

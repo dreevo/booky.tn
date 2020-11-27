@@ -5,38 +5,38 @@
  */
 package com.booky.entities;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
- * @author 21655
+ * @author gharbimedaziz
  */
-public class Charite {
+public class Event {
     private int id;
     private String title;
     private String description;
-    private HashMap<Client, Double> dons = new HashMap<>();
+    private Calendar date;
     private String imageUrl;
+    private ArrayList<Customer> participatns;
 
-    public Charite(int id, String title, String description) {
+    public Event(int id, String title, String description, Calendar date, String imageUrl, ArrayList<Customer> participatns) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.date = date;
+        this.imageUrl = imageUrl;
+        this.participatns = participatns;
     }
 
-    public Charite(String title, String description) {
+    public Event(String title, String description, Calendar date, String imageUrl, ArrayList<Customer> participatns) {
         this.title = title;
         this.description = description;
+        this.date = date;
+        this.imageUrl = imageUrl;
+        this.participatns = participatns;
     }
 
-    public HashMap<Client, Double> getDons() {
-        return dons;
-    }
-
-    public void setDons(HashMap<Client, Double> dons) {
-        this.dons = dons;
-    }
-    
     public int getId() {
         return id;
     }
@@ -61,6 +61,14 @@ public class Charite {
         this.description = description;
     }
 
+    public Calendar getDate() {
+        return date;
+    }
+
+    public void setDate(Calendar date) {
+        this.date = date;
+    }
+
     public String getImageUrl() {
         return imageUrl;
     }
@@ -69,9 +77,19 @@ public class Charite {
         this.imageUrl = imageUrl;
     }
 
+    public ArrayList<Customer> getParticipatns() {
+        return participatns;
+    }
+
+    public void setParticipatns(ArrayList<Customer> participatns) {
+        this.participatns = participatns;
+    }
+
     @Override
-    public String toString() {
-        return "Charite{" + "id=" + id + ", title=" + title + ", description=" + description + ", dons=" + dons + ", imageUrl=" + imageUrl + '}';
+    public int hashCode() {
+        int hash = 5;
+        hash = 17 * hash + this.id;
+        return hash;
     }
 
     @Override
@@ -85,13 +103,16 @@ public class Charite {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Charite other = (Charite) obj;
+        final Event other = (Event) obj;
         if (this.id != other.id) {
             return false;
         }
         return true;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Event{" + "id=" + id + ", title=" + title + ", description=" + description + ", date=" + date + ", imageUrl=" + imageUrl + ", participatns=" + participatns + '}';
+    }
+
 }
