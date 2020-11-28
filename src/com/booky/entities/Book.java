@@ -6,6 +6,7 @@
 package com.booky.entities;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -153,11 +154,9 @@ public class Book {
             return false;
         }
         final Book other = (Book) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.label, other.label)) {
             return false;
         }
         return true;
     }
-
-    
 }

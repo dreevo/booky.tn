@@ -20,9 +20,9 @@ public class Customer {
     private String address;
     private String telephone;
     private String imageUrl;
-    private ArrayList<Privilege> privileges = new ArrayList<>();
+    private Role role;
 
-    public Customer(int id, String firstName, String lastName, int age, String email, String address, String telephone, String imageUrl) {
+    public Customer(int id, String firstName, String lastName, int age, String email, String address, String telephone, String imageUrl, Role role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -31,9 +31,10 @@ public class Customer {
         this.address = address;
         this.telephone = telephone;
         this.imageUrl = imageUrl;
+        this.role = role;
     }
 
-    public Customer(String firstName, String lastName, int age, String email, String address, String telephone, String imageUrl) {
+    public Customer(String firstName, String lastName, int age, String email, String address, String telephone, String imageUrl, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -41,6 +42,7 @@ public class Customer {
         this.address = address;
         this.telephone = telephone;
         this.imageUrl = imageUrl;
+        this.role = role;
     }
 
     public int getId() {
@@ -107,19 +109,19 @@ public class Customer {
         this.imageUrl = imageUrl;
     }
 
-    public ArrayList<Privilege> getPrivileges() {
-        return privileges;
+    public Role getRole() {
+        return role;
     }
 
-    public void setPrivileges(ArrayList<Privilege> privileges) {
-        this.privileges = privileges;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + this.id;
-        hash = 29 * hash + this.age;
+        hash = 89 * hash + this.id;
+        hash = 89 * hash + this.age;
         return hash;
     }
 
@@ -135,7 +137,7 @@ public class Customer {
             return false;
         }
         final Customer other = (Customer) obj;
-        if (this.id != other.id) {
+        if (!this.email.equals(other.getEmail())) {
             return false;
         }
         return true;
@@ -143,6 +145,8 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", email=" + email + ", address=" + address + ", telephone=" + telephone + ", imageUrl=" + imageUrl + ", privileges=" + privileges + '}';
+        return "Customer{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", email=" + email + ", address=" + address + ", telephone=" + telephone + ", imageUrl=" + imageUrl + ", role=" + role + '}';
     }
+
+    
 }

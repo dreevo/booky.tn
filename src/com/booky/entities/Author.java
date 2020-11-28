@@ -5,30 +5,36 @@
  */
 package com.booky.entities;
 
+import java.util.Objects;
+
 /**
  *
  * @author gharbimedaziz
  */
 public class Author {
+
     private int id;
     private String firstName;
     private String lastName;
     private int age;
+    private String email;
     private String description;
     private String imageUrl;
 
-    public Author(int id, String firstName, String lastName, int age, String description) {
+    public Author(int id, String firstName, String lastName, int age, String email, String description) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.email = email;
         this.description = description;
     }
 
-    public Author(String firstName, String lastName, int age, String description) {
+    public Author(String firstName, String lastName, int age, String email, String description) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.email = email;
         this.description = description;
     }
 
@@ -80,9 +86,17 @@ public class Author {
         this.imageUrl = imageUrl;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
-        return "Author{" + "id=" + id + ", First Name=" + firstName + ", Last Name=" + lastName + ", age=" + age + ", description=" + description + ", imageUrl=" + imageUrl + '}';
+        return "Author{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", email=" + email + ", description=" + description + ", imageUrl=" + imageUrl + '}';
     }
 
     @Override
@@ -105,7 +119,7 @@ public class Author {
             return false;
         }
         final Author other = (Author) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
         return true;

@@ -5,6 +5,9 @@
  */
 package com.booky.entities;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /**
  *
  * @author gharbimedaziz
@@ -12,6 +15,7 @@ package com.booky.entities;
 public class Category {
     private int id;
     private String categoryName;
+    private ArrayList<Book> books = new ArrayList<>();
 
     public Category(int id, String categoryName) {
         this.id = id;
@@ -57,7 +61,7 @@ public class Category {
             return false;
         }
         final Category other = (Category) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.categoryName, other.categoryName)) {
             return false;
         }
         return true;

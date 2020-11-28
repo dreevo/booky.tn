@@ -6,6 +6,7 @@
 package com.booky.entities;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -102,7 +103,7 @@ public class Pack {
             return false;
         }
         final Pack other = (Pack) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.label, other.label)) {
             return false;
         }
         return true;

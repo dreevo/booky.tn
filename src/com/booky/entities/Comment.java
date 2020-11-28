@@ -12,14 +12,17 @@ package com.booky.entities;
 public class Comment {
     private int id;
     private String description;
+    private Customer customer;
 
-    public Comment(int id, String description) {
+    public Comment(int id, String description, Customer customer) {
         this.id = id;
         this.description = description;
+        this.customer = customer;
     }
 
-    public Comment(String description) {
+    public Comment(String description, Customer customer) {
         this.description = description;
+        this.customer = customer;
     }
 
     public int getId() {
@@ -38,11 +41,21 @@ public class Comment {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Comment{" + "id=" + id + ", description=" + description + '}';
+    public Customer getCustomer() {
+        return customer;
     }
-    
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + this.id;
+        return hash;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -60,8 +73,9 @@ public class Comment {
         }
         return true;
     }
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Comment{" + "id=" + id + ", description=" + description + ", customer=" + customer + '}';
+    }
 }

@@ -7,6 +7,7 @@ package com.booky.entities;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  *
@@ -16,23 +17,26 @@ public class Event {
     private int id;
     private String title;
     private String description;
-    private Calendar date;
+    private Calendar beginDate;
+    private Calendar endDate;
     private String imageUrl;
     private ArrayList<Customer> participatns;
 
-    public Event(int id, String title, String description, Calendar date, String imageUrl, ArrayList<Customer> participatns) {
+    public Event(int id, String title, String description, Calendar beginDate, Calendar endDate, String imageUrl, ArrayList<Customer> participatns) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.date = date;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
         this.imageUrl = imageUrl;
         this.participatns = participatns;
     }
 
-    public Event(String title, String description, Calendar date, String imageUrl, ArrayList<Customer> participatns) {
+    public Event(String title, String description, Calendar beginDate, Calendar endDate, String imageUrl, ArrayList<Customer> participatns) {
         this.title = title;
         this.description = description;
-        this.date = date;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
         this.imageUrl = imageUrl;
         this.participatns = participatns;
     }
@@ -61,12 +65,20 @@ public class Event {
         this.description = description;
     }
 
-    public Calendar getDate() {
-        return date;
+    public Calendar getBeginDate() {
+        return beginDate;
     }
 
-    public void setDate(Calendar date) {
-        this.date = date;
+    public void setBeginDate(Calendar beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public Calendar getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Calendar endDate) {
+        this.endDate = endDate;
     }
 
     public String getImageUrl() {
@@ -86,9 +98,13 @@ public class Event {
     }
 
     @Override
+    public String toString() {
+        return "Event{" + "id=" + id + ", title=" + title + ", description=" + description + ", beginDate=" + beginDate + ", endDate=" + endDate + ", imageUrl=" + imageUrl + ", participatns=" + participatns + '}';
+    }
+
+    @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 17 * hash + this.id;
+        int hash = 3;
         return hash;
     }
 
@@ -104,15 +120,9 @@ public class Event {
             return false;
         }
         final Event other = (Event) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.title, other.title)) {
             return false;
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "Event{" + "id=" + id + ", title=" + title + ", description=" + description + ", date=" + date + ", imageUrl=" + imageUrl + ", participatns=" + participatns + '}';
-    }
-
 }

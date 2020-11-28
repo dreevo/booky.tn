@@ -5,6 +5,8 @@
  */
 package com.booky.entities;
 
+import java.util.Objects;
+
 /**
  *
  * @author gharbimedaziz
@@ -62,9 +64,11 @@ public class Language {
             return false;
         }
         final Language other = (Language) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.languageName, other.languageName)) {
             return false;
         }
         return true;
     }
+
+
 }

@@ -6,6 +6,7 @@
 package com.booky.entities;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -91,6 +92,9 @@ public class Blog {
         }
         final Blog other = (Blog) obj;
         if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.title, other.title)) {
             return false;
         }
         return true;

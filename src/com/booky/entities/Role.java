@@ -5,21 +5,23 @@
  */
 package com.booky.entities;
 
+import java.util.Objects;
+
 /**
  *
  * @author gharbimedaziz
  */
-public class Privilege {
+public class Role {
     private int id;
-    private String privilegeName;
+    private String roleName;
 
-    public Privilege(int id, String privilegeName) {
+    public Role(int id, String roleName) {
         this.id = id;
-        this.privilegeName = privilegeName;
+        this.roleName = roleName;
     }
 
-    public Privilege(String privilegeName) {
-        this.privilegeName = privilegeName;
+    public Role(String roleName) {
+        this.roleName = roleName;
     }
 
     public int getId() {
@@ -30,18 +32,18 @@ public class Privilege {
         this.id = id;
     }
 
-    public String getPrivilegeName() {
-        return privilegeName;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setPrivilegeName(String privilegeName) {
-        this.privilegeName = privilegeName;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + this.id;
+        int hash = 7;
+        hash = 89 * hash + this.id;
         return hash;
     }
 
@@ -56,8 +58,8 @@ public class Privilege {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Privilege other = (Privilege) obj;
-        if (this.id != other.id) {
+        final Role other = (Role) obj;
+        if (!Objects.equals(this.roleName, other.roleName)) {
             return false;
         }
         return true;
@@ -65,6 +67,6 @@ public class Privilege {
 
     @Override
     public String toString() {
-        return "Privilege{" + "id=" + id + ", privilegeName=" + privilegeName + '}';
+        return "Role{" + "id=" + id + ", roleName=" + roleName + '}';
     }
 }

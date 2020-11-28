@@ -6,7 +6,7 @@
 package com.booky.entities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Objects;
 
 /**
  *
@@ -104,7 +104,7 @@ public class Charity {
             return false;
         }
         final Charity other = (Charity) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.title, other.title)) {
             return false;
         }
         return true;

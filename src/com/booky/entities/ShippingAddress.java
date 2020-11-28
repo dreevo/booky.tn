@@ -5,6 +5,8 @@
  */
 package com.booky.entities;
 
+import java.util.Objects;
+
 /**
  *
  * @author gharbimedaziz
@@ -15,20 +17,23 @@ public class ShippingAddress {
     private String city;
     private String zipcode;
     private Customer customer;
+    private Order order;
 
-    public ShippingAddress(int id, String address, String city, String zipcode, Customer customer) {
+    public ShippingAddress(int id, String address, String city, String zipcode, Customer customer, Order order) {
         this.id = id;
         this.address = address;
         this.city = city;
         this.zipcode = zipcode;
         this.customer = customer;
+        this.order = order;
     }
 
-    public ShippingAddress(String address, String city, String zipcode, Customer customer) {
+    public ShippingAddress(String address, String city, String zipcode, Customer customer, Order order) {
         this.address = address;
         this.city = city;
         this.zipcode = zipcode;
         this.customer = customer;
+        this.order = order;
     }
 
     public int getId() {
@@ -71,10 +76,19 @@ public class ShippingAddress {
         this.customer = customer;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + this.id;
+        int hash = 7;
+        hash = 83 * hash + this.id;
+        hash = 83 * hash + Objects.hashCode(this.zipcode);
         return hash;
     }
 
@@ -96,9 +110,6 @@ public class ShippingAddress {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "ShippingAddress{" + "id=" + id + ", address=" + address + ", city=" + city + ", zipcode=" + zipcode + ", customer=" + customer + '}';
-    }
+    
     
 }
