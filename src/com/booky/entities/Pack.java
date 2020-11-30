@@ -6,29 +6,33 @@
 package com.booky.entities;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
- * @author 21655
+ * @author gharbimedaziz
  */
 public class Pack {
     private int id;
-    private String libelle;
-    private double prix;
+    private String label;
+    private double price;
     private String description;
-    private ArrayList<Livre> livres = new ArrayList<>();
+    private String imageUrl;
+    private ArrayList<Book> books = new ArrayList<>();
 
-    public Pack(int id, String libelle, double prix, String description) {
+    public Pack(int id, String label, double price, String description, String imageUrl) {
         this.id = id;
-        this.libelle = libelle;
-        this.prix = prix;
+        this.label = label;
+        this.price = price;
         this.description = description;
+        this.imageUrl = imageUrl;
     }
 
-    public Pack(String libelle, double prix, String description) {
-        this.libelle = libelle;
-        this.prix = prix;
+    public Pack(String label, double price, String description, String imageUrl) {
+        this.label = label;
+        this.price = price;
         this.description = description;
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {
@@ -39,20 +43,20 @@ public class Pack {
         this.id = id;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public String getLabel() {
+        return label;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
-    public double getPrix() {
-        return prix;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPrix(double prix) {
-        this.prix = prix;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getDescription() {
@@ -63,17 +67,28 @@ public class Pack {
         this.description = description;
     }
 
-    public ArrayList<Livre> getLivres() {
-        return livres;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setLivres(ArrayList<Livre> livres) {
-        this.livres = livres;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public ArrayList<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
     }
 
     @Override
-    public String toString() {
-        return "Pack{" + "id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", description=" + description + ", livres=" + livres + '}';
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + this.id;
+        hash = 67 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
+        return hash;
     }
 
     @Override
@@ -88,13 +103,14 @@ public class Pack {
             return false;
         }
         final Pack other = (Pack) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.label, other.label)) {
             return false;
         }
         return true;
     }
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Pack{" + "id=" + id + ", label=" + label + ", price=" + price + ", description=" + description + ", imageUrl=" + imageUrl + ", books=" + books + '}';
+    }
 }

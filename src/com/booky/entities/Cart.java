@@ -5,38 +5,30 @@
  */
 package com.booky.entities;
 
+import java.util.ArrayList;
+
+
 /**
  *
  * @author gharbimedaziz
  */
-public class Comment {
+public class Cart {
     private int id;
-    private String description;
     private Customer customer;
-    private Blog blog;
+    private ArrayList<CartItem> items;
+    private double totalPrice;
 
-    public Comment(int id, String description, Customer customer) {
+    public Cart(int id, Customer customer, ArrayList<CartItem> items, double totalPrice) {
         this.id = id;
-        this.description = description;
         this.customer = customer;
+        this.items = items;
+        this.totalPrice = totalPrice;
     }
 
-    public Comment(String description, Customer customer) {
-        this.description = description;
+    public Cart(Customer customer, ArrayList<CartItem> items, double totalPrice) {
         this.customer = customer;
-    }
-
-    public Comment(int id, String description, Customer customer, Blog blog) {
-        this.id = id;
-        this.description = description;
-        this.customer = customer;
-        this.blog = blog;
-    }
-
-    public Comment(String description, Customer customer, Blog blog) {
-        this.description = description;
-        this.customer = customer;
-        this.blog = blog;
+        this.items = items;
+        this.totalPrice = totalPrice;
     }
 
     public int getId() {
@@ -47,14 +39,6 @@ public class Comment {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
@@ -63,18 +47,27 @@ public class Comment {
         this.customer = customer;
     }
 
-    public Blog getBlog() {
-        return blog;
+    public ArrayList<CartItem> getItems() {
+        return items;
     }
 
-    public void setBlog(Blog blog) {
-        this.blog = blog;
+    public void setItems(ArrayList<CartItem> items) {
+        this.items = items;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + this.id;
+        hash = 13 * hash + this.id;
+        hash = 13 * hash + (int) (Double.doubleToLongBits(this.totalPrice) ^ (Double.doubleToLongBits(this.totalPrice) >>> 32));
         return hash;
     }
 
@@ -89,7 +82,7 @@ public class Comment {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Comment other = (Comment) obj;
+        final Cart other = (Cart) obj;
         if (this.id != other.id) {
             return false;
         }
@@ -98,6 +91,6 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "Comment{" + "id=" + id + ", description=" + description + ", customer=" + customer + '}';
+        return "Cart{" + "id=" + id + ", customer=" + customer + ", items=" + items + ", totalPrice=" + totalPrice + '}';
     }
 }
