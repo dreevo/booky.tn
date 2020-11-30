@@ -5,24 +5,31 @@
  */
 package com.booky.entities;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /**
  *
- * @author 21655
+ * @author gharbimedaziz
  */
 public class Blog {
     private int id;
     private String title;
-    private String contenu;
+    private String content;
+    private Author author;
+    private ArrayList<Comment> comments;
 
-    public Blog(int id, String title, String contenu) {
+    public Blog(int id, String title, String content, Author author) {
         this.id = id;
         this.title = title;
-        this.contenu = contenu;
+        this.content = content;
+        this.author = author;
     }
 
-    public Blog(String title, String contenu) {
+    public Blog(String title, String content, Author author) {
         this.title = title;
-        this.contenu = contenu;
+        this.content = content;
+        this.author = author;
     }
 
     public int getId() {
@@ -41,12 +48,35 @@ public class Blog {
         this.title = title;
     }
 
-    public String getContenu() {
-        return contenu;
+    public String getContent() {
+        return content;
     }
 
-    public void setContenu(String contenu) {
-        this.contenu = contenu;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(ArrayList<Comment> comments) {
+        this.comments = comments;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + this.id;
+        return hash;
     }
 
     @Override
@@ -64,12 +94,15 @@ public class Blog {
         if (this.id != other.id) {
             return false;
         }
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Blog{" + "id=" + id + ", title=" + title + ", contenu=" + contenu + '}';
+        return "Blog{" + "id=" + id + ", title=" + title + ", content=" + content + ", author=" + author + ", comments=" + comments + '}';
     }
     
 }

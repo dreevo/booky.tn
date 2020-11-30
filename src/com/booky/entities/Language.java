@@ -5,21 +5,23 @@
  */
 package com.booky.entities;
 
+import java.util.Objects;
+
 /**
  *
- * @author 21655
+ * @author gharbimedaziz
  */
-public class Privilege {
+public class Language {
     private int id;
-    private String nom;
+    private String languageName;
 
-    public Privilege(int id, String nom) {
+    public Language(int id, String languageName) {
         this.id = id;
-        this.nom = nom;
+        this.languageName = languageName;
     }
 
-    public Privilege(String nom) {
-        this.nom = nom;
+    public Language(String languageName) {
+        this.languageName = languageName;
     }
 
     public int getId() {
@@ -30,17 +32,24 @@ public class Privilege {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getLanguageName() {
+        return languageName;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setLanguageName(String languageName) {
+        this.languageName = languageName;
     }
 
     @Override
     public String toString() {
-        return "Privilege{" + "id=" + id + ", nom=" + nom + '}';
+        return "Language{" + "id=" + id + ", languageName=" + languageName + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + this.id;
+        return hash;
     }
 
     @Override
@@ -54,10 +63,12 @@ public class Privilege {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Privilege other = (Privilege) obj;
-        if (this.id != other.id) {
+        final Language other = (Language) obj;
+        if (!Objects.equals(this.languageName, other.languageName)) {
             return false;
         }
         return true;
     }
+
+
 }

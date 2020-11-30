@@ -9,27 +9,27 @@ import java.util.ArrayList;
 
 /**
  *
- * @author 21655
+ * @author gharbimedaziz
  */
-public class Bibliotheque {
+public class Library {
     private int id;
-    private String nom;
-    private String adresse;
+    private String name;
+    private String address;
     private String telephone;
     private String email;
-    private ArrayList<Livre> livres = new ArrayList<>();
+    private ArrayList<Book> books = new ArrayList<>();
 
-    public Bibliotheque(int id, String nom, String adresse, String telephone, String email) {
+    public Library(int id, String name, String address, String telephone, String email) {
         this.id = id;
-        this.nom = nom;
-        this.adresse = adresse;
+        this.name = name;
+        this.address = address;
         this.telephone = telephone;
         this.email = email;
     }
 
-    public Bibliotheque(String nom, String adresse, String telephone, String email) {
-        this.nom = nom;
-        this.adresse = adresse;
+    public Library(String name, String address, String telephone, String email) {
+        this.name = name;
+        this.address = address;
         this.telephone = telephone;
         this.email = email;
     }
@@ -42,20 +42,20 @@ public class Bibliotheque {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setAddress(String adresse) {
+        this.address = address;
     }
 
     public String getTelephone() {
@@ -74,12 +74,12 @@ public class Bibliotheque {
         this.email = email;
     }
 
-    public ArrayList<Livre> getLivres() {
-        return livres;
+    public ArrayList<Book> getBooks() {
+        return books;
     }
 
-    public void setLivres(ArrayList<Livre> livres) {
-        this.livres = livres;
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
     }
 
     @Override
@@ -93,14 +93,22 @@ public class Bibliotheque {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Bibliotheque other = (Bibliotheque) obj;
+        final Library other = (Library) obj;
         if (this.id != other.id) {
             return false;
         }
         return true;
     }
-    
-    
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+        return "Library{" + "id=" + id + ", name=" + name + ", address=" + address + ", telephone=" + telephone + ", email=" + email + ", books=" + books + '}';
+    }   
 }
