@@ -5,7 +5,7 @@
  */
 package com.booky.entities;
 
-import java.util.Calendar;
+import java.sql.Date;
 
 /**
  *
@@ -16,12 +16,12 @@ public class Order {
     private Cart cart;
     private int discount;
     private String orderType;
-    private Calendar date;
+    private Date date;
     private ShippingAddress shippingAddress;
     private Customer customer;
     private int isDone;
 
-    public Order(int id, Cart cart, int discount, String orderType, Calendar date, ShippingAddress shippingAddress, Customer customer, int isDone) {
+    public Order(int id, Cart cart, int discount, String orderType, Date date, ShippingAddress shippingAddress, Customer customer, int isDone) {
         this.id = id;
         this.cart = cart;
         this.discount = discount;
@@ -32,7 +32,7 @@ public class Order {
         this.isDone = isDone;
     }
 
-    public Order(Cart cart, int discount, String orderType, Calendar date, ShippingAddress shippingAddress, Customer customer, int isDone) {
+    public Order(Cart cart, int discount, String orderType, Date date, ShippingAddress shippingAddress, Customer customer, int isDone) {
         this.cart = cart;
         this.discount = discount;
         this.orderType = orderType;
@@ -74,11 +74,11 @@ public class Order {
         this.orderType = orderType;
     }
 
-    public Calendar getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Calendar date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -108,9 +108,9 @@ public class Order {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 47 * hash + this.id;
-        hash = 47 * hash + this.discount;
+        int hash = 7;
+        hash = 17 * hash + this.id;
+        hash = 17 * hash + this.discount;
         return hash;
     }
 
@@ -136,7 +136,6 @@ public class Order {
     public String toString() {
         return "Order{" + "id=" + id + ", cart=" + cart + ", discount=" + discount + ", orderType=" + orderType + ", date=" + date + ", shippingAddress=" + shippingAddress + ", customer=" + customer + ", isDone=" + isDone + '}';
     }
-    
-    
 
+   
 }

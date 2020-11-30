@@ -25,6 +25,12 @@ public class Cart {
         this.totalPrice = totalPrice;
     }
 
+    public Cart(Customer customer, ArrayList<CartItem> items, double totalPrice) {
+        this.customer = customer;
+        this.items = items;
+        this.totalPrice = totalPrice;
+    }
+
     public int getId() {
         return id;
     }
