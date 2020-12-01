@@ -15,11 +15,11 @@ public class ShippingAddress {
     private int id;
     private String address;
     private String city;
-    private String zipcode;
+    private int zipcode;
     private Customer customer;
     private Order order;
 
-    public ShippingAddress(int id, String address, String city, String zipcode, Customer customer, Order order) {
+    public ShippingAddress(int id, String address, String city, int zipcode, Customer customer, Order order) {
         this.id = id;
         this.address = address;
         this.city = city;
@@ -28,7 +28,7 @@ public class ShippingAddress {
         this.order = order;
     }
 
-    public ShippingAddress(String address, String city, String zipcode, Customer customer, Order order) {
+    public ShippingAddress(String address, String city, int zipcode, Customer customer, Order order) {
         this.address = address;
         this.city = city;
         this.zipcode = zipcode;
@@ -60,11 +60,11 @@ public class ShippingAddress {
         this.city = city;
     }
 
-    public String getZipcode() {
+    public int getZipcode() {
         return zipcode;
     }
 
-    public void setZipcode(String zipcode) {
+    public void setZipcode(int zipcode) {
         this.zipcode = zipcode;
     }
 
@@ -87,8 +87,7 @@ public class ShippingAddress {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + this.id;
-        hash = 83 * hash + Objects.hashCode(this.zipcode);
+        hash = 97 * hash + this.id;
         return hash;
     }
 
@@ -108,6 +107,11 @@ public class ShippingAddress {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ShippingAddress{" + "id=" + id + ", address=" + address + ", city=" + city + ", zipcode=" + zipcode + ", customer=" + customer + ", order=" + order + '}';
     }
 
     

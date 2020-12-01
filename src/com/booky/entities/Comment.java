@@ -13,6 +13,7 @@ public class Comment {
     private int id;
     private String description;
     private Customer customer;
+    private Blog blog;
 
     public Comment(int id, String description, Customer customer) {
         this.id = id;
@@ -23,6 +24,19 @@ public class Comment {
     public Comment(String description, Customer customer) {
         this.description = description;
         this.customer = customer;
+    }
+
+    public Comment(int id, String description, Customer customer, Blog blog) {
+        this.id = id;
+        this.description = description;
+        this.customer = customer;
+        this.blog = blog;
+    }
+
+    public Comment(String description, Customer customer, Blog blog) {
+        this.description = description;
+        this.customer = customer;
+        this.blog = blog;
     }
 
     public int getId() {
@@ -47,6 +61,14 @@ public class Comment {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
     }
 
     @Override

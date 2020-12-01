@@ -37,6 +37,19 @@ public class Charity {
         this.book = book;
     }
 
+    public Charity(String title, String description, String imageUrl) {
+        this.title = title;
+        this.description = description;
+        this.imageUrl = imageUrl;
+    }
+
+    public Charity(int id, String title, String description, String imageUrl) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.imageUrl = imageUrl;
+    }
+    
     public int getId() {
         return id;
     }

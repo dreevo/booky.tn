@@ -14,6 +14,7 @@ public class Donation {
     private String message;
     private double amount;
     private Customer customer;
+    private Charity charity;
 
     public Donation(int id, String message, double amount, Customer customer) {
         this.id = id;
@@ -26,6 +27,21 @@ public class Donation {
         this.message = message;
         this.amount = amount;
         this.customer = customer;
+    }
+
+    public Donation(String message, double amount, Customer customer, Charity charity) {
+        this.message = message;
+        this.amount = amount;
+        this.customer = customer;
+        this.charity = charity;
+    }
+
+    public Donation(int id, String message, double amount, Customer customer, Charity charity) {
+        this.id = id;
+        this.message = message;
+        this.amount = amount;
+        this.customer = customer;
+        this.charity = charity;
     }
 
     public int getId() {
@@ -58,6 +74,14 @@ public class Donation {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Charity getCharity() {
+        return charity;
+    }
+
+    public void setCharity(Charity charity) {
+        this.charity = charity;
     }
 
     @Override
