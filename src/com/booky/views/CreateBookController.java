@@ -31,6 +31,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javax.swing.JOptionPane;
 
@@ -101,14 +102,14 @@ public class CreateBookController implements Initializable {
         authorField.setConverter(new StringConverter<Author>() {
             @Override
             public String toString(Author object) {
-                return (object.getFirstName()+ " " + object.getLastName());
+                return (object.getFirstName() + " " + object.getLastName());
             }
 
             @Override
             public Author fromString(String string) {
                 return authorField.getItems().stream().filter(ap
                         -> ap.getEmail().equals(string)).findFirst().orElse(null);
-                
+
             }
         });
         // GETTING THE LIST OF THE LANGUAGES FOR THE LANGUAGE COMBO BOX
@@ -128,7 +129,7 @@ public class CreateBookController implements Initializable {
             public Language fromString(String string) {
                 return langField.getItems().stream().filter(ap
                         -> ap.getLanguageName().equals(string)).findFirst().orElse(null);
-                
+
             }
         });
         // INITIALIZING THE IMAGE FILERTING 
@@ -140,7 +141,9 @@ public class CreateBookController implements Initializable {
 
     @FXML
     private void cancelCreate(ActionEvent event) {
-
+        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+        // do what you have to do
+        stage.close();
     }
 
     @FXML
@@ -152,7 +155,7 @@ public class CreateBookController implements Initializable {
             inputValid = false;
             return;
         } else {
-            System.out.println("Label " +labelField.getText());
+            System.out.println("Label " + labelField.getText());
         }
         // RETRIVING THE PRICE 
         double price = 0;
@@ -176,25 +179,35 @@ public class CreateBookController implements Initializable {
             inputValid = false;
             return;
         } else {
-            System.out.println("Author's id "+author.getId());
+            System.out.println("Author's id " + author.getId());
         }
         // RETRIEVING SELECTED CATEGORIES
         ArrayList<Category> categories = new ArrayList<>();
-        if (romCategField.isSelected())categories.add(new Category(1, "Romance"));
-        if (advCategField.isSelected())categories.add(new Category(3, "Adventure"));
-        if (sciCategField.isSelected())categories.add(new Category(2, "Sci-Fi"));
-        if (eduField.isSelected())categories.add(new Category(4, "Education"));
-        if (mysField.isSelected())categories.add(new Category(5, "Mystery"));
-    
+        if (romCategField.isSelected()) {
+            categories.add(new Category(1, "Romance"));
+        }
+        if (advCategField.isSelected()) {
+            categories.add(new Category(3, "Adventure"));
+        }
+        if (sciCategField.isSelected()) {
+            categories.add(new Category(2, "Sci-Fi"));
+        }
+        if (eduField.isSelected()) {
+            categories.add(new Category(4, "Education"));
+        }
+        if (mysField.isSelected()) {
+            categories.add(new Category(5, "Mystery"));
+        }
+
         if (categories.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please choose atleast one category", "Error", JOptionPane.ERROR_MESSAGE);
             inputValid = false;
             return;
         } else {
-            System.out.println("Categories "+ categories);
+            System.out.println("Categories " + categories);
         }
         // RETRIEVING THE DESCRIPTION
-        System.out.println("Description "+descField.getText());
+        System.out.println("Description " + descField.getText());
         // RETRIEVING THE LANGUAGE OF THE BOOK
         Language language = langField.getSelectionModel().getSelectedItem();
         if (language == null) {
@@ -202,18 +215,20 @@ public class CreateBookController implements Initializable {
             inputValid = false;
             return;
         } else {
-            System.out.println("Language "+language.getId());
+            System.out.println("Language " + language.getId());
         }
         // RETRIEVING THE RATING 
         ratField.valueProperty().addListener((obs, oldval, newVal)
                 -> ratField.setValue(Math.round(newVal.doubleValue())));
         int rating = (int) (ratField.getValue());
-        System.out.println("Rating "+rating);
-        Book b = new Book(labelField.getText(), price, descField.getText(), isInStock, singleFileLab.getText(), author, categories,language, rating);
+        System.out.println("Rating " + rating);
+        Book b = new Book(labelField.getText(), price, descField.getText(), isInStock, singleFileLab.getText(), author, categories, language, rating);
         BookService bs = new BookService();
         System.out.println(b);
         bs.createBook(b);
-        if(inputValid)JOptionPane.showMessageDialog(null, "Book Added To Database", "Success", JOptionPane.INFORMATION_MESSAGE);
+        if (inputValid) {
+            JOptionPane.showMessageDialog(null, "Book Added To Database", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     @FXML

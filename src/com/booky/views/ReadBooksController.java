@@ -69,6 +69,8 @@ public class ReadBooksController implements Initializable {
     @FXML
     private Button cancelBtn;
     private int bookId;
+    @FXML
+    private Button reloadBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -102,7 +104,6 @@ public class ReadBooksController implements Initializable {
             imgField.setText(b.getImageUrl());
             authField.setText(b.getAuthor().getFirstName() + " " + b.getAuthor().getLastName());
             bookId = b.getId();
-            //bookIdField.setText(b.getId()+"");
             for (int i = 0; i < b.getCategories().size(); i++) {
                 if (i == 0) {
                     categField.setText(b.getCategories().get(i).getCategoryName());
@@ -148,6 +149,27 @@ public class ReadBooksController implements Initializable {
 
     @FXML
     private void cancelBook(ActionEvent event) {
+        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }
+
+    @FXML
+    private void reloadTable(ActionEvent event) {
+        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReadBooks.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage registerStage = new Stage();
+            registerStage.setTitle("Manage Books");
+            registerStage.setScene(scene);
+            registerStage.show();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }

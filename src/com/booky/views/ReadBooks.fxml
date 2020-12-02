@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="474.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.ReadBooksController">
    <children>
-      <TableView fx:id="table" layoutX="22.0" layoutY="23.0" prefHeight="430.0" prefWidth="194.0">
+      <TableView fx:id="table" layoutX="22.0" layoutY="23.0" prefHeight="378.0" prefWidth="194.0">
         <columns>
           <TableColumn fx:id="label" prefWidth="191.20001220703125" text="Book" />
         </columns>
@@ -35,5 +35,6 @@
       <Button fx:id="editBtn" layoutX="381.0" layoutY="409.0" mnemonicParsing="false" onAction="#editBook" prefHeight="37.0" prefWidth="72.0" text="Edit" />
       <Button fx:id="deleteBtn" layoutX="461.0" layoutY="409.0" mnemonicParsing="false" onAction="#deleteBook" prefHeight="37.0" prefWidth="72.0" text="Delete" />
       <Button fx:id="cancelBtn" layoutX="541.0" layoutY="409.0" mnemonicParsing="false" onAction="#cancelBook" prefHeight="37.0" prefWidth="72.0" text="Cancel" />
+      <Button fx:id="reloadBtn" layoutX="83.0" layoutY="409.0" mnemonicParsing="false" onAction="#reloadTable" prefHeight="37.0" prefWidth="72.0" text="Reload" />
    </children>
 </AnchorPane>

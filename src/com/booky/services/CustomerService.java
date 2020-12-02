@@ -22,7 +22,7 @@ public class CustomerService {
 
     public void addCustomer(Customer c) {
         try {
-            String req = "INSERT INTO customer (firstname,lastname,age,email,address,telephone,roleid) VALUES(?,?,?,?,?,?,?)";
+            String req = "INSERT INTO customer (firstname,lastname,age,email,address,telephone,roleid,password) VALUES(?,?,?,?,?,?,?,?)";
             PreparedStatement pst = cnx.prepareStatement(req);
             pst.setString(1, c.getFirstName());
             pst.setString(2, c.getLastName());
@@ -30,6 +30,7 @@ public class CustomerService {
             pst.setString(4, c.getEmail());
             pst.setString(5, c.getAddress());
             pst.setString(6, c.getTelephone());
+            pst.setString(8, c.getPassword());
             pst.setInt(7, 2);
             pst.executeUpdate();
             System.out.println("+ CUSTOMER ADDED TO DATABASE");
@@ -96,6 +97,24 @@ public class CustomerService {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    
+    public boolean validateLogin(String email, String password){
+        boolean validate=false;
+        try{
+            String req = "select count(1) from customer where email=? and password=?";
+            PreparedStatement st = cnx.prepareStatement(req);
+            st.setString(1, email);
+            st.setString(2, password);
+            ResultSet res = st.executeQuery();
+            while(res.next()){
+                if(res.getInt(1) == 1)
+                    validate=true;
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return validate;
     }
 
 }
