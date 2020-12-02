@@ -5,13 +5,18 @@
  */
 package com.booky.services;
 
+import com.booky.entities.Author;
 import com.booky.entities.Book;
+import com.booky.entities.Category;
+import com.booky.entities.Language;
 import com.booky.utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -121,32 +126,84 @@ public class BookService {
         }
     }
 
-    public void readBook(int bookId) {
-        Book book = null; 
+    public Book readBook(int bookId) {
+        Book b = new Book();
         try {
             // GETTING THE BOOK OBJECT
-            String req = "select b.label,b.price,b.description,b.isinstock,b.rating,b.imageurl,l.languagename from book b join language l on l.id=b.languageid and b.id=?";
+            String req = "select b.label,b.price,b.description,b.isinstock,b.rating,b.imageurl,l.languagename,l.id from book b join languauge l on l.id=b.languageid and b.id=?";
             PreparedStatement st = cnx.prepareStatement(req);
             st.setInt(1, bookId);
             ResultSet res = st.executeQuery();
             while (res.next()) {
                 String label = res.getString(1);
+                b.setLabel(label);
                 System.out.println(label);
                 double price = res.getInt(2);
                 System.out.println(price);
+                b.setPrice(price);
                 String description = res.getString(3);
                 System.out.println(description);
+                b.setDescription(description);
                 int isInStock = res.getInt(4);
                 System.out.println(isInStock);
+                b.setIsInStock(isInStock);
                 int rating = res.getInt(5);
                 System.out.println(rating);
+                b.setRating(rating);
                 String imageUrl = res.getString(6);
                 System.out.println(imageUrl);
+                b.setImageUrl(imageUrl);
                 String languageName = res.getString(7);
+                String languageId = res.getString(8);
+                b.setLanguage(new Language(Integer.parseInt(languageId), languageName));
                 System.out.println(languageName);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return b;
+    }
+
+    public void readBooks(ObservableList<Book> bookList) {
+        try {
+            String req = "select b.label,b.price,b.description,b.isinstock,b.rating,b.imageurl,l.languagename,l.id,b.id from book b join language l on l.id=b.languageid";
+            PreparedStatement st = cnx.prepareStatement(req);
+            ResultSet res = st.executeQuery();
+            Book b;
+            while (res.next()) {
+                b = new Book();
+                b.setLabel(res.getString(1));
+                b.setPrice(res.getDouble(2));
+                b.setDescription(res.getString(3));
+                b.setIsInStock(res.getInt(4));
+                b.setRating(res.getInt(5));
+                b.setImageUrl(res.getString(6));
+                String languageName = res.getString(7);
+                String languageId = res.getString(8);
+                b.setLanguage(new Language(Integer.parseInt(languageId), languageName));
+                int bookId = res.getInt(9);
+                String req2 = "select a.id,a.firstname,lastname from book b join author a on a.id=b.authorid and b.id=?";
+                PreparedStatement st2 = cnx.prepareStatement(req2);
+                st2.setInt(1, bookId);
+                ResultSet res2 = st2.executeQuery();
+                while (res2.next()) {
+                    b.setAuthor(new Author(res2.getInt(1), res2.getString(2), res2.getString(3)));
+                }
+                String req3 = "select c.id,c.categoryname from bookcategory bc join category c on bc.categoryid=c.id and bc.bookid=?";
+                PreparedStatement st3 = cnx.prepareStatement(req3);
+                st3.setInt(1, bookId);
+                ResultSet res3 = st3.executeQuery();
+                ArrayList<Category> categs = new ArrayList<>();
+                while(res3.next()){
+                    categs.add(new Category(res3.getInt(1), res3.getString(2)));
+                }
+                b.setCategories(categs);
+                b.setId(bookId);
+                bookList.add(b);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }

@@ -38,6 +38,9 @@ public class Book {
         this.rating = rating;
     }
 
+    public Book() {
+    }
+
     public Book(int id, String label, double price, String description, int isInStock, String imageUrl, Author author, ArrayList<Category> Categories, Language language, int rating, Charity charity) {
         this.id = id;
         this.label = label;

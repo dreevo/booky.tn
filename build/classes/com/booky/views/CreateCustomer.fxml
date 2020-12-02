@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="tfRoleId" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.CreateCustomerController">
+   <children>
+      <TextField fx:id="tfFirstname" layoutX="293.0" layoutY="82.0" promptText="Enter firstname" />
+      <Label layoutX="156.0" layoutY="86.0" text="First Name" />
+      <Label layoutX="157.0" layoutY="119.0" text="Last Name" />
+      <TextField fx:id="tfLastname" layoutX="293.0" layoutY="115.0" promptText="Enter lastname" />
+      <Label layoutX="157.0" layoutY="152.0" text="Age" />
+      <TextField fx:id="tfAge" layoutX="293.0" layoutY="148.0" prefHeight="26.0" prefWidth="38.0" />
+      <TextField fx:id="tfEmail" layoutX="293.0" layoutY="183.0" promptText="Enter email " />
+      <Label layoutX="156.0" layoutY="187.0" text="Email" />
+      <TextField fx:id="tfAddress" layoutX="293.0" layoutY="215.0" promptText="Enter address" />
+      <Label layoutX="156.0" layoutY="219.0" text="Address" />
+      <TextField fx:id="tfTelephone" layoutX="294.0" layoutY="249.0" prefHeight="26.0" prefWidth="149.0" promptText="Enter telephone" />
+      <Label layoutX="157.0" layoutY="253.0" text="Telephone" />
+      <TextField fx:id="tfImage" layoutX="294.0" layoutY="283.0" prefHeight="26.0" prefWidth="149.0" promptText="Enter image" />
+      <Label layoutX="157.0" layoutY="287.0" text="Image" />
+      <Button fx:id="createBtn" layoutX="220.0" layoutY="344.0" mnemonicParsing="false" onAction="#createCustomer" prefHeight="26.0" prefWidth="160.0" text="Create Account" />
+      <Label layoutX="27.0" layoutY="29.0" text="\\Administration Panel\Create Customer" />
+   </children>
+</AnchorPane>

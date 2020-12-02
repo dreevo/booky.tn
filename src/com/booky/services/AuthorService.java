@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -90,5 +91,27 @@ public class AuthorService {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    
+    public void readAuthors(ObservableList<Author> authorlist){
+        try{
+            String req = "select id,FirstName,LastName from author";
+            PreparedStatement st = cnx.prepareStatement(req);
+            
+            ResultSet res = st.executeQuery();
+            while(res.next()){
+                Author author = new Author ();
+                author.setId(res.getInt(1));
+                author.setFirstName(res.getString(2));
+                author.setLastName(res.getString(3));
+                authorlist.add(author);  
+            }
+            
+            
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+       }
+        
     }
 }
