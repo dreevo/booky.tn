@@ -20,6 +20,10 @@ public class Language {
         this.languageName = languageName;
     }
 
+    public Language(int id) {
+        this.id = id;
+    }
+
     public Language(String languageName) {
         this.languageName = languageName;
     }

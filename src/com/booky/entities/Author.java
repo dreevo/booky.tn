@@ -38,6 +38,10 @@ public class Author {
         this.description = description;
     }
 
+    public Author(int id) {
+        this.id = id;
+    }
+
     public Author(int id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;

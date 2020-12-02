@@ -7,18 +7,25 @@ package com.booky.views;
 
 import com.booky.entities.Book;
 import com.booky.services.BookService;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
 
 /**
@@ -77,27 +84,31 @@ public class ReadBooksController implements Initializable {
         table.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showPersonDetails(newValue));
     }
-    
+
     private void showPersonDetails(Book b) {
         if (b != null) {
             categField.setText("");
             // Fill the labels with info from the person object.
             labelField.setText(b.getLabel());
-            priceField.setText(""+b.getPrice()+" DT");
+            priceField.setText("" + b.getPrice() + " DT");
             descField.setText(b.getDescription());
-            if(b.getIsInStock() == 1)stockField.setText("Yes");
-            else stockField.setText("No");
-            ratingField.setText(""+b.getRating());
+            if (b.getIsInStock() == 1) {
+                stockField.setText("Yes");
+            } else {
+                stockField.setText("No");
+            }
+            ratingField.setText("" + b.getRating());
             langField.setText(b.getLanguage().getLanguageName());
             imgField.setText(b.getImageUrl());
-            authField.setText(b.getAuthor().getFirstName()+ " " +b.getAuthor().getLastName());
+            authField.setText(b.getAuthor().getFirstName() + " " + b.getAuthor().getLastName());
             bookId = b.getId();
             //bookIdField.setText(b.getId()+"");
-            for(int i=0;i<b.getCategories().size();i++){
-                if(i==0){
+            for (int i = 0; i < b.getCategories().size(); i++) {
+                if (i == 0) {
                     categField.setText(b.getCategories().get(i).getCategoryName());
+                } else {
+                    categField.setText(categField.getText() + " , " + b.getCategories().get(i).getCategoryName());
                 }
-                categField.setText(categField.getText()+ " , "+b.getCategories().get(i).getCategoryName());
             }
         } else {
             // Person is null, remove all the text.
@@ -106,23 +117,37 @@ public class ReadBooksController implements Initializable {
     }
 
     @FXML
-    private void editBook(ActionEvent event) {
+    private void editBook(ActionEvent event) throws IOException {
+        if (bookId == 0) {
+            JOptionPane.showMessageDialog(null, "Please select a book to edit", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/UpdateBook.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            UpdateBookController controller = fxmlLoader.<UpdateBookController>getController();
+            controller.setUser(bookId);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            //stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Edit Book");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        }
     }
 
     @FXML
     private void deleteBook(ActionEvent event) {
         int id = bookId;
         BookService bs = new BookService();
-        if(id==0){
-            JOptionPane.showMessageDialog(null, "Book not found", "Error", JOptionPane.ERROR_MESSAGE);
+        if (id == 0) {
+            JOptionPane.showMessageDialog(null, "Please select a book to delete", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            bs.deleteBook(bookId);
+            JOptionPane.showMessageDialog(null, "Book deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
-        bs.deleteBook(bookId);
-        JOptionPane.showMessageDialog(null, "Book deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @FXML
     private void cancelBook(ActionEvent event) {
     }
-    
 
 }

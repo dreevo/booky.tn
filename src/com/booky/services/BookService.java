@@ -80,7 +80,7 @@ public class BookService {
     public void updateBook(Book b) {
         try {
             // UPDATING ALL COLUMNS EXCEPT THE CATEGORIES.
-            String req = "update book set label=?,price=?,description=?,isinstock=?,imageurl=?,authorid=?,languageid=?,rating=?,charityid=? where id=?";
+            String req = "update book set label=?,price=?,description=?,isinstock=?,imageurl=?,authorid=?,languageid=?,rating=? where id=?";
             PreparedStatement st = cnx.prepareStatement(req);
             st.setString(1, b.getLabel());
             st.setDouble(2, b.getPrice());
@@ -90,8 +90,7 @@ public class BookService {
             st.setInt(6, b.getAuthor().getId());
             st.setInt(7, b.getLanguage().getId());
             st.setInt(8, b.getRating());
-            st.setInt(9, b.getCharity().getId());
-            st.setInt(10, b.getId());
+            st.setInt(9, b.getId());
             st.executeUpdate();
             // UPDATING THE BOOK CATEGORY TABLE 
             if (!b.getCategories().isEmpty()) {
@@ -130,33 +129,44 @@ public class BookService {
         Book b = new Book();
         try {
             // GETTING THE BOOK OBJECT
-            String req = "select b.label,b.price,b.description,b.isinstock,b.rating,b.imageurl,l.languagename,l.id from book b join languauge l on l.id=b.languageid and b.id=?";
+            String req = "select b.label,b.price,b.description,b.isinstock,b.rating,b.imageurl,l.languagename,l.id from book b join language l on l.id=b.languageid and b.id=?";
             PreparedStatement st = cnx.prepareStatement(req);
             st.setInt(1, bookId);
             ResultSet res = st.executeQuery();
             while (res.next()) {
                 String label = res.getString(1);
-                b.setLabel(label);
-                System.out.println(label);
+                b.setLabel(label);;
                 double price = res.getInt(2);
-                System.out.println(price);
                 b.setPrice(price);
                 String description = res.getString(3);
-                System.out.println(description);
                 b.setDescription(description);
                 int isInStock = res.getInt(4);
-                System.out.println(isInStock);
                 b.setIsInStock(isInStock);
                 int rating = res.getInt(5);
-                System.out.println(rating);
                 b.setRating(rating);
                 String imageUrl = res.getString(6);
-                System.out.println(imageUrl);
                 b.setImageUrl(imageUrl);
                 String languageName = res.getString(7);
                 String languageId = res.getString(8);
                 b.setLanguage(new Language(Integer.parseInt(languageId), languageName));
-                System.out.println(languageName);
+                // GETTING THE LIST OF CATEGORIES OF THAT BOOK
+                String req1 = "select bc.categoryid,c.categoryname from bookcategory bc join category c on c.id=bc.categoryid and bc.bookid=?";
+                PreparedStatement st1 = cnx.prepareStatement(req1);
+                st1.setInt(1, bookId);
+                ResultSet res1 = st1.executeQuery();
+                ArrayList<Category> categs = new ArrayList<>();
+                while (res1.next()) {
+                    categs.add(new Category(res1.getInt(1),res1.getString(2)));
+                }
+                b.setCategories(categs);
+                // GETTING THE AUTHOR OF THAT BOOK
+                String req2 = "select a.id,a.firstname,lastname from book b join author a on a.id=b.authorid and b.id=?";
+                PreparedStatement st2 = cnx.prepareStatement(req2);
+                st2.setInt(1, bookId);
+                ResultSet res2 = st2.executeQuery();
+                while (res2.next()) {
+                    b.setAuthor(new Author(res2.getInt(1), res2.getString(2), res2.getString(3)));
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -194,7 +204,7 @@ public class BookService {
                 st3.setInt(1, bookId);
                 ResultSet res3 = st3.executeQuery();
                 ArrayList<Category> categs = new ArrayList<>();
-                while(res3.next()){
+                while (res3.next()) {
                     categs.add(new Category(res3.getInt(1), res3.getString(2)));
                 }
                 b.setCategories(categs);

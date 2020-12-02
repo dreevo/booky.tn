@@ -95,7 +95,7 @@ public class AuthorService {
     
     public void readAuthors(ObservableList<Author> authorlist){
         try{
-            String req = "select id,FirstName,LastName from author";
+            String req = "select id,FirstName,LastName,email from author";
             PreparedStatement st = cnx.prepareStatement(req);
             
             ResultSet res = st.executeQuery();
@@ -104,6 +104,7 @@ public class AuthorService {
                 author.setId(res.getInt(1));
                 author.setFirstName(res.getString(2));
                 author.setLastName(res.getString(3));
+                author.setEmail(res.getString(4));
                 authorlist.add(author);  
             }
             

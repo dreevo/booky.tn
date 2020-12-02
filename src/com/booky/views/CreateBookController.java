@@ -30,7 +30,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 import javafx.stage.FileChooser;
 import javafx.util.StringConverter;
 import javax.swing.JOptionPane;
@@ -102,13 +101,14 @@ public class CreateBookController implements Initializable {
         authorField.setConverter(new StringConverter<Author>() {
             @Override
             public String toString(Author object) {
-                return (object.getFirstName() + " " + object.getLastName());
+                return (object.getFirstName()+ " " + object.getLastName());
             }
 
             @Override
             public Author fromString(String string) {
                 return authorField.getItems().stream().filter(ap
-                        -> ap.getFirstName().equals(string)).findFirst().orElse(null);
+                        -> ap.getEmail().equals(string)).findFirst().orElse(null);
+                
             }
         });
         // GETTING THE LIST OF THE LANGUAGES FOR THE LANGUAGE COMBO BOX
@@ -128,6 +128,7 @@ public class CreateBookController implements Initializable {
             public Language fromString(String string) {
                 return langField.getItems().stream().filter(ap
                         -> ap.getLanguageName().equals(string)).findFirst().orElse(null);
+                
             }
         });
         // INITIALIZING THE IMAGE FILERTING 
