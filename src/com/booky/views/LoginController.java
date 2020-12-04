@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -30,7 +31,7 @@ public class LoginController implements Initializable {
     @FXML
     private TextField usernameField;
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
     @FXML
     private Button loginBtn;
     @FXML

@@ -25,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -46,9 +47,9 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField ageField;
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
     @FXML
-    private TextField confirmpassField;
+    private PasswordField confirmpassField;
     @FXML
     private Button registerBtn;
     @FXML

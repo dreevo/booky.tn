@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.CartDetailsController">
+   <children>
+      <TilePane fx:id="tilePane" layoutX="36.0" layoutY="39.0" prefHeight="498.0" prefWidth="672.0" />
+      <Label layoutX="321.0" layoutY="14.0" text="Cart Details">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="620.0" layoutY="19.0" text="Total :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="cartToal" layoutX="668.0" layoutY="19.0" prefHeight="20.0" prefWidth="42.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="710.0" layoutY="20.0" text="DT">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

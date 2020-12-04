@@ -63,7 +63,7 @@ public class CharityService {
         }
     }
       
-      public void readCharity(int charityId) {
+      public Charity readCharity(int charityId) {
         Charity charity = null;
         try {
             // READING ALL THE CHARITY TABLE DATA
@@ -73,10 +73,13 @@ public class CharityService {
             ResultSet res = st.executeQuery();
             while(res.next()){
                 String title = res.getString(2);
+                charity.setTitle(title);
                 System.out.println(title);
                 String description = res.getString(3);
+                charity.setDescription(description);
                 System.out.println(description);
                 String imageUrl = res.getString(4);
+                charity.setImageUrl(imageUrl);
                 System.out.println(imageUrl);
             }
             // GETTING DONATIONS IDS OF THE CHARITY
@@ -104,5 +107,6 @@ public class CharityService {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return charity;
     }
 }

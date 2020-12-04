@@ -71,6 +71,8 @@ public class ReadBooksController implements Initializable {
     private int bookId;
     @FXML
     private Button reloadBtn;
+    @FXML
+    private Button addBookBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -170,6 +172,18 @@ public class ReadBooksController implements Initializable {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @FXML
+    private void addBook(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/CreateBook.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Create Book");
+        stage.setScene(new Scene(root1));
+        stage.show();
+
     }
 
 }

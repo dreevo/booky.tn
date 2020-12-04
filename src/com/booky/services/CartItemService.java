@@ -5,6 +5,7 @@
  */
 package com.booky.services;
 
+import com.booky.entities.Book;
 import com.booky.entities.CartItem;
 import com.booky.utils.DataSource;
 import java.sql.Connection;
@@ -12,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -38,7 +41,7 @@ public class CartItemService {
 
     public void deleteCartItem(int cartItemId) {
         try {
-            String req = "delete from cartitem where id=?";
+            String req = "delete from cartitem where bookid=?";
             PreparedStatement st = cnx.prepareStatement(req);
             st.setInt(1, cartItemId);
             st.executeUpdate();
@@ -50,12 +53,11 @@ public class CartItemService {
 
     public void updateCartItem(CartItem c) {
         try {
-            String req = "update cartitem set quantity=?,bookid=? where id=?";
+            String req = "update cartitem set quantity=? where bookid=?";
             PreparedStatement st = cnx.prepareStatement(req);
 
             st.setInt(1, c.getQuantity());
             st.setInt(2, c.getBook().getId());
-            st.setInt(3, c.getId());
             st.executeUpdate();
             System.out.println("+ CART ITEM UPDATED IN DATABASE");
         } catch (SQLException ex) {
@@ -63,22 +65,38 @@ public class CartItemService {
         }
     }
 
-    public void readCartItem(int cartItemId) {
+    public int readCartItem(int bookId) {
+        int quantity=0;
         try {
             // GETTING THE PACK OBJECT
-            String req = "select c.quantity, b.label,b.price,b.description from cartitem c join book b on c.bookid=b.id and c.id=?";
+            String req = "select c.quantity from cartitem c where c.bookid=?";
             PreparedStatement st = cnx.prepareStatement(req);
-            st.setInt(1, cartItemId);
+            st.setInt(1, bookId);
             ResultSet res = st.executeQuery();
             while (res.next()) {
-                int quantity = res.getInt(1);
-                System.out.println(quantity);
-                String label = res.getString(2);
-                System.out.println(label);
-                Double price = res.getDouble(3);
-                System.out.println(price);
-                String description = res.getString(4);
-                System.out.println(description);
+                quantity = res.getInt(1);
+                //System.out.println(quantity);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return quantity;
+    }
+    
+    public void readCartItems(HashMap<Integer, Integer> bookQuantities, ObservableList<Book> bookList){
+        try {
+            // GETTING THE PACK OBJECT
+            String req = "select c.quantity,b.label,b.price,b.imageUrl,c.bookid from cartitem c join book b on b.id=c.bookid";
+            PreparedStatement st = cnx.prepareStatement(req);
+            ResultSet res = st.executeQuery();
+            while (res.next()) {
+                Book b = new Book();
+                b.setImageUrl(res.getString(4));
+                b.setLabel(res.getString(2));
+                b.setPrice(res.getDouble(3));
+                b.setId(res.getInt(5));
+                bookList.add(b);
+                bookQuantities.put(res.getInt(5), res.getInt(1));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

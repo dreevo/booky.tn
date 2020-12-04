@@ -20,10 +20,10 @@ public class MainProgGUI extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/FXMLDocument.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Administration Panel");
+        primaryStage.setTitle("booky.tn");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

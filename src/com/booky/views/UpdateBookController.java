@@ -199,7 +199,7 @@ public class UpdateBookController implements Initializable {
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", lstFile));
         File f = fc.showOpenDialog(null);
         if (f != null) {
-            singleFileLab.setText(f.getName());
+            singleFileLab.setText(f.getPath());
         }
     }
 
