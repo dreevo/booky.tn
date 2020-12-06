@@ -77,6 +77,10 @@ public class CartDetailsController implements Initializable {
     private ImageView backBtn;
     @FXML
     private Button checkoutBtn;
+    @FXML
+    private Label totalLabel1;
+    @FXML
+    private Label totalLabel2;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -90,6 +94,15 @@ public class CartDetailsController implements Initializable {
         System.out.println(bookList);
         System.out.println(bookQuantities);
         createElements(bookList);
+        if(cartTotal == 0){
+            totalLabel1.setVisible(false);
+            totalLabel2.setVisible(false);
+            checkoutBtn.setDisable(true);
+        }else{
+            totalLabel1.setVisible(true);
+            totalLabel2.setVisible(true);
+            checkoutBtn.setDisable(false);
+        }
         backBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

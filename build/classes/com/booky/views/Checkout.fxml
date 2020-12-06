@@ -27,7 +27,7 @@
                   <Font name="Calibri Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="22.0" layoutY="153.0" text="Total :" textFill="WHITE">
+            <Label fx:id="totalLabel1" layoutX="22.0" layoutY="153.0" text="Total :" textFill="WHITE">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -45,7 +45,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="175.0" layoutY="154.0" text="DT" textFill="WHITE">
+            <Label fx:id="totalLabel2" layoutX="175.0" layoutY="154.0" text="DT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

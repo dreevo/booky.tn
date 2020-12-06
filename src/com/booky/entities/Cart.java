@@ -35,6 +35,11 @@ public class Cart {
         this.totalPrice = totalPrice;
     }
 
+    public Cart(int id, double totalPrice) {
+        this.id = id;
+        this.totalPrice = totalPrice;
+    }
+
     public int getId() {
         return id;
     }

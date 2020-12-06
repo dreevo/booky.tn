@@ -92,6 +92,8 @@ public class IndexController implements Initializable {
         tilePane.setVgap(GAP);
         // Add to cart FADE IN 
         addedMessageLabel.setVisible(false);
+        addedMessageLabel.setText("+ Added to cart");
+        addedMessageLabel.setStyle("-fx-text-fill:#92fd9b");
         BookService bs = new BookService();
         bs.readBooks(bookList);
         System.out.println(bookList);
@@ -100,21 +102,31 @@ public class IndexController implements Initializable {
         cartBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                try {
-                    Stage stage1 = (Stage) cartBtn.getScene().getWindow();
-                    stage1.close();
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/CartDetails.fxml"));
-                    Parent root1 = (Parent) fxmlLoader.load();
-                    Stage stage = new Stage();
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    stage.initStyle(StageStyle.TRANSPARENT);
-                    stage.setTitle("Cart Details");
-                    stage.setScene(new Scene(root1));
-                    stage.show();
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                if (cartItems.getText().equals("0")) {
+                    addedMessageLabel.setText("Your cart is empty !");
+                    addedMessageLabel.setStyle("-fx-text-fill:#ff6b03");
+                    addedMessageLabel.setVisible(true);
+                    fadeIn.setNode(addedMessageLabel);
+                    fadeIn.setAutoReverse(false);
+                    fadeIn.setToValue(0);
+                    fadeIn.setFromValue(1);
+                    fadeIn.play();
+                } else {
+                    try {
+                        Stage stage1 = (Stage) cartBtn.getScene().getWindow();
+                        stage1.close();
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/CartDetails.fxml"));
+                        Parent root1 = (Parent) fxmlLoader.load();
+                        Stage stage = new Stage();
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.initStyle(StageStyle.TRANSPARENT);
+                        stage.setTitle("Cart Details");
+                        stage.setScene(new Scene(root1));
+                        stage.show();
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
-
             }
         });
     }
@@ -207,6 +219,8 @@ public class IndexController implements Initializable {
                 Cart c = new Cart(1, new Customer(1), null, cartTotal);
                 CartService cs = new CartService();
                 cs.updateCart(c);
+                addedMessageLabel.setStyle("-fx-text-fill:#92fd9b");
+                addedMessageLabel.setText("+ Added to cart");
                 addedMessageLabel.setVisible(true);
                 fadeIn.setNode(addedMessageLabel);
                 fadeIn.setAutoReverse(false);
@@ -228,7 +242,7 @@ public class IndexController implements Initializable {
         bookPrice.getStyleClass().add("priceLabel");
         priceAndRating.getChildren().add(bookPrice);
         Label ratingLabel = new Label();
-        ratingLabel.setText(rating+"");
+        ratingLabel.setText(rating + "");
         ratingLabel.getStyleClass().add("ratingLabel");
         priceAndRating.getChildren().add(ratingLabel);
         priceAndRating.getChildren().add(ratingIcon);

@@ -50,6 +50,18 @@ public class CartItemService {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void deleteCartItemsAfterOrder(int cartId){
+        try {
+            String req = "delete from cartitem where cartid=?";
+            PreparedStatement st = cnx.prepareStatement(req);
+            st.setInt(1, cartId);
+            st.executeUpdate();
+            System.out.println("+ CART ITEM DELETED FROM DATABASE");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public void updateCartItem(CartItem c) {
         try {
