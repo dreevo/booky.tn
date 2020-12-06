@@ -42,6 +42,13 @@ public class Order {
         this.isDone = isDone;
     }
 
+    public Order(int id) {
+        this.id = id;
+    }
+
+    public Order() {
+    }
+
     public int getId() {
         return id;
     }

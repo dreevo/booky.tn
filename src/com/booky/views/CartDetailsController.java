@@ -146,8 +146,8 @@ public class CartDetailsController implements Initializable {
         quantity.setText(bookQuantities.get(bookId) + "");
         quantity.getStyleClass().add("bookLabel");
         DecimalFormat df = new DecimalFormat("#.##");
-        cartTotal = Double.valueOf(df.format(cartTotal));
         cartTotal += bookQuantities.get(bookId) * price;
+        cartTotal = Double.valueOf(df.format(cartTotal));
         cartToal.setText(cartTotal + "");
         ImageView deleteItem = new ImageView();
         ImageView reduceQuantity = new ImageView();
@@ -235,6 +235,8 @@ public class CartDetailsController implements Initializable {
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
                         Stage registerStage = new Stage();
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.initStyle(StageStyle.TRANSPARENT);
                         registerStage.setTitle("Cart Details");
                         registerStage.setScene(scene);
                         registerStage.show();
@@ -279,6 +281,20 @@ public class CartDetailsController implements Initializable {
 
     @FXML
     private void proceedToCheckout(ActionEvent event) {
+        try {
+            Stage stage1 = (Stage) backBtn.getScene().getWindow();
+            stage1.close();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/Checkout.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setTitle("booky.tn");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }

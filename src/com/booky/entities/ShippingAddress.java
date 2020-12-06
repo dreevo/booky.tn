@@ -18,6 +18,7 @@ public class ShippingAddress {
     private int zipcode;
     private Customer customer;
     private Order order;
+    private String telephone;
 
     public ShippingAddress(int id, String address, String city, int zipcode, Customer customer, Order order) {
         this.id = id;
@@ -28,12 +29,24 @@ public class ShippingAddress {
         this.order = order;
     }
 
+    public ShippingAddress(String address, String city, int zipcode, Customer customer, Order order, String telephone) {
+        this.address = address;
+        this.city = city;
+        this.zipcode = zipcode;
+        this.customer = customer;
+        this.order = order;
+        this.telephone = telephone;
+    }
+
     public ShippingAddress(String address, String city, int zipcode, Customer customer, Order order) {
         this.address = address;
         this.city = city;
         this.zipcode = zipcode;
         this.customer = customer;
         this.order = order;
+    }
+
+    public ShippingAddress() {
     }
 
     public int getId() {
@@ -82,6 +95,14 @@ public class ShippingAddress {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     @Override

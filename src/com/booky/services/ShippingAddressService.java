@@ -21,12 +21,13 @@ public class ShippingAddressService {
 
     public void createShippingAddress(ShippingAddress sh) {
         try {
-            String req = "INSERT INTO shippingAddress (address,city,zipcode,orderid) VALUES(?,?,?,?)";
+            String req = "INSERT INTO shippingAddress (address,telephone,city,zipcode,orderid) VALUES(?,?,?,?,?)";
             PreparedStatement st = cnx.prepareStatement(req);
             st.setString(1, sh.getAddress());
-            st.setString(2, sh.getCity());
-            st.setInt(3, sh.getZipcode());
-            st.setInt(4, sh.getOrder().getId());
+            st.setString(3, sh.getCity());
+            st.setInt(4, sh.getZipcode());
+            st.setInt(5, sh.getOrder().getId());
+            st.setString(2, sh.getTelephone());
             st.executeUpdate();
             System.out.println("+ SHIPPINGADDRESS ADDED TO DATABASE");
         } catch (SQLException e) {

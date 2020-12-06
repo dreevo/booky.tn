@@ -157,7 +157,6 @@ public class IndexController implements Initializable {
         Label bookPrice = new Label();
         bookPrice.setText(price + " DT");
         bookPrice.setStyle("-fx-alignment:center;");
-
         ImageView addTocartBtn = new ImageView();
         ImageView bookDetailsBtn = new ImageView();
         ImageView ratingIcon = new ImageView();

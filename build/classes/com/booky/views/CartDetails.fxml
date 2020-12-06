@@ -15,7 +15,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.CartDetailsController">
    <children>
-      <Pane layoutX="171.0" layoutY="-6.0" prefHeight="909.0" prefWidth="1339.0" styleClass="childpane" stylesheets="@sidebar.css">
+      <Pane layoutX="171.0" prefHeight="900.0" prefWidth="1339.0" styleClass="childpane" stylesheets="@sidebar.css">
          <children>
             <Label layoutX="22.0" layoutY="131.0" text="Basket" textFill="#ff1653">
                <padding>
@@ -55,12 +55,12 @@
                </image>
             </ImageView>
             <Line endX="-87.0" endY="606.1333618164062" layoutX="949.0" layoutY="228.0" startX="-87.0" startY="-12.533340454101562" stroke="WHITE" />
-            <ImageView fitHeight="80.0" fitWidth="73.0" layoutX="1063.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="80.0" fitWidth="73.0" layoutX="1063.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/checkout.png" />
                </image>
             </ImageView>
-            <Label layoutX="892.0" layoutY="377.0" prefHeight="28.0" prefWidth="216.0" text="Payment Methods :" textFill="WHITE">
+            <Label layoutX="892.0" layoutY="344.0" prefHeight="28.0" prefWidth="216.0" text="Payment Methods :" textFill="WHITE">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -68,25 +68,25 @@
                   <Font name="Calibri Bold" size="24.0" />
                </font>
             </Label>
-            <ImageView fitHeight="344.0" fitWidth="282.0" layoutX="967.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="344.0" fitWidth="282.0" layoutX="967.0" layoutY="547.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/methods.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="90.0" fitWidth="224.0" layoutX="994.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="90.0" fitWidth="224.0" layoutX="994.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/stripe.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="73.0" layoutX="1072.0" layoutY="757.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="80.0" fitWidth="73.0" layoutX="1072.0" layoutY="724.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/proceed.png" />
                </image>
             </ImageView>
-            <Button fx:id="checkoutBtn" layoutX="1050.0" layoutY="834.0" mnemonicParsing="false" onAction="#proceedToCheckout" prefHeight="54.0" prefWidth="114.0" text="Checkout" />
+            <Button fx:id="checkoutBtn" layoutX="1050.0" layoutY="801.0" mnemonicParsing="false" onAction="#proceedToCheckout" prefHeight="54.0" prefWidth="114.0" text="Checkout" />
          </children>
       </Pane>
-      <Pane prefHeight="903.0" prefWidth="171.0" styleClass="sidebar" stylesheets="@sidebar.css">
+      <Pane prefHeight="900.0" prefWidth="171.0" styleClass="sidebar" stylesheets="@sidebar.css">
          <children>
             <Circle fill="#ff6d53" layoutX="25.0" layoutY="22.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fill="#ffec26" layoutX="42.0" layoutY="22.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />

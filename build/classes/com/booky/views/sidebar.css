@@ -133,3 +133,22 @@ and open the template in the editor.
     -fx-scale-y: 1.2;
     -fx-scale-z: 1.2;
 }
+
+.text-field {   
+    -fx-background-color: #383954;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 5 ;
+    -fx-text-fill: white;
+}
+.text-field:focused {
+    -fx-background-color: #6671E5;
+    
+}
+
+.combo-box{
+    -fx-background-color:#383954;
+    -fx-border-radius:3px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 5,0,0,2 );
+    -fx-background-insets:0;
+    -fx-font-size:16px;
+}

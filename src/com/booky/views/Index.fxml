@@ -14,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="myAnchor" prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.IndexController">
     <children>
-      <Pane layoutX="-1.0" layoutY="-1.0" prefHeight="903.0" prefWidth="171.0" styleClass="sidebar" stylesheets="@sidebar.css">
+      <Pane layoutX="-1.0" prefHeight="900.0" prefWidth="171.0" styleClass="sidebar" stylesheets="@sidebar.css">
          <children>
             <Circle fill="#ff6d53" layoutX="25.0" layoutY="22.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fill="#ffec26" layoutX="42.0" layoutY="22.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
@@ -258,7 +258,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="169.0" prefHeight="902.0" prefWidth="1339.0" styleClass="childpane" stylesheets="@sidebar.css">
+      <Pane layoutX="169.0" prefHeight="900.0" prefWidth="1339.0" styleClass="childpane" stylesheets="@sidebar.css">
          <children>
             <Label layoutX="22.0" layoutY="131.0" text="Store" textFill="#ff1653">
                <padding>
