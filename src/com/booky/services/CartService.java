@@ -47,13 +47,14 @@ public class CartService {
         }
     }
     
-    public void updatePack(Cart c) {
+    public void updateCart(Cart c) {
         try {
             String req = "update cart set totalprice=? where id=?";
             PreparedStatement st = cnx.prepareStatement(req);
-            st.setInt(1, c.getId());
+            st.setInt(2, c.getId());
+            st.setDouble(1, c.getTotalPrice());
             st.executeUpdate();
-            System.out.println("+ Pack UPDATED IN DATABASE");
+            System.out.println("+ CART UPDATED IN DATABASE");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

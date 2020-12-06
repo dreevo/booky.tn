@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="411.0" prefWidth="684.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.booky.views.UpdateBookController">
+<AnchorPane id="AnchorPane" prefHeight="411.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.UpdateBookController">
     <children>
       <Label layoutX="39.0" layoutY="28.0" text="Label" />
       <Label layoutX="39.0" layoutY="85.0" text="Price" />
@@ -22,7 +22,7 @@
       <Label layoutX="33.0" layoutY="247.0" text="Categories" />
       <Label layoutX="326.0" layoutY="189.0" text="Language" />
       <Button fx:id="cancelBtn" layoutX="348.0" layoutY="354.0" mnemonicParsing="false" onAction="#cancelCreate" prefHeight="26.0" prefWidth="84.0" text="Cancel" />
-      <Button fx:id="createBtn" layoutX="245.0" layoutY="354.0" mnemonicParsing="false" onAction="#createBook" prefHeight="26.0" prefWidth="94.0" text="Create" />
+      <Button fx:id="updateBtn" layoutX="245.0" layoutY="354.0" mnemonicParsing="false" onAction="#updateBook" prefHeight="26.0" prefWidth="94.0" text="Update" />
       <CheckBox fx:id="inStockField" layoutX="104.0" layoutY="135.0" mnemonicParsing="false" text="Add to stock" />
       <CheckBox fx:id="advCategField" layoutX="107.0" layoutY="247.0" mnemonicParsing="false" text="Adventure" />
       <CheckBox fx:id="romCategField" layoutX="107.0" layoutY="277.0" mnemonicParsing="false" text="Romance" />

@@ -46,6 +46,10 @@ public class Customer {
         this.role = role;
     }
 
+    public Customer(int id) {
+        this.id = id;
+    }
+
     public Customer(String firstName, String lastName, int age, String email, String address, String telephone, String imageUrl, String password, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;

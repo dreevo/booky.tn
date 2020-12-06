@@ -228,6 +228,9 @@ public class CreateBookController implements Initializable {
         bs.createBook(b);
         if (inputValid) {
             JOptionPane.showMessageDialog(null, "Book Added To Database", "Success", JOptionPane.INFORMATION_MESSAGE);
+            Stage stage = (Stage) cancelBtn.getScene().getWindow();
+            // do what you have to do
+            stage.close();
         }
     }
 

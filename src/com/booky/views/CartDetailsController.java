@@ -8,13 +8,16 @@ package com.booky.views;
 import com.booky.entities.Book;
 import com.booky.entities.Cart;
 import com.booky.entities.CartItem;
+import com.booky.entities.Customer;
 import com.booky.services.BookService;
 import com.booky.services.CartItemService;
+import com.booky.services.CartService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -29,13 +32,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -47,30 +56,32 @@ public class CartDetailsController implements Initializable {
     @FXML
     private TilePane tilePane;
 
-
     ObservableList<Book> bookList = FXCollections.observableArrayList();
 
     int count = 0;
+    private int totalQuantities = 0;
+    private double cartTotal = 0;
 
     private int nRows = 3;  //no of row for tile pane
     private int nCols = 1;  // no of column for tile pane
 
-    private static final double ELEMENT_SIZE = 100;
+    private static final double ELEMENT_SIZE = 50;
     private static final double GAP = ELEMENT_SIZE / 10;
     private HashMap<Integer, Integer> bookQuantities = new HashMap<>();
 
     File filesJpg[]; // file array to store read images info
-    private int totalQuantities = 0;
-    private double cartTotal = 0;
+
     @FXML
     private Label cartToal;
+    @FXML
+    private ImageView backBtn;
+    @FXML
+    private Button checkoutBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tilePane.setPrefColumns(nCols);
-        tilePane.setPrefRows(nRows);
-        //myAnchor.setStyle("-fx-background-image: Backgound.png;"); //-fx-background-color: rgba(0, 0, 0);
-        //tilePane.setStyle("-fx-background-color: rgba(0, 0, 0);");
+        tilePane.setPrefColumns(1);
+        tilePane.setPrefRows(3);
         tilePane.setHgap(GAP);
         tilePane.setVgap(GAP);
         CartItemService cis = new CartItemService();
@@ -79,6 +90,25 @@ public class CartDetailsController implements Initializable {
         System.out.println(bookList);
         System.out.println(bookQuantities);
         createElements(bookList);
+        backBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    Stage stage1 = (Stage) backBtn.getScene().getWindow();
+                    stage1.close();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/Index.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setTitle("booky.tn");
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
     }
 
     private void createElements(ObservableList<Book> bookList) {
@@ -97,51 +127,79 @@ public class CartDetailsController implements Initializable {
             imageView.setImage(image);
             imageView.setFitWidth(ELEMENT_SIZE);
             imageView.setFitHeight(ELEMENT_SIZE);
-            // imageView.setPreserveRatio(true);
+            imageView.setTranslateY(10);
+            imageView.setTranslateX(10);
+            imageView.setClip(null);
             imageView.setSmooth(true);
             imageView.setCache(true);
         } catch (IOException ex) {
         }
         Label label = new Label();
         label.setText(bookLabel);
-        label.setStyle("-fx-alignment:center;");
-        Button b1 = new Button();
-        Button b2 = new Button();
-        Button b3 = new Button();
+        label.setTranslateX(10);
+        label.getStyleClass().add("bookLabel");
         Label quantity = new Label();
         Label bookPrice = new Label();
-        bookPrice.setText(price+" DT");
-        bookPrice.setStyle("-fx-alignment:center;");
+        bookPrice.setText(price + " DT");
+        bookPrice.setTranslateX(10);
+        bookPrice.getStyleClass().add("bookPrice");
         quantity.setText(bookQuantities.get(bookId) + "");
-        cartTotal+=bookQuantities.get(bookId) * price;
-        cartToal.setText(cartTotal+"");
-        b1.setText("-");
-        b2.setText("+");
-        b3.setText("Delete");
-        b3.setOnAction(new EventHandler<ActionEvent>() {
+        quantity.getStyleClass().add("bookLabel");
+        DecimalFormat df = new DecimalFormat("#.##");
+        cartTotal = Double.valueOf(df.format(cartTotal));
+        cartTotal += bookQuantities.get(bookId) * price;
+        cartToal.setText(cartTotal + "");
+        ImageView deleteItem = new ImageView();
+        ImageView reduceQuantity = new ImageView();
+        ImageView incrementQuantity = new ImageView();
+        try {
+            Image addToCartBtn = new Image(new FileInputStream("F:\\21655\\Documents\\NetBeansProjects\\booky\\src\\com\\booky\\views\\images\\deleteitem.png"));
+            deleteItem.setImage(addToCartBtn);
+            deleteItem.setFitWidth(35);
+            deleteItem.setFitHeight(35);
+            deleteItem.getStyleClass().add("add-to-cart");
+            Image addToCartBtn2 = new Image(new FileInputStream("F:\\21655\\Documents\\NetBeansProjects\\booky\\src\\com\\booky\\views\\images\\minus.png"));
+            reduceQuantity.setImage(addToCartBtn2);
+            reduceQuantity.setFitWidth(35);
+            reduceQuantity.setFitHeight(35);
+            reduceQuantity.getStyleClass().add("add-to-cart");
+            Image addToCartBtn3 = new Image(new FileInputStream("F:\\21655\\Documents\\NetBeansProjects\\booky\\src\\com\\booky\\views\\images\\plus.png"));
+            incrementQuantity.setImage(addToCartBtn3);
+            incrementQuantity.setFitWidth(35);
+            incrementQuantity.setFitHeight(35);
+            incrementQuantity.getStyleClass().add("add-to-cart");
+        } catch (IOException ex) {
+        }
+        deleteItem.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent e) {
+            public void handle(MouseEvent e) {
                 CartItemService cis = new CartItemService();
                 cis.deleteCartItem(bookId);
-                Stage stage = (Stage) b3.getScene().getWindow();
-                // do what you have to do
+                Stage stage = (Stage) deleteItem.getScene().getWindow();
                 stage.close();
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("CartDetails.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage registerStage = new Stage();
+                    registerStage.initModality(Modality.APPLICATION_MODAL);
+                    registerStage.initStyle(StageStyle.TRANSPARENT);
                     registerStage.setTitle("Cart Details");
                     registerStage.setScene(scene);
                     registerStage.show();
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }
+                cartTotal -= bookQuantities.get(bookId) * price;
+                Cart c = new Cart(1, new Customer(1), null, cartTotal);
+                CartService cs = new CartService();
+                cs.updateCart(c);
+                cartToal.setText(cartTotal + "");
             }
         });
-        b2.setOnAction(new EventHandler<ActionEvent>() {
+        incrementQuantity.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent e) {
+            public void handle(MouseEvent e) {
                 CartItemService cis = new CartItemService();
                 bookQuantities.put(bookId, bookQuantities.get(bookId) + 1);
                 totalQuantities += 1;
@@ -153,18 +211,23 @@ public class CartDetailsController implements Initializable {
                     CartItem ci = new CartItem(new Book(bookId), bookQuantities.get(bookId), new Cart(1));
                     cis.updateCartItem(ci);
                 }
+                cartTotal += price;
+                Cart c = new Cart(1, new Customer(1), null, cartTotal);
+                CartService cs = new CartService();
+                cs.updateCart(c);
+                cartToal.setText(cartTotal + "");
             }
         });
-        b1.setOnAction(new EventHandler<ActionEvent>() {
+        reduceQuantity.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent e) {
+            public void handle(MouseEvent e) {
                 CartItemService cis = new CartItemService();
                 bookQuantities.put(bookId, bookQuantities.get(bookId) - 1);
                 totalQuantities -= 1;
                 quantity.setText(bookQuantities.get(bookId) + "");
                 if (bookQuantities.get(bookId) == 0) {
                     cis.deleteCartItem(bookId);
-                    Stage stage = (Stage) b3.getScene().getWindow();
+                    Stage stage = (Stage) deleteItem.getScene().getWindow();
                     // do what you have to do
                     stage.close();
                     try {
@@ -182,23 +245,40 @@ public class CartDetailsController implements Initializable {
                     CartItem ci = new CartItem(new Book(bookId), bookQuantities.get(bookId), new Cart(1));
                     cis.updateCartItem(ci);
                 }
+                cartTotal -= price;
+                Cart c = new Cart(1, new Customer(1), null, cartTotal);
+                CartService cs = new CartService();
+                cs.updateCart(c);
+                cartToal.setText(cartTotal + "");
             }
         });
-        HBox buttonBox = new HBox();
-        buttonBox.getChildren().add(b1);
-        buttonBox.getChildren().add(quantity);
-        buttonBox.getChildren().add(b2);
-        buttonBox.getChildren().add(b3);
-        buttonBox.setSpacing(GAP);
-        buttonBox.setAlignment(Pos.CENTER);
+        HBox itemLine = new HBox();
+        itemLine.getChildren().add(imageView);
+        itemLine.getChildren().add(label);
+        itemLine.getChildren().add(bookPrice);
+        itemLine.setAlignment(Pos.CENTER_LEFT);
+        HBox buttonsSection = new HBox();
+        buttonsSection.getChildren().add(reduceQuantity);
+        buttonsSection.getChildren().add(quantity);
+        buttonsSection.getChildren().add(incrementQuantity);
+        buttonsSection.getChildren().add(deleteItem);
+        buttonsSection.setAlignment(Pos.TOP_RIGHT);
+        buttonsSection.setTranslateX(-20);
         VBox pageBox = new VBox();
-        pageBox.getChildren().add(imageView);
-        pageBox.getChildren().add(label);
-        pageBox.getChildren().add(buttonBox);
-        pageBox.getChildren().add(bookPrice);
-        pageBox.setStyle("-fx-alignment:center;");
+        pageBox.getChildren().add(itemLine);
+        pageBox.getChildren().add(buttonsSection);
+        Line line1 = new Line(800, 0, 0, 0);
+        line1.setStroke(Color.LIGHTGRAY);
+        pageBox.getChildren().add(line1);
+        pageBox.getStyleClass().add("cart-item-container");
+        pageBox.setPrefWidth(700);
+        pageBox.setSpacing(GAP);
         imageView = null;
         return pageBox;
+    }
+
+    @FXML
+    private void proceedToCheckout(ActionEvent event) {
     }
 
 }
