@@ -61,6 +61,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Map;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  * FXML Controller class
@@ -140,6 +148,7 @@ public class CheckoutController implements Initializable {
         billGeneratedLabel.setVisible(false);
         requiredFieldLabel.setVisible(false);
         requiredFieldLabel.setText("Please fill all the required fields !");
+        billGeneratedLabel.setText("Bill generated !");
         totalLabel1.setVisible(true);
         totalLabel2.setVisible(true);
         CartItemService cis = new CartItemService();
@@ -274,7 +283,15 @@ public class CheckoutController implements Initializable {
             fadeIn.setFromValue(1);
             fadeIn.play();
         } else {
-            if (orderType.getValue().equals("By post")) {
+            if (telephoneField.getText().length() != 7) {
+                requiredFieldLabel.setText("Incorrect telephone number");
+                requiredFieldLabel.setVisible(true);
+                fadeIn.setNode(requiredFieldLabel);
+                fadeIn.setAutoReverse(false);
+                fadeIn.setToValue(0);
+                fadeIn.setFromValue(1);
+                fadeIn.play();
+            } else if (orderType.getValue().equals("By post")) {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                 LocalDateTime now = LocalDateTime.now();
                 OrderService os = new OrderService();
@@ -298,6 +315,10 @@ public class CheckoutController implements Initializable {
                 sa.setZipcode(Integer.parseInt(zipcodeField.getText()));
                 sa.setOrder(new Order(orderId));
                 sas.createShippingAddress(sa);
+                CartItemService cis = new CartItemService();
+                cis.deleteCartItemsAfterOrder(1);
+                CartService cs = new CartService();
+                cs.updateCart(new Cart(1, 0));
                 try {
                     Document doc = new Document();
                     PdfWriter.getInstance(doc, new FileOutputStream("F:/bill.pdf"));
@@ -320,7 +341,6 @@ public class CheckoutController implements Initializable {
                     doc.add(new Paragraph("Please make sure to bring this bill to the post to be able to retrieve your items !"));
                     doc.add(new Paragraph("booky.tn Admin."));
                     doc.close();
-
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -330,6 +350,11 @@ public class CheckoutController implements Initializable {
                 fadeIn.setToValue(0);
                 fadeIn.setFromValue(1);
                 fadeIn.play();
+                tilePane.getChildren().clear();
+                totalLabel1.setVisible(false);
+                totalLabel2.setVisible(false);
+                proceedBtn.setDisable(true);
+                cartToal.setText("");
             } else if (orderType.getValue().equals("Bank card")) {
                 if (!cardNumberField.getText().equals("4242424242424242")) {
                     requiredFieldLabel.setText("Invalid card number");
@@ -425,6 +450,72 @@ public class CheckoutController implements Initializable {
                     proceedBtn.setDisable(true);
                     cartToal.setText("");
                 }
+            } else if (orderType.getValue().equals("Pay on delivery")) {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                LocalDateTime now = LocalDateTime.now();
+                OrderService os = new OrderService();
+                Order or = new Order();
+                if (discount == true) {
+                    or.setDiscount(20);
+                } else {
+                    or.setDiscount(0);
+                }
+                or.setOrderType("Pay on delivery");
+                Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+                or.setDate(sqlDate);
+                or.setIsDone(0);
+                or.setCart(new Cart(1));
+                int orderId = os.createOrder(or);
+                ShippingAddressService sas = new ShippingAddressService();
+                ShippingAddress sa = new ShippingAddress();
+                sa.setAddress(addressField.getText());
+                sa.setTelephone(telephoneField.getText());
+                sa.setCity(cityField.getText());
+                sa.setZipcode(Integer.parseInt(zipcodeField.getText()));
+                sa.setOrder(new Order(orderId));
+                sas.createShippingAddress(sa);
+                CartItemService cis = new CartItemService();
+                cis.deleteCartItemsAfterOrder(1);
+                CartService cs = new CartService();
+                cs.updateCart(new Cart(1, 0));
+                try {
+                    Document doc = new Document();
+                    PdfWriter.getInstance(doc, new FileOutputStream("F:/bill.pdf"));
+                    doc.open();
+                    System.out.println(dtf.format(now));
+                    doc.add(new Paragraph("booky.tn Order at : " + now));
+                    doc.add(new Paragraph("Type of order : " + "Pay on delivery."));
+                    doc.add(new Paragraph("Order items : "));
+                    for (int i = 0; i < bookList.size(); i++) {
+                        doc.add(new Paragraph("Item :  " + bookList.get(i).getLabel() + " , Price : " + bookList.get(i).getPrice() + " DT , Quantity : " + bookQuantities.get(bookList.get(i).getId())));
+                    }
+                    doc.add(new Paragraph("Order Total : " + cartTotal + " DT."));
+                    if (discount == true) {
+                        doc.add(new Paragraph("Discount : 20%"));
+                        doc.add(new Paragraph("Total with discount : " + (cartTotal - cartTotal * 0.2) + " DT."));
+                    }
+                    doc.add(new Paragraph("Customer's telephone : " + telephoneField.getText()));
+                    doc.add(new Paragraph("Customer's address : " + addressField.getText()));
+                    doc.add(new Paragraph("Customer's city : " + cityField.getText()));
+                    doc.add(new Paragraph("Please make sure to bring this bill to the post to be able to retrieve your items !"));
+                    doc.add(new Paragraph("booky.tn Admin."));
+                    doc.close();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                send("bookycorp.tn@gmail.com", "booky123456789", "gharbimohamedaziz@gmail.com", "AUTOMATIC MESSAGE from booky.tn delivery service DO NOT REPLY", "You will recieve a call from this number : +216 32874684 for you order, thank you for your service.");
+                billGeneratedLabel.setText("Please check your email for delivery number ! ");
+                billGeneratedLabel.setVisible(true);
+                fadeIn.setNode(billGeneratedLabel);
+                fadeIn.setAutoReverse(false);
+                fadeIn.setToValue(0);
+                fadeIn.setFromValue(1);
+                fadeIn.play();
+                tilePane.getChildren().clear();
+                totalLabel1.setVisible(false);
+                totalLabel2.setVisible(false);
+                proceedBtn.setDisable(true);
+                cartToal.setText("");
             }
         }
     }
@@ -455,5 +546,36 @@ public class CheckoutController implements Initializable {
     private FadeTransition fadeIn = new FadeTransition(
             Duration.millis(1000), discountLabel
     );
+    
+    public void send(String from, String password, String to, String sub, String msg) {
+        //Get properties object    
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+        //get Session   
+        Session session = Session.getDefaultInstance(props,
+                new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(from, password);
+            }
+        });
+        //compose message    
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject(sub);
+            message.setText(msg);
+            //send message  
+            Transport.send(message);
+            System.out.println("message sent successfully");
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
 }
