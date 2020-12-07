@@ -53,21 +53,24 @@ public class UpdateaccountController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//                    CustomerService s=new CustomerService();
-//                    Customer c = s.readCustomer("radhwen");
-//                    firstname.setText(c.getFirstName());
-//                    lastname.setText(c.getLastName());
-//                    age.setText(c.getAge());
-//                    mail.setText(c.getEmail());
-//                    address.setText(c.getAddress());
-//                    phone.setText(c.getTelephone());
+                    CustomerService s=new CustomerService();
+                    Customer c=s.showcustomer(Login_Version0Controller.id);
+                    firstname.setText(c.getFirstName());
+                    lastname.setText(c.getLastName());
+                   
+                    mail.setText(c.getEmail());
+                    address.setText(c.getAddress());
+                    phone.setText(c.getTelephone());
+                    
+                    
     }    
 
     @FXML
     private void editButtonAction(ActionEvent event) {
         Connection cnx = DataSource.getInstance().getCnx();
         CustomerService bs = new CustomerService();
-        bs.updateCustomer(new Customer(23,firstname.getText(), lastname.getText(),Integer.parseInt(age.getText()), mail.getText(), password.getText(), address.getText(), phone.getText()));
+        bs.updateCustomer(new Customer(firstname.getText(),lastname.getText(),Integer.parseInt(age.getText()), mail.getText(), password.getText(), address.getText(),phone.getText(),"text"),Login_Version0Controller.id);
+        
         JOptionPane.showMessageDialog(null, "Account modified with succes");
     	
     }

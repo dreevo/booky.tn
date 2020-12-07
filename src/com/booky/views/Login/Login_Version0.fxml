@@ -43,7 +43,7 @@
             <Font name="Century Gothic Bold" size="15.0" />
          </font>
       </CheckBox>
-      <Hyperlink fx:id="forget" layoutX="689.0" layoutY="525.0" lineSpacing="1.0" onAction="#forgetbtn" text="Forget Password ?" textAlignment="CENTER" textFill="WHITE" underline="true">
+      <Hyperlink layoutX="689.0" layoutY="525.0" lineSpacing="1.0" onAction="#forgetbtn" text="Forget Password ?" textAlignment="CENTER" textFill="WHITE" underline="true">
          <font>
             <Font name="Candara" size="18.0" />
          </font>

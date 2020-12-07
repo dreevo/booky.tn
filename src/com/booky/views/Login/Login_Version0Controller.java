@@ -7,6 +7,7 @@ package com.booky.views.Login;
 
 import com.booky.services.CustomerService;
 import com.booky.utils.DataSource;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -48,7 +49,7 @@ public class Login_Version0Controller implements Initializable {
     private Button signup;
     @FXML
     private TextField mail;
-
+    public static int id;
     /**
      * Initializes the controller class.
      */
@@ -99,12 +100,15 @@ public class Login_Version0Controller implements Initializable {
         } else {
             CustomerService cs = new CustomerService();
             if (cs.validateLogin(mail.getText(), password.getText())) {
+               id=cs.idlogin(mail.getText(),password.getText());
                 JOptionPane.showMessageDialog(null, "User Authenticated", "Success", JOptionPane.OK_CANCEL_OPTION);
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Account.fxml"));
                          Parent root1 = (Parent) fxmlLoader.load();
                          Stage stage = new Stage();
                          stage.setScene(new Scene(root1));
                           stage.show();
+                          id=cs.idlogin(mail.getText(),password.getText());
+                         
             } else {
                 JOptionPane.showMessageDialog(null, "Email or password incorrect", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -116,7 +120,8 @@ public class Login_Version0Controller implements Initializable {
     }
 
     @FXML
-    private void forgetbtn(ActionEvent event) {
+    private void forgetbtn(ActionEvent event) throws Exception {
+        JavaMailUtil.sendMail("marwa.jebali@esprit.tn");
     }
 
     @FXML

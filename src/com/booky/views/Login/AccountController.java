@@ -52,7 +52,7 @@ public class AccountController implements Initializable {
     @FXML
     private void deleteButtonAction(ActionEvent event) {
         Connection cnx = DataSource.getInstance().getCnx();
-	    	String req = "DELETE from customer WHERE costomerId=10 ";
+	    	String req = "DELETE from customer WHERE customerId=23 ";
 	    	try {
 	    		Statement st = cnx.createStatement();	  		  
 	  		    st.executeUpdate(req);

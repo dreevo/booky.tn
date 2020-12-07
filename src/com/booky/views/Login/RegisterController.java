@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.booky.views.Login;
+package com.booky.views;
 
-import com.booky.entities.Author;
 import com.booky.entities.Customer;
 import com.booky.entities.Role;
 import com.booky.services.CustomerService;
-import com.booky.utils.DataSource;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -33,102 +34,93 @@ import javax.swing.JOptionPane;
 /**
  * FXML Controller class
  *
- * @author J.Maroua
+ * @author gharbimedaziz
  */
-public class RegisterController  implements Initializable {
+public class RegisterController implements Initializable {
 
     @FXML
-    private TextField firstname;
+    private TextField firstnameField;
     @FXML
-    private TextField age;
+    private TextField lastnameField;
     @FXML
-    private Button reset;
+    private TextField emailField;
     @FXML
-    private Button sumbit;
+    private TextField ageField;
     @FXML
-    private Button back;
+    private PasswordField passwordField;
     @FXML
-    private TextField address;
+    private PasswordField confirmpassField;
     @FXML
-    private TextField mail;
+    private Button registerBtn;
     @FXML
-    private TextField phone;
+    private Button resetBtn;
     @FXML
-    private TextField lastname;
+    private Button cancelBtn;
     @FXML
-    private PasswordField password;
+    private Label passwordMatch;
     @FXML
-    private PasswordField confirmpassword;
+    private TextField teleField;
     @FXML
-    private Button imageUrl;
+    private TextField addressField;
+    @FXML
+    private Label imgLabel;
     private ArrayList<String> lstFile;
-    
+    @FXML
+    private Label emailValid;
+    @FXML
+    private Label ageValid;
+    private static final String regex = "^(.+)@(.+)$";
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        age.textProperty().addListener(new ChangeListener<String>() {
+        // TODO
+        ageField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
                     String newValue) {
                 if (!newValue.matches("\\d*")) {
-                    age.setText(newValue.replaceAll("[^\\d]", ""));
+                    ageField.setText(newValue.replaceAll("[^\\d]", ""));
                 }
             }
         });
-        
-        ArrayList<String> lstFile = null;
-        lstFile.add(".jpg");
-        lstFile.add(".jpeg");
+        lstFile = new ArrayList<>();
+        lstFile.add("*.jpg");
+        lstFile.add("*.jpeg");
         lstFile.add("*.png");
-    }    
-
-    @FXML
-    private void resetbtn(ActionEvent event) {
-        firstname.setText("");
-        lastname.setText("");
-        mail.setText("");
-        age.setText("");
-        password.setText("");
-        confirmpassword.setText("");
     }
 
     @FXML
-    private void signupbtn(ActionEvent event) {
-      /*  CustomerService bs = new CustomerService();
-        Role r1 =new Role(1,"admin");
-        bs.addCustomer(new Customer(firstname.getText(), lastname.getText(),Integer.parseInt(age.getText()), mail.getText(), password.getText(), address.getText(), phone.getText(), password.getText(),r1));
-        JOptionPane.showMessageDialog(null, "Account created with succes");*/
-       
-  if (firstname.getText().isEmpty() || lastname.getText().isEmpty() || mail.getText().isEmpty() || password.getText().isEmpty() || confirmpassword.getText().isEmpty()) {
+    private void validateRegister(ActionEvent event) {
+        if (firstnameField.getText().isEmpty() || lastnameField.getText().isEmpty() || emailField.getText().isEmpty() || passwordField.getText().isEmpty() || confirmpassField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill all the required fields", "Error", JOptionPane.INFORMATION_MESSAGE);
-        } else if (!password.getText().equals(confirmpassword.getText())) {
+        } else if (!passwordField.getText().equals(confirmpassField.getText())) {
             passwordMatch.setText("Passwords do not match");
         } else {
             passwordMatch.setText("");
             int age = 0;
-            if (!age.getText().isEmpty()) {
-                age = Integer.parseInt(age.getText());
+            if (!ageField.getText().isEmpty()) {
+                age = Integer.parseInt(ageField.getText());
                 if (age < 10 || age > 120) {
                     ageValid.setText("Invalid age value");
                 }
             }
             Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(mail.getText());
+            Matcher matcher = pattern.matcher(emailField.getText());
             if (!matcher.matches()) {
                 emailValid.setText("Invalid email");
             } else {
-                Customer c = new Customer(firstname.getText(), lastname.getText(), age, email.getText(), address.getText(), phone.getText(), imageUrl.getText(), password.getText(), new Role(2, "Customer"));
+                Customer c = new Customer(firstnameField.getText(), lastnameField.getText(), age, emailField.getText(),passwordField.getText(), addressField.getText(), teleField.getText(), imgLabel.getText(), new Role(2, "Customer"));
                 CustomerService cs = new CustomerService();
                 cs.addCustomer(c);
                 JOptionPane.showMessageDialog(null, "User Registered", "Success", JOptionPane.INFORMATION_MESSAGE);
-                Stage stage = (Stage) signupbtn.getScene().getWindow();
+                Stage stage = (Stage) registerBtn.getScene().getWindow();
                 // do what you have to do
                 stage.close();
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Login_Version0.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage registerStage = new Stage();
@@ -143,16 +135,25 @@ public class RegisterController  implements Initializable {
     }
 
     @FXML
-    private void backbtn(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login_Version0.fxml"));
-                             Parent root1 = (Parent) fxmlLoader.load();
-                              Stage stage = new Stage();
-                              stage.setScene(new Scene(root1));
-                               stage.show();
+    private void resetFields(ActionEvent event) {
+        firstnameField.setText("");
+        lastnameField.setText("");
+        emailField.setText("");
+        ageField.setText("");
+        passwordField.setText("");
+        confirmpassField.setText("");
     }
 
     @FXML
-    private void uploadimg(ActionEvent event) {
+    private void cancelRegister(ActionEvent event) {
+        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+        Platform.exit();
+    }
+
+    @FXML
+    private void selectImage(ActionEvent event) {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", lstFile));
         File f = fc.showOpenDialog(null);
@@ -160,5 +161,5 @@ public class RegisterController  implements Initializable {
             imgLabel.setText(f.getName());
         }
     }
-    
+
 }
