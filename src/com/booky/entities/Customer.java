@@ -20,6 +20,7 @@ public class Customer {
     private String address;
     private String telephone;
     private String imageUrl;
+    private String password;
     private Role role;
 
     public Customer(int id, String firstName, String lastName, int age, String email, String address, String telephone, String imageUrl, Role role) {
@@ -44,6 +45,32 @@ public class Customer {
         this.imageUrl = imageUrl;
         this.role = role;
     }
+
+    public Customer(int id) {
+        this.id = id;
+    }
+
+    public Customer(String email) {
+        this.email = email;
+    }
+
+    public Customer(String firstName, String lastName, int age, String email, String address, String telephone, String imageUrl, String password, Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.address = address;
+        this.telephone = telephone;
+        this.imageUrl = imageUrl;
+        this.password = password;
+        this.role = role;
+    }
+
+    public Customer(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    
 
     public int getId() {
         return id;
@@ -117,6 +144,14 @@ public class Customer {
         this.role = role;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -145,8 +180,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", email=" + email + ", address=" + address + ", telephone=" + telephone + ", imageUrl=" + imageUrl + ", role=" + role + '}';
+        return "Customer{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", email=" + email + ", address=" + address + ", telephone=" + telephone + ", imageUrl=" + imageUrl + ", password=" + password + ", role=" + role + '}';
     }
-
-    
 }

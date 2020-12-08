@@ -15,14 +15,25 @@ public class CartItem {
     private int quantity;
     private Cart cart;
 
-    public CartItem(int id, Book book, int quantity, Cart cart) {
+    public CartItem(int id, Book book, int quantity) {
         this.id = id;
+        this.book = book;
+        this.quantity = quantity;
+    }
+
+    public CartItem(Book book, int quantity) {
+        this.book = book;
+        this.quantity = quantity;
+    }
+
+    public CartItem(Book book, int quantity, Cart cart) {
         this.book = book;
         this.quantity = quantity;
         this.cart = cart;
     }
 
-    public CartItem(Book book, int quantity, Cart cart) {
+    public CartItem(int id, Book book, int quantity, Cart cart) {
+        this.id = id;
         this.book = book;
         this.quantity = quantity;
         this.cart = cart;
@@ -63,8 +74,8 @@ public class CartItem {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 61 * hash + this.id;
-        hash = 61 * hash + this.quantity;
+        hash = 29 * hash + this.id;
+        hash = 29 * hash + this.quantity;
         return hash;
     }
 
@@ -88,6 +99,8 @@ public class CartItem {
 
     @Override
     public String toString() {
-        return "CartItem{" + "id=" + id + ", book=" + book + ", quantity=" + quantity + ", cart=" + cart + '}';
-    }  
+        return "CartItem{" + "id=" + id + ", book=" + book + ", quantity=" + quantity + '}';
+    }
+
+    
 }

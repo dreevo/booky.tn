@@ -16,9 +16,9 @@ public class DataSource {
     private Connection cnx;
     private static DataSource instance;
     
-    private final String URL="jdbc:mysql://sql2.freemysqlhosting.net:3306/sql2378859?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    private final String USERNAME ="sql2378859";
-    private final String PASSWORD = "sP9%jW7%";
+    private final String URL="jdbc:mysql://localhost:3306/bookydb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private final String USERNAME = "root";
+    private final String PASSWORD = "";
     
     public DataSource(){
         try{

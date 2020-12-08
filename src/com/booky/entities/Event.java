@@ -6,7 +6,7 @@
 package com.booky.entities;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.sql.Date;
 import java.util.Objects;
 
 /**
@@ -17,12 +17,12 @@ public class Event {
     private int id;
     private String title;
     private String description;
-    private Calendar beginDate;
-    private Calendar endDate;
+    private Date beginDate;
+    private Date endDate;
     private String imageUrl;
     private ArrayList<Customer> participatns;
 
-    public Event(int id, String title, String description, Calendar beginDate, Calendar endDate, String imageUrl, ArrayList<Customer> participatns) {
+    public Event(int id, String title, String description, Date beginDate, Date endDate, String imageUrl, ArrayList<Customer> participatns) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -32,7 +32,7 @@ public class Event {
         this.participatns = participatns;
     }
 
-    public Event(String title, String description, Calendar beginDate, Calendar endDate, String imageUrl, ArrayList<Customer> participatns) {
+    public Event(String title, String description, Date beginDate, Date endDate, String imageUrl, ArrayList<Customer> participatns) {
         this.title = title;
         this.description = description;
         this.beginDate = beginDate;
@@ -65,19 +65,19 @@ public class Event {
         this.description = description;
     }
 
-    public Calendar getBeginDate() {
+    public Date getBeginDate() {
         return beginDate;
     }
 
-    public void setBeginDate(Calendar beginDate) {
+    public void setBeginDate(Date beginDate) {
         this.beginDate = beginDate;
     }
 
-    public Calendar getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Calendar endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
@@ -98,13 +98,9 @@ public class Event {
     }
 
     @Override
-    public String toString() {
-        return "Event{" + "id=" + id + ", title=" + title + ", description=" + description + ", beginDate=" + beginDate + ", endDate=" + endDate + ", imageUrl=" + imageUrl + ", participatns=" + participatns + '}';
-    }
-
-    @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 5;
+        hash = 23 * hash + this.id;
         return hash;
     }
 
@@ -124,5 +120,10 @@ public class Event {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" + "id=" + id + ", title=" + title + ", description=" + description + ", beginDate=" + beginDate + ", endDate=" + endDate + ", imageUrl=" + imageUrl + ", participatns=" + participatns + '}';
     }
 }

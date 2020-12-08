@@ -1,0 +1,164 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 5, 2020, 11:17:38 AM
+    Author     : gharbimedaziz
+*/
+
+.sidebar{
+    -fx-background-color : #25263A;
+}
+.sidebar-btn{
+    -fx-background-color: transparent;
+}
+.sidebar-btn-text{
+    -fx-text-fill:#fff;
+    -fx-font-size:18px;
+}
+.sidebar-profile-name{
+    -fx-text-fill:#fff;
+    -fx-font-size:12px;
+    -fx-font-weight:bold;
+}
+.sidebar-btn:hover .sidebar-btn-text{
+    -fx-text-fill: #FF1653;
+}
+.childpane{
+    -fx-background-color:#25263A;
+    -fx-border-color:#5D606F;
+    -fx-border-width: 0px 0px 0px 2px;
+}
+.card{
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-radius: 5;
+}
+.product-img{
+    -fx-padding:10px;
+}
+.bookLabel{
+    -fx-alignment:center;
+    -fx-text-fill:#fff;
+    -fx-padding:10px;
+    -fx-font-size:18px;
+    -fx-font-weight: bold;
+}
+.bookLabel-cart{
+    -fx-alignment:center;
+    -fx-text-fill:#fff;
+    -fx-padding:0px 50px 0px 0px;
+    -fx-font-size:18px;
+    -fx-font-weight: bold;
+}
+.detailsLabel{
+    -fx-alignment:center;
+    -fx-text-fill:#fff;
+    -fx-padding:0px 50px 0px 0px;
+    -fx-font-size:12px;
+    -fx-font-weight: bold;
+}
+.book-container{
+    -fx-background-color : #383954;
+    -fx-alignment:center;
+}
+.cart-item-container{
+    -fx-background-color : #383954;
+    -fx-background-radius: 5;
+}
+.book-container:hover {
+    -fx-background-color : #25263a;
+}
+.cart-item-container:hover {
+    -fx-background-color : #25263a;
+}
+.add-to-cart:hover{
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+}
+.cart:hover{
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+}
+.ratingLabel{
+    -fx-alignment:center;
+    -fx-text-fill:#F6D397;
+    -fx-padding:30px 0px 0px 0px;
+    -fx-font-size:12px;
+    -fx-font-weight: bold;
+}
+.price-rating-container{
+    -fx-padding:10px;
+}
+.priceLabel{
+    -fx-font-size:13px;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-padding:0px 30px 0px 0px;
+}
+.bookPrice{
+    -fx-font-size:13px;
+    -fx-text-fill: #FACC39;
+    -fx-font-weight: bold;
+}
+
+* {
+    -fx-primary : #1FB141;
+    -fx-secondary : #2A2E37;
+    -fx-primarytext : white;
+    -fx-blue: #1976D2;
+    -fx-red: #FF0000;
+    -fx-color-1:#1976D2;
+}
+
+.button{
+    -fx-text-fill: -fx-primarytext;
+    -fx-font-weight:bold;
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-secondary;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-font-size: 12pt;
+}
+
+.button:hover{
+    -fx-border-color: black;
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+}
+
+.text-field {   
+    -fx-background-color: #383954;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 5 ;
+    -fx-text-fill: white;
+}
+.text-field:focused {
+    -fx-background-color: #6671E5;
+    
+}
+
+.combo-box1{
+    -fx-background-color:#383954;
+    -fx-border-radius:3px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 5,0,0,2 );
+    -fx-background-insets:0;
+    -fx-font-size:16px;
+}
+
+.tableview{
+    -fx-background-color:#cccccc;
+    -fx-border-radius:3px;
+}
+
+.combo-box{
+    -fx-background-color:white;
+    -fx-border-radius:3px;
+}

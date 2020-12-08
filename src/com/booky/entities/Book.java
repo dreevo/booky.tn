@@ -23,6 +23,7 @@ public class Book {
     private ArrayList<Category> Categories;
     private Language language;
     private int rating;
+    private Charity charity;
 
     public Book(int id, String label, double price, String description, int isInStock, String imageUrl, Author author, ArrayList<Category> Categories, Language language, int rating) {
         this.id = id;
@@ -37,6 +38,27 @@ public class Book {
         this.rating = rating;
     }
 
+    public Book() {
+    }
+
+    public Book(int id) {
+        this.id = id;
+    }
+
+    public Book(int id, String label, double price, String description, int isInStock, String imageUrl, Author author, ArrayList<Category> Categories, Language language, int rating, Charity charity) {
+        this.id = id;
+        this.label = label;
+        this.price = price;
+        this.description = description;
+        this.isInStock = isInStock;
+        this.imageUrl = imageUrl;
+        this.author = author;
+        this.Categories = Categories;
+        this.language = language;
+        this.rating = rating;
+        this.charity = charity;
+    }
+
     public Book(String label, double price, String description, int isInStock, String imageUrl, Author author, ArrayList<Category> Categories, Language language, int rating) {
         this.label = label;
         this.price = price;
@@ -48,6 +70,19 @@ public class Book {
         this.language = language;
         this.rating = rating;
     }
+
+    public Book(String label, double price, String description, int isInStock, String imageUrl, Author author, Language language, int rating) {
+        this.label = label;
+        this.price = price;
+        this.description = description;
+        this.isInStock = isInStock;
+        this.imageUrl = imageUrl;
+        this.author = author;
+        this.language = language;
+        this.rating = rating;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -127,6 +162,14 @@ public class Book {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public Charity getCharity() {
+        return charity;
+    }
+
+    public void setCharity(Charity charity) {
+        this.charity = charity;
     }
 
     @Override

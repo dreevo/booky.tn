@@ -5,7 +5,7 @@
  */
 package com.booky.entities;
 
-import java.util.Calendar;
+import java.sql.Date;
 
 /**
  *
@@ -16,12 +16,12 @@ public class Order {
     private Cart cart;
     private int discount;
     private String orderType;
-    private Calendar date;
+    private Date date;
     private ShippingAddress shippingAddress;
     private Customer customer;
     private int isDone;
 
-    public Order(int id, Cart cart, int discount, String orderType, Calendar date, ShippingAddress shippingAddress, Customer customer, int isDone) {
+    public Order(int id, Cart cart, int discount, String orderType, Date date, ShippingAddress shippingAddress, Customer customer, int isDone) {
         this.id = id;
         this.cart = cart;
         this.discount = discount;
@@ -32,7 +32,7 @@ public class Order {
         this.isDone = isDone;
     }
 
-    public Order(Cart cart, int discount, String orderType, Calendar date, ShippingAddress shippingAddress, Customer customer, int isDone) {
+    public Order(Cart cart, int discount, String orderType, Date date, ShippingAddress shippingAddress, Customer customer, int isDone) {
         this.cart = cart;
         this.discount = discount;
         this.orderType = orderType;
@@ -40,6 +40,13 @@ public class Order {
         this.shippingAddress = shippingAddress;
         this.customer = customer;
         this.isDone = isDone;
+    }
+
+    public Order(int id) {
+        this.id = id;
+    }
+
+    public Order() {
     }
 
     public int getId() {
@@ -52,6 +59,10 @@ public class Order {
 
     public Cart getCart() {
         return cart;
+    }
+    
+    public double getCartTotal(){
+        return (cart.getTotalPrice());
     }
 
     public void setCart(Cart cart) {
@@ -74,11 +85,15 @@ public class Order {
         this.orderType = orderType;
     }
 
-    public Calendar getDate() {
+    public Date getDate() {
         return date;
     }
+    
+    public String getDateOfOrder(){
+        return date.toString();
+    }
 
-    public void setDate(Calendar date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -93,6 +108,10 @@ public class Order {
     public Customer getCustomer() {
         return customer;
     }
+    
+    public String getCustomerEmail(){
+        return customer.getEmail();
+    }
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
@@ -101,6 +120,16 @@ public class Order {
     public int getIsDone() {
         return isDone;
     }
+    
+    public String getIsDoneMessage(){
+        if(isDone==0)return "Awaiting";
+        else return "Done";
+    }
+    
+    public void setIsDoneMessage(String x){
+        if(x.equals("Done"))this.isDone=1;
+        else this.isDone=0;
+    }
 
     public void setIsDone(int isDone) {
         this.isDone = isDone;
@@ -108,9 +137,9 @@ public class Order {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 47 * hash + this.id;
-        hash = 47 * hash + this.discount;
+        int hash = 7;
+        hash = 17 * hash + this.id;
+        hash = 17 * hash + this.discount;
         return hash;
     }
 
@@ -136,7 +165,6 @@ public class Order {
     public String toString() {
         return "Order{" + "id=" + id + ", cart=" + cart + ", discount=" + discount + ", orderType=" + orderType + ", date=" + date + ", shippingAddress=" + shippingAddress + ", customer=" + customer + ", isDone=" + isDone + '}';
     }
-    
-    
 
+   
 }

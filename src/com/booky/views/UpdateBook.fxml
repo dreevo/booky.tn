@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="411.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.UpdateBookController">
+    <children>
+      <Label layoutX="39.0" layoutY="28.0" text="Label" />
+      <Label layoutX="39.0" layoutY="85.0" text="Price" />
+      <Label layoutX="326.0" layoutY="28.0" prefHeight="17.0" prefWidth="84.0" text="Description" />
+      <TextField fx:id="labelField" layoutX="102.0" layoutY="24.0" prefHeight="26.0" prefWidth="178.0" promptText="Enter book name.." />
+      <TextField fx:id="priceField" layoutX="104.0" layoutY="80.0" prefHeight="26.0" prefWidth="65.0" promptText="..." />
+      <Label layoutX="33.0" layoutY="189.0" text="Author " />
+      <TextArea fx:id="descField" layoutX="427.0" layoutY="29.0" prefHeight="130.0" prefWidth="209.0" promptText="Enter book's description..." />
+      <Label layoutX="33.0" layoutY="247.0" text="Categories" />
+      <Label layoutX="326.0" layoutY="189.0" text="Language" />
+      <Button fx:id="cancelBtn" layoutX="348.0" layoutY="354.0" mnemonicParsing="false" onAction="#cancelCreate" prefHeight="26.0" prefWidth="84.0" text="Cancel" />
+      <Button fx:id="updateBtn" layoutX="245.0" layoutY="354.0" mnemonicParsing="false" onAction="#updateBook" prefHeight="26.0" prefWidth="94.0" text="Update" />
+      <CheckBox fx:id="inStockField" layoutX="104.0" layoutY="135.0" mnemonicParsing="false" text="Add to stock" />
+      <CheckBox fx:id="advCategField" layoutX="107.0" layoutY="247.0" mnemonicParsing="false" text="Adventure" />
+      <CheckBox fx:id="romCategField" layoutX="107.0" layoutY="277.0" mnemonicParsing="false" text="Romance" />
+      <CheckBox fx:id="sciCategField" layoutX="107.0" layoutY="307.0" mnemonicParsing="false" text="Sci-Fi" />
+      <Slider fx:id="ratField" blockIncrement="1.0" layoutX="502.0" layoutY="249.0" majorTickUnit="1.0" max="5.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+      <Button fx:id="singleFileChooser" layoutX="530.0" layoutY="302.0" mnemonicParsing="false" onAction="#selectImage" prefHeight="26.0" prefWidth="105.0" text="Choose File.." />
+      <Label layoutX="326.0" layoutY="247.0" text="Rating" />
+      <Label layoutX="34.0" layoutY="135.0" text="In Stock" />
+      <Label layoutX="178.0" layoutY="85.0" text="DT" />
+      <Label fx:id="singleFileLab" layoutX="464.0" layoutY="306.0" prefHeight="19.0" prefWidth="57.0">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <ComboBox fx:id="authorField" layoutX="104.0" layoutY="185.0" prefWidth="150.0" />
+      <ComboBox fx:id="langField" layoutX="487.0" layoutY="185.0" prefWidth="150.0" />
+      <CheckBox fx:id="eduField" layoutX="209.0" layoutY="247.0" mnemonicParsing="false" text="Education" />
+      <CheckBox fx:id="mysField" layoutX="209.0" layoutY="278.0" mnemonicParsing="false" text="Mystery" />
+      <Label layoutX="326.0" layoutY="306.0" text="Image" />
+   </children>
+</AnchorPane>
