@@ -50,6 +50,10 @@ public class Customer {
         this.id = id;
     }
 
+    public Customer(String email) {
+        this.email = email;
+    }
+
     public Customer(String firstName, String lastName, int age, String email, String address, String telephone, String imageUrl, String password, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;

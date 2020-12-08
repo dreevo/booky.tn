@@ -5,6 +5,9 @@
  */
 package com.booky.services;
 
+import com.booky.entities.Book;
+import com.booky.entities.Cart;
+import com.booky.entities.Customer;
 import com.booky.entities.Order;
 import com.booky.utils.DataSource;
 import java.sql.Connection;
@@ -13,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -70,6 +74,20 @@ public class OrderService {
             System.out.println(e.getMessage());
         }
     }
+    
+     public void updateOrderForAdmin(Order o) {
+        try {
+            String req = "update orders set isDone=? where id=?";
+            PreparedStatement st = cnx.prepareStatement(req);
+            st.setInt(1, o.getIsDone());
+            System.out.println(o.getId());
+            st.setInt(2, o.getId());
+            st.executeUpdate();
+            System.out.println("+ ORDER UPDATED IN DATABASE");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public void readOrder(int orderId) {
         try {
@@ -89,6 +107,26 @@ public class OrderService {
                 System.out.println(isDone);
                 double totalPrice = res.getDouble(5);
                 System.out.println(totalPrice);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void readOrders(ObservableList<Order> orderList) {
+        try {
+            // GETTING THE ORDER OBJECT
+            String req = "select o.id,isdone, totalprice, email,o.date from orders o join cart c on o.cartid=c.id join customer cu on cu.id=c.customerid";
+            PreparedStatement st = cnx.prepareStatement(req);
+            ResultSet res = st.executeQuery();
+            while (res.next()) {
+                Order o = new Order();
+                o.setIsDone(res.getInt(2));
+                o.setId(res.getInt(1));
+                o.setCart(new Cart(1,res.getDouble(3)));
+                o.setCustomer(new Customer(res.getString(4)));
+                o.setDate(res.getDate(5));
+                orderList.add(o);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

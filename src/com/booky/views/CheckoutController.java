@@ -129,6 +129,10 @@ public class CheckoutController implements Initializable {
     private Label totalLabel1;
     @FXML
     private Label totalLabel2;
+    @FXML
+    private Label orderPanelBtn;
+    @FXML
+    private Label indexBtn;
 
     /**
      * Initializes the controller class.
@@ -225,6 +229,44 @@ public class CheckoutController implements Initializable {
                     String newValue) {
                 if (!newValue.matches("\\d*")) {
                     cardNumberField.setText(newValue.replaceAll("[^\\d-]", ""));
+                }
+            }
+        });
+        orderPanelBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    Stage stage1 = (Stage) orderPanelBtn.getScene().getWindow();
+                    stage1.close();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/EditOrders.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setTitle("Manage Orders");
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
+        indexBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    Stage stage1 = (Stage) indexBtn.getScene().getWindow();
+                    stage1.close();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/Index.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setTitle("Manage Orders");
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
                 }
             }
         });
@@ -546,7 +588,7 @@ public class CheckoutController implements Initializable {
     private FadeTransition fadeIn = new FadeTransition(
             Duration.millis(1000), discountLabel
     );
-    
+
     public void send(String from, String password, String to, String sub, String msg) {
         //Get properties object    
         Properties props = new Properties();

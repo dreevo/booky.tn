@@ -81,6 +81,10 @@ public class CartDetailsController implements Initializable {
     private Label totalLabel1;
     @FXML
     private Label totalLabel2;
+    @FXML
+    private Label orderPanelBtn;
+    @FXML
+    private Label indexBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -94,11 +98,11 @@ public class CartDetailsController implements Initializable {
         System.out.println(bookList);
         System.out.println(bookQuantities);
         createElements(bookList);
-        if(cartTotal == 0){
+        if (cartTotal == 0) {
             totalLabel1.setVisible(false);
             totalLabel2.setVisible(false);
             checkoutBtn.setDisable(true);
-        }else{
+        } else {
             totalLabel1.setVisible(true);
             totalLabel2.setVisible(true);
             checkoutBtn.setDisable(false);
@@ -115,6 +119,44 @@ public class CartDetailsController implements Initializable {
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.initStyle(StageStyle.TRANSPARENT);
                     stage.setTitle("booky.tn");
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
+        orderPanelBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    Stage stage1 = (Stage) orderPanelBtn.getScene().getWindow();
+                    stage1.close();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/EditOrders.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setTitle("Manage Orders");
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
+        indexBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    Stage stage1 = (Stage) indexBtn.getScene().getWindow();
+                    stage1.close();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/Index.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setTitle("Manage Orders");
                     stage.setScene(new Scene(root1));
                     stage.show();
                 } catch (Exception e) {

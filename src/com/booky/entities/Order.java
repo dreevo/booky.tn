@@ -60,6 +60,10 @@ public class Order {
     public Cart getCart() {
         return cart;
     }
+    
+    public double getCartTotal(){
+        return (cart.getTotalPrice());
+    }
 
     public void setCart(Cart cart) {
         this.cart = cart;
@@ -84,6 +88,10 @@ public class Order {
     public Date getDate() {
         return date;
     }
+    
+    public String getDateOfOrder(){
+        return date.toString();
+    }
 
     public void setDate(Date date) {
         this.date = date;
@@ -100,6 +108,10 @@ public class Order {
     public Customer getCustomer() {
         return customer;
     }
+    
+    public String getCustomerEmail(){
+        return customer.getEmail();
+    }
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
@@ -107,6 +119,16 @@ public class Order {
 
     public int getIsDone() {
         return isDone;
+    }
+    
+    public String getIsDoneMessage(){
+        if(isDone==0)return "Awaiting";
+        else return "Done";
+    }
+    
+    public void setIsDoneMessage(String x){
+        if(x.equals("Done"))this.isDone=1;
+        else this.isDone=0;
     }
 
     public void setIsDone(int isDone) {

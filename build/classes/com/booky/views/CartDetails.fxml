@@ -101,7 +101,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label styleClass="sidebar-btn-text" text="Shop">
+                  <Label fx:id="indexBtn" styleClass="sidebar-btn-text" text="Shop">
                      <HBox.margin>
                         <Insets left="5.0" top="3.0" />
                      </HBox.margin>
@@ -193,7 +193,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label styleClass="sidebar-btn-text" text="Profile">
+                  <Label fx:id="orderPanelBtn" styleClass="sidebar-btn-text" text="Orders">
                      <HBox.margin>
                         <Insets left="5.0" top="3.0" />
                      </HBox.margin>
