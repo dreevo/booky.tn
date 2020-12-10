@@ -87,9 +87,11 @@ public class ReadBlogsController implements Initializable {
         for(int i=0;i<b.getComments().size();i++){
             HBox commentLine = new HBox();
             Label customerLabel = new Label();
+            customerLabel.setStyle("-fx-text-fill:white;");
             customerLabel.setText(b.getComments().get(i).getCustomer().getFirstName()+ " "+b.getComments().get(i).getCustomer().getLastName() + " : ");
             Label commentLabel = new Label();
             commentLabel.setText(b.getComments().get(i).getDescription());
+            commentLabel.setStyle("-fx-text-fill:white;");
             commentLine.getChildren().add(customerLabel);
             commentLine.getChildren().add(commentLabel);
             commentBox.getChildren().add(commentLine);
@@ -99,7 +101,7 @@ public class ReadBlogsController implements Initializable {
 
     @FXML
     private void updateBlog(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UpdateBlog.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TryUpdate.fxml"));
         Parent root2 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Update Blogs");
@@ -120,7 +122,7 @@ public class ReadBlogsController implements Initializable {
 
     @FXML
     private void deleteBlog(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Delete Blog.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TryDelete.fxml"));
         Parent root2 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Delete Blogs");
@@ -131,7 +133,7 @@ public class ReadBlogsController implements Initializable {
     @FXML
     private void postComment(ActionEvent event) {
         if(blogId== 0){
-            JOptionPane.showMessageDialog(null, "Please choose a blog", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please choose a blog to delete", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             Comment c = new Comment();
             c.setDescription(commentField.getText());

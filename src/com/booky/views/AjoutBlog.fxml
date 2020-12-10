@@ -8,22 +8,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="623.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.AjoutBlogController">
+<AnchorPane id="AnchorPane" prefHeight="623.0" prefWidth="600.0" style="-fx-background-color: #25263A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.AjoutBlogController">
    <children>
-      <TextArea fx:id="tastatus" layoutX="37.0" layoutY="150.0" prefHeight="371.0" prefWidth="525.0" />
+      <TextArea fx:id="tastatus" layoutX="37.0" layoutY="150.0" prefHeight="371.0" prefWidth="525.0" promptText="Blog ..." />
       <Button fx:id="btn" layoutX="412.0" layoutY="546.0" mnemonicParsing="false" onAction="#AjouterBlog" prefHeight="36.0" prefWidth="150.0" text="Publish" />
-      <TextField fx:id="tftitle" layoutX="37.0" layoutY="74.0" prefHeight="25.0" prefWidth="354.0" />
-      <Label layoutX="31.0" layoutY="36.0" text="Add your Blog title">
+      <TextField fx:id="tftitle" layoutX="37.0" layoutY="74.0" prefHeight="25.0" prefWidth="354.0" promptText="Title" />
+      <Label layoutX="31.0" layoutY="36.0" text="Add your Blog title" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="37.0" layoutY="117.0" text="Add your Blog content">
+      <Label layoutX="37.0" layoutY="117.0" text="Add your Blog content" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="406.0" layoutY="36.0" text="Written by">
+      <Label layoutX="406.0" layoutY="36.0" text="Written by" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
