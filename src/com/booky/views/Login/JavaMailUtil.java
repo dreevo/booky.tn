@@ -65,7 +65,7 @@ public class JavaMailUtil {
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject("u're welcome to Booky community");
             code=randomcode();
-            String htmlCode = "<h1>Verification </h1> <br/> <h2><b>the code of verifcation :"+code+"</b></h2>";
+            String htmlCode = "<h1>Verification </h1> <br/> <h2><b>u have to use this code: "+code+"</b></h2>";
             message.setContent(htmlCode, "text/html");
             return message;
         } catch (Exception ex) {

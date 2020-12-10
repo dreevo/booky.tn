@@ -57,7 +57,7 @@ public class UpdateaccountController implements Initializable {
                     Customer c=s.showcustomer(Login_Version0Controller.id);
                     firstname.setText(c.getFirstName());
                     lastname.setText(c.getLastName());
-                   
+                    c.getAge();
                     mail.setText(c.getEmail());
                     address.setText(c.getAddress());
                     phone.setText(c.getTelephone());
@@ -69,7 +69,7 @@ public class UpdateaccountController implements Initializable {
     private void editButtonAction(ActionEvent event) {
         Connection cnx = DataSource.getInstance().getCnx();
         CustomerService bs = new CustomerService();
-        bs.updateCustomer(new Customer(firstname.getText(),lastname.getText(),Integer.parseInt(age.getText()), mail.getText(), password.getText(), address.getText(),phone.getText(),"text"),Login_Version0Controller.id);
+        bs.updateCustomer(new Customer(firstname.getText(),lastname.getText(),Integer.parseInt(age.getText()),phone.getText(), mail.getText(),address.getText(), password.getText(),"text"),Login_Version0Controller.id);
         
         JOptionPane.showMessageDialog(null, "Account modified with succes");
     	

@@ -30,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * FXML Controller class
@@ -93,10 +94,21 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    private void validateRegister(ActionEvent event) {
+    private void validateRegister(ActionEvent event) throws Exception {
         if (firstnameField.getText().isEmpty() || lastnameField.getText().isEmpty() || emailField.getText().isEmpty() || passwordField.getText().isEmpty() || confirmpassField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill all the required fields", "Error", JOptionPane.INFORMATION_MESSAGE);
-        } else if (!passwordField.getText().equals(confirmpassField.getText())) {
+        } else  if(emailField.getText()==null){
+           
+          JOptionPane.showMessageDialog(null, "connect directly", "This email already exist !", JOptionPane.INFORMATION_MESSAGE);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login_Version0.fxml"));
+                         Parent root1 = (Parent) fxmlLoader.load();
+                         Stage stage = new Stage();
+                         
+                         stage.setScene(new Scene(root1));
+                          stage.show();
+                          
+            
+            } else if (!passwordField.getText().equals(confirmpassField.getText())) {
             passwordMatch.setText("Passwords do not match");
         } else {
             passwordMatch.setText("");
@@ -112,6 +124,8 @@ public class RegisterController implements Initializable {
             if (!matcher.matches()) {
                 emailValid.setText("Invalid email");
             } else {
+                String passwordh = BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt ());
+                System.out.println(passwordh);
                 Customer c = new Customer(firstnameField.getText(), lastnameField.getText(), age, emailField.getText(),passwordField.getText(), addressField.getText(), teleField.getText(), imgLabel.getText(), new Role(2, "Customer"));
                 CustomerService cs = new CustomerService();
                 cs.addCustomer(c);
@@ -120,13 +134,13 @@ public class RegisterController implements Initializable {
                 // do what you have to do
                 stage.close();
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
-                    Stage registerStage = new Stage();
-                    registerStage.setTitle("Login");
-                    registerStage.setScene(scene);
-                    registerStage.show();
+                     FXMLLoader loader = new FXMLLoader(getClass().getResource("Login_Version0.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage registerStage = new Stage();
+            registerStage.setTitle("Log In");
+            registerStage.setScene(scene);
+            registerStage.show();
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
