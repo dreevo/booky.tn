@@ -66,6 +66,17 @@ public class Customer {
         this.role = role;
     }
 
+    public Customer(String firstName, String lastName, int age, String email, String address, String telephone, String imageUrl, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.address = address;
+        this.telephone = telephone;
+        this.imageUrl = imageUrl;
+        this.password = password;
+    }
+
     public Customer(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;

@@ -125,10 +125,29 @@ and open the template in the editor.
     -fx-font-size: 12pt;
 }
 
+.button-signup{
+    -fx-text-fill: -fx-primarytext;
+    -fx-font-weight:bold;
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-secondary;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-font-size: 12pt;
+}
+
 .button:hover{
     -fx-border-color: black;
     -fx-background-color: white;
     -fx-text-fill: black;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+}
+
+.button-signup:hover{
+    -fx-border-color: black;
+    -fx-background-color: white;
+    -fx-text-fill: white;
     -fx-scale-x: 1.2;
     -fx-scale-y: 1.2;
     -fx-scale-z: 1.2;

@@ -29,6 +29,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
 
 /**
@@ -146,10 +147,21 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void cancelRegister(ActionEvent event) {
-        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+        Stage stage = (Stage) registerBtn.getScene().getWindow();
         // do what you have to do
         stage.close();
-        Platform.exit();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.TRANSPARENT);
+            registerStage.setTitle("Login");
+            registerStage.setScene(scene);
+            registerStage.show();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML

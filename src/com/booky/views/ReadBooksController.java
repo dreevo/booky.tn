@@ -119,6 +119,7 @@ public class ReadBooksController implements Initializable {
 
         table.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showBookDetails(newValue));
+        
         FilteredList<Book> filteredData = new FilteredList<>(bookList, b -> true);
 
         // 2. Set the filter Predicate whenever the filter changes.
