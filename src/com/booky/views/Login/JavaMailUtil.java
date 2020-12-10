@@ -21,11 +21,11 @@ import javax.mail.internet.MimeMessage;
 
 /**
  *
- * @author radhw
+ * @author J.Maroua
  */
 public class JavaMailUtil {
     public static String code;
-      public static void sendMail(String recepient) throws Exception {
+      public static void sendMail(String recepient,String x) throws Exception {
         System.out.println("Preparing to send email");
         Properties properties = new Properties();
 
@@ -52,20 +52,20 @@ public class JavaMailUtil {
         });
 
         //Prepare email message
-        Message message = prepareMessage(session, myAccountEmail, recepient);
+        Message message = prepareMessage(session, myAccountEmail, recepient ,x);
 
         //Send mail
         Transport.send(message);
         System.out.println("Message sent successfully");
     }
-      private static Message prepareMessage(Session session, String myAccountEmail, String recepient) {
+      private static Message prepareMessage(Session session, String myAccountEmail, String recepient,String x) {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject("u're welcome to Booky community");
-            code=randomcode();
-            String htmlCode = "<h1>Verification </h1> <br/> <h2><b>u have to use this code: "+code+"</b></h2>";
+            //code=randomcode();
+            String htmlCode = "<h1>Verification </h1> <br/> <h2><b>u have to use this code: "+x+"</b></h2>";
             message.setContent(htmlCode, "text/html");
             return message;
         } catch (Exception ex) {
@@ -74,17 +74,5 @@ public class JavaMailUtil {
         return null;
     }
      
-            public static String randomcode() {
-                int leftLimit = 97; // letter 'a'
-                int rightLimit = 122; // letter 'z'
-                int targetStringLength = 10;
-                Random random = new Random();
-
-                String generatedString = random.ints(leftLimit, rightLimit + 1)
-                  .limit(targetStringLength)
-                  .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                  .toString();
-
-                return generatedString;
-            }
+            
 }

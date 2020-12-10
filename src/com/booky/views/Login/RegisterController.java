@@ -35,7 +35,7 @@ import org.mindrot.jbcrypt.BCrypt;
 /**
  * FXML Controller class
  *
- * @author gharbimedaziz
+ * @author J.Maroua
  */
 public class RegisterController implements Initializable {
 
@@ -95,18 +95,20 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void validateRegister(ActionEvent event) throws Exception {
+        //int count = 0;
+     //  CustomerService CS = new CustomerService();
+       //  count = CS.validateEmail(mail.getText());
         if (firstnameField.getText().isEmpty() || lastnameField.getText().isEmpty() || emailField.getText().isEmpty() || passwordField.getText().isEmpty() || confirmpassField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill all the required fields", "Error", JOptionPane.INFORMATION_MESSAGE);
-        } else  if(emailField.getText()==null){
-           
-          JOptionPane.showMessageDialog(null, "connect directly", "This email already exist !", JOptionPane.INFORMATION_MESSAGE);
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login_Version0.fxml"));
-                         Parent root1 = (Parent) fxmlLoader.load();
-                         Stage stage = new Stage();
-                         
-                         stage.setScene(new Scene(root1));
-                          stage.show();
-                          
+//        } else   if (count == 0){
+//           JOptionPane.showMessageDialog(null, "connect directly", "This email already exist !", JOptionPane.INFORMATION_MESSAGE);
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login_Version0.fxml"));
+//                         Parent root1 = (Parent) fxmlLoader.load();
+//                         Stage stage = new Stage();
+//                         
+//                         stage.setScene(new Scene(root1));
+//                          stage.show();
+//                          
             
             } else if (!passwordField.getText().equals(confirmpassField.getText())) {
             passwordMatch.setText("Passwords do not match");

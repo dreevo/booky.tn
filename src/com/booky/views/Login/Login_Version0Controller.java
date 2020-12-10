@@ -65,15 +65,17 @@ public class Login_Version0Controller implements Initializable {
 
     @FXML
     private void signinbtn(ActionEvent event) throws IOException {
-        if (mail.getText().isEmpty()==false && password.getText().isEmpty() == false) {
+        int count = 0;
+        CustomerService cs = new CustomerService();
+         count = cs.validateEmail(mail.getText());
+        
+        if(mail.getText().isEmpty()==false && password.getText().isEmpty() == false) {
         	validateLogin();
-         }else 
-            if(mail.getText()==null){
-              JOptionPane.showMessageDialog(null, "Please create an account", "This email doesn't exist :(", JOptionPane.INFORMATION_MESSAGE); 
-            }
-                
-            else
+         } else
         	 System.out.println("check ur data please!");
+        if (count == 0){
+         JOptionPane.showMessageDialog(null, "Please create an account", "This email doesn't exist :(", JOptionPane.INFORMATION_MESSAGE); 
+    }
     }
      public void validateLogin() throws IOException {
     	

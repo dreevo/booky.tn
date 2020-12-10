@@ -15,7 +15,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
- * @author 
+ * @author J.Maroua
  */
 public class CustomerService {
 
@@ -29,7 +29,7 @@ public class CustomerService {
             pst.setString(2, c.getLastName());
             pst.setInt(3, c.getAge());
             pst.setString(4, c.getEmail());
-            pst.setString(5,BCrypt.hashpw(c.getPassword(), BCrypt.gensalt ()));
+            pst.setString(5, BCrypt.hashpw(c.getPassword(), BCrypt.gensalt()));
             pst.setString(6, c.getAddress());
             pst.setString(7, c.getTelephone());
             pst.setInt(8, c.getRole().getId());
@@ -52,9 +52,9 @@ public class CustomerService {
         }
     }
 
-    public void updateCustomer(Customer c,int id) {
+    public void updateCustomer(Customer c, int id) {
         try {
-            String req = "update customer set firstname=?, lastname=?, age=?, email=?, address=?, telephone=?, imageurl=? where id="+id;
+            String req = "update customer set firstname=?, lastname=?, age=?, email=?, address=?, telephone=?, imageurl=? where id=" + id;
             PreparedStatement st = cnx.prepareStatement(req);
             st.setString(1, c.getFirstName());
             st.setString(2, c.getLastName());
@@ -99,25 +99,27 @@ public class CustomerService {
             System.out.println(e.getMessage());
         }
     }
-    
-    public boolean validateLogin(String email, String password){
-        boolean validate=false;
-        try{
+
+    public boolean validateLogin(String email, String password) {
+        boolean validate = false;
+        try {
             String req = "select count(1) from customer where email=? and password=?";
             PreparedStatement st = cnx.prepareStatement(req);
             st.setString(1, email);
             st.setString(2, password);
             ResultSet res = st.executeQuery();
-            while(res.next()){
-                if(res.getInt(1) == 1)
-                    validate=true;
+            while (res.next()) {
+                if (res.getInt(1) == 1) {
+                    validate = true;
+                }
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return validate;
     }
-      public int idlogin(String email, String pass) {
+
+    public int idlogin(String email, String pass) {
         int a = 0;
         String password = "";
         try {
@@ -138,22 +140,23 @@ public class CustomerService {
         }
         return 0;
     }
-         public Customer showcustomer(int id){
-		Customer c=null;
-		try {
-			String req="select * from Customer where id="+id;
-			PreparedStatement st = cnx.prepareStatement(req);
-			ResultSet res =st.executeQuery(req);
-			while (res.next()) {
-			c = new Customer(res.getString("firstname"),res.getString("lastname"), res.getInt("age"), res.getString("email"), res.getString("password"),res.getString("address"),res.getString("telephone"),res.getString("imageUrl"));
-                                
-                        }
-			
-		}catch(SQLException ex) {
-			System.out.println(ex.getMessage());
-		}
-		return c;
+
+    public Customer showcustomer(int id) {
+        Customer c = null;
+        try {
+            String req = "select * from Customer where id=" + id;
+            PreparedStatement st = cnx.prepareStatement(req);
+            ResultSet res = st.executeQuery(req);
+            while (res.next()) {
+                c = new Customer(res.getString("firstname"), res.getString("lastname"), res.getInt("age"), res.getString("email"), res.getString("password"), res.getString("address"), res.getString("telephone"), res.getString("imageUrl"));
+
             }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return c;
+    }
 //          public int validateLogin(String email, String password) {
 //        int customerId = 0;
 //        try {
@@ -170,7 +173,8 @@ public class CustomerService {
 //        }
 //        return customerId;
 //    }
-          public boolean authentification(String email, String pass) {
+
+    public boolean authentification(String email, String pass) {
 
         String password = "";
         try {
@@ -197,6 +201,23 @@ public class CustomerService {
             System.out.println(ex.getMessage());
         }
         return false;
-}
+    }
+
+    public int validateEmail(String email) {
+        int count = 0;
+        try{
+            String req = "select count(1) from customer where email=?";
+            PreparedStatement st = cnx.prepareStatement(req);
+            st.setString(1, email);
+            ResultSet res = st.executeQuery();
+            while(res.next()){
+                if(res.getInt(1) == 1)
+                    count+=1;
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return count;
+    }
 
 }

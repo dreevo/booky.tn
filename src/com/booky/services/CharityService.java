@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author gharbimedaziz
+ * @author J.Maroua
  */
 public class CharityService {
 

@@ -15,7 +15,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author gharbimedaziz
+ * @author J.Maroua
  */
 public class CommentService {
     Connection cnx = DataSource.getInstance().getCnx();

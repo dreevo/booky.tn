@@ -5,7 +5,9 @@
  */
 package com.booky.views.Login;
 
+import com.booky.services.CustomerService;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -24,6 +27,7 @@ import javafx.stage.Stage;
  */
 public class MailController implements Initializable {
 
+    private static String code = "";
     @FXML
     private TextField mail;
     @FXML
@@ -35,18 +39,44 @@ public class MailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void tfxsendbtn(ActionEvent event) throws Exception {
-         JavaMailUtil.sendMail(mail.getText());
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("verification.fxml"));
+        this.code = randomcode();
+        int count = 0;
+        CustomerService cs = new CustomerService();
+        count = cs.validateEmail(mail.getText());
+        if (count != 0) {
+            JavaMailUtil.sendMail(mail.getText(), this.code);
+            System.out.println(this.code);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("verification.fxml"));
             Parent root = loader.load();
+            VerificationController vc = loader.getController();
+            vc.setCode(this.code);
             Scene scene = new Scene(root);
             Stage registerStage = new Stage();
             registerStage.setTitle("Code verif");
             registerStage.setScene(scene);
             registerStage.show();
+        } else {
+            JOptionPane.showMessageDialog(null, "This email doesn't exist", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
-    
+
+    public static String randomcode() {
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        return generatedString;
+    }
+
 }
