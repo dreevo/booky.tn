@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -7,39 +8,407 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="411.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.UpdateBookController">
-    <children>
-      <Label layoutX="39.0" layoutY="28.0" text="Label" />
-      <Label layoutX="39.0" layoutY="85.0" text="Price" />
-      <Label layoutX="326.0" layoutY="28.0" prefHeight="17.0" prefWidth="84.0" text="Description" />
-      <TextField fx:id="labelField" layoutX="102.0" layoutY="24.0" prefHeight="26.0" prefWidth="178.0" promptText="Enter book name.." />
-      <TextField fx:id="priceField" layoutX="104.0" layoutY="80.0" prefHeight="26.0" prefWidth="65.0" promptText="..." />
-      <Label layoutX="33.0" layoutY="189.0" text="Author " />
-      <TextArea fx:id="descField" layoutX="427.0" layoutY="29.0" prefHeight="130.0" prefWidth="209.0" promptText="Enter book's description..." />
-      <Label layoutX="33.0" layoutY="247.0" text="Categories" />
-      <Label layoutX="326.0" layoutY="189.0" text="Language" />
-      <Button fx:id="cancelBtn" layoutX="348.0" layoutY="354.0" mnemonicParsing="false" onAction="#cancelCreate" prefHeight="26.0" prefWidth="84.0" text="Cancel" />
-      <Button fx:id="updateBtn" layoutX="245.0" layoutY="354.0" mnemonicParsing="false" onAction="#updateBook" prefHeight="26.0" prefWidth="94.0" text="Update" />
-      <CheckBox fx:id="inStockField" layoutX="104.0" layoutY="135.0" mnemonicParsing="false" text="Add to stock" />
-      <CheckBox fx:id="advCategField" layoutX="107.0" layoutY="247.0" mnemonicParsing="false" text="Adventure" />
-      <CheckBox fx:id="romCategField" layoutX="107.0" layoutY="277.0" mnemonicParsing="false" text="Romance" />
-      <CheckBox fx:id="sciCategField" layoutX="107.0" layoutY="307.0" mnemonicParsing="false" text="Sci-Fi" />
-      <Slider fx:id="ratField" blockIncrement="1.0" layoutX="502.0" layoutY="249.0" majorTickUnit="1.0" max="5.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-      <Button fx:id="singleFileChooser" layoutX="530.0" layoutY="302.0" mnemonicParsing="false" onAction="#selectImage" prefHeight="26.0" prefWidth="105.0" text="Choose File.." />
-      <Label layoutX="326.0" layoutY="247.0" text="Rating" />
-      <Label layoutX="34.0" layoutY="135.0" text="In Stock" />
-      <Label layoutX="178.0" layoutY="85.0" text="DT" />
-      <Label fx:id="singleFileLab" layoutX="464.0" layoutY="306.0" prefHeight="19.0" prefWidth="57.0">
-         <font>
-            <Font size="13.0" />
-         </font></Label>
-      <ComboBox fx:id="authorField" layoutX="104.0" layoutY="185.0" prefWidth="150.0" />
-      <ComboBox fx:id="langField" layoutX="487.0" layoutY="185.0" prefWidth="150.0" />
-      <CheckBox fx:id="eduField" layoutX="209.0" layoutY="247.0" mnemonicParsing="false" text="Education" />
-      <CheckBox fx:id="mysField" layoutX="209.0" layoutY="278.0" mnemonicParsing="false" text="Mystery" />
-      <Label layoutX="326.0" layoutY="306.0" text="Image" />
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.UpdateBookController">
+   <children>
+      <Pane layoutX="170.0" prefHeight="900.0" prefWidth="1339.0" styleClass="childpane" stylesheets="@sidebar.css">
+         <children>
+            <Label layoutX="22.0" layoutY="131.0" text="Administration Panel" textFill="#ff1653">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="153.0" text="Update book" textFill="WHITE">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="Calibri Bold" size="28.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="209.0" fitWidth="206.0" layoutX="567.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/booky.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="189.0" layoutY="232.0" prefHeight="543.0" prefWidth="954.0">
+               <children>
+                  <Label layoutX="6.0" layoutY="4.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="6.0" layoutY="117.0" text="Price" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="533.0" layoutY="4.0" prefHeight="17.0" prefWidth="84.0" text="Description" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="labelField" layoutX="69.0" prefHeight="26.0" prefWidth="178.0" promptText="Enter book name.." />
+                  <TextField fx:id="priceField" layoutX="71.0" layoutY="112.0" prefHeight="26.0" prefWidth="65.0" promptText="..." />
+                  <Label layoutY="277.0" text="Author " textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="descField" layoutX="634.0" layoutY="5.0" prefHeight="130.0" prefWidth="259.0" promptText="Enter book's description..." />
+                  <Label layoutY="335.0" text="Categories" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="533.0" layoutY="201.0" text="Language" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="cancelBtn" layoutX="493.0" layoutY="442.0" mnemonicParsing="false" onAction="#cancelCreate" prefHeight="26.0" prefWidth="84.0" text="Cancel" />
+                  <Button fx:id="updateBtn" layoutX="390.0" layoutY="442.0" mnemonicParsing="false" onAction="#updateBook" prefHeight="26.0" prefWidth="94.0" text="Update" />
+                  <CheckBox fx:id="inStockField" layoutX="71.0" layoutY="208.0" mnemonicParsing="false" text="Add to stock" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="advCategField" layoutX="74.0" layoutY="335.0" mnemonicParsing="false" text="Adventure" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="romCategField" layoutX="74.0" layoutY="365.0" mnemonicParsing="false" text="Romance" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="sciCategField" layoutX="74.0" layoutY="395.0" mnemonicParsing="false" text="Sci-Fi" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <Slider fx:id="ratField" blockIncrement="1.0" layoutX="754.0" layoutY="280.0" majorTickUnit="1.0" max="5.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                  <Button fx:id="singleFileChooser" layoutX="789.0" layoutY="343.0" mnemonicParsing="false" onAction="#selectImage" prefHeight="26.0" prefWidth="105.0" text="Choose File.." />
+                  <Label layoutX="533.0" layoutY="278.0" text="Rating" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1.0" layoutY="208.0" text="In Stock" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="145.0" layoutY="117.0" text="DT" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="singleFileLab" layoutX="431.0" layoutY="305.0" prefHeight="19.0" prefWidth="57.0">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="authorField" layoutX="71.0" layoutY="273.0" prefWidth="150.0" />
+                  <ComboBox fx:id="langField" layoutX="741.0" layoutY="197.0" prefWidth="150.0" />
+                  <CheckBox fx:id="eduField" layoutX="176.0" layoutY="335.0" mnemonicParsing="false" text="Education" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="mysField" layoutX="176.0" layoutY="366.0" mnemonicParsing="false" text="Mystery" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <Label layoutX="533.0" layoutY="349.0" text="Image" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="-1.0" prefHeight="900.0" prefWidth="171.0" styleClass="sidebar" stylesheets="@sidebar.css">
+         <children>
+            <Circle fill="#ff6d53" layoutX="25.0" layoutY="22.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#ffec26" layoutX="42.0" layoutY="22.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#2fea37" layoutX="59.0" layoutY="22.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+            <HBox layoutX="16.0" layoutY="235.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bookshelf.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="indexBtn" styleClass="sidebar-btn-text" text="Shop">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="274.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/recommended.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="For you">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="313.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/charity.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="booksWithCharityLabel" styleClass="sidebar-btn-text" text="Charity">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="352.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/author.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label styleClass="sidebar-btn-text" text="Authors">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="474.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/profile.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="orderPanelBtn" styleClass="sidebar-btn-text" text="Orders">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="508.0" prefHeight="30.0" prefWidth="147.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/donations.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="donationsPage" prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="Donations">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <ImageView fitHeight="72.0" fitWidth="80.0" layoutX="47.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/maha.jpg" />
+               </image>
+            </ImageView>
+            <HBox layoutX="32.0" layoutY="145.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <Label styleClass="sidebar-profile-name" text="Bacha Maha">
+                     <HBox.margin>
+                        <Insets left="7.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Calibri Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="696.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/about.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="About">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="731.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/contact.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="Contact">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="860.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/signout.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="Sign out">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Line endX="89.4000244140625" endY="3.0517578125E-5" layoutX="81.0" layoutY="505.0" startX="-83.99999237060547" stroke="WHITE" />
+            <Line endX="85.39999389648438" endY="-6.103515625E-5" layoutX="85.0" layoutY="727.0" startX="-84.99999237060547" startY="-6.103515625E-5" stroke="WHITE" />
+            <Line endX="83.4000244140625" layoutX="87.0" layoutY="269.0" startX="-87.00001525878906" stroke="WHITE" />
+            <Line endX="84.4000244140625" layoutX="86.0" layoutY="307.0" startX="-87.00001525878906" stroke="WHITE" />
+            <Line endX="85.4000244140625" layoutX="85.0" layoutY="347.0" startX="-87.00001525878906" stroke="WHITE" />
+            <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="65.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/vip.png" />
+               </image>
+            </ImageView>
+            <HBox layoutX="16.0" layoutY="542.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/archive.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="libraryBtn" styleClass="sidebar-btn-text" text="Library">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Line endX="89.4000244140625" endY="3.0517578125E-5" layoutX="81.0" layoutY="538.0" startX="-83.99999237060547" stroke="WHITE" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

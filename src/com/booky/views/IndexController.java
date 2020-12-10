@@ -89,6 +89,10 @@ public class IndexController implements Initializable {
     private Label donationsPage;
     @FXML
     private Label booksWithCharityLabel;
+    @FXML
+    private Label indexBtn;
+    @FXML
+    private Label libraryBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -180,6 +184,25 @@ public class IndexController implements Initializable {
                     Stage stage1 = (Stage) booksWithCharityLabel.getScene().getWindow();
                     stage1.close();
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/BooksWithCharity.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setTitle("Manage Orders");
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
+        libraryBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    Stage stage1 = (Stage) booksWithCharityLabel.getScene().getWindow();
+                    stage1.close();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/ReadBooks.fxml"));
                     Parent root1 = (Parent) fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.initModality(Modality.APPLICATION_MODAL);

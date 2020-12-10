@@ -1,41 +1,350 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="474.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.ReadBooksController">
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.ReadBooksController">
    <children>
-      <TableView fx:id="table" layoutX="22.0" layoutY="23.0" prefHeight="378.0" prefWidth="194.0">
-        <columns>
-          <TableColumn fx:id="label" prefWidth="191.20001220703125" text="Book" />
-        </columns>
-      </TableView>
-      <Label fx:id="labelField" layoutX="364.0" layoutY="100.0" prefHeight="18.0" prefWidth="324.0" />
-      <Label layoutX="237.0" layoutY="31.0" text="Book Details :" />
-      <Label layoutX="245.0" layoutY="101.0" text="Label :" />
-      <Label layoutX="245.0" layoutY="137.0" text="Price :" />
-      <Label fx:id="priceField" layoutX="364.0" layoutY="136.0" prefHeight="18.0" prefWidth="324.0" />
-      <Label layoutX="245.0" layoutY="172.0" text="Description :" />
-      <Label fx:id="descField" layoutX="364.0" layoutY="171.0" prefHeight="18.0" prefWidth="324.0" />
-      <Label layoutX="246.0" layoutY="207.0" text="In Stock :" />
-      <Label fx:id="stockField" layoutX="364.0" layoutY="203.0" prefHeight="18.0" prefWidth="324.0" />
-      <Label layoutX="246.0" layoutY="242.0" text="Rating : " />
-      <Label fx:id="ratingField" layoutX="364.0" layoutY="238.0" prefHeight="18.0" prefWidth="324.0" />
-      <Label layoutX="246.0" layoutY="276.0" text="Language :" />
-      <Label fx:id="langField" layoutX="364.0" layoutY="272.0" prefHeight="18.0" prefWidth="324.0" />
-      <Label layoutX="246.0" layoutY="307.0" text="Author : " />
-      <Label fx:id="authField" layoutX="364.0" layoutY="303.0" prefHeight="18.0" prefWidth="324.0" />
-      <Label layoutX="247.0" layoutY="337.0" text="Image :" />
-      <Label fx:id="imgField" layoutX="364.0" layoutY="333.0" prefHeight="18.0" prefWidth="324.0" />
-      <Label layoutX="247.0" layoutY="367.0" text="Categories" />
-      <Label fx:id="categField" layoutX="364.0" layoutY="363.0" prefHeight="18.0" prefWidth="266.0" />
-      <Button fx:id="editBtn" layoutX="425.0" layoutY="409.0" mnemonicParsing="false" onAction="#editBook" prefHeight="37.0" prefWidth="72.0" text="Edit" />
-      <Button fx:id="deleteBtn" layoutX="506.0" layoutY="409.0" mnemonicParsing="false" onAction="#deleteBook" prefHeight="37.0" prefWidth="72.0" text="Delete" />
-      <Button fx:id="cancelBtn" layoutX="585.0" layoutY="409.0" mnemonicParsing="false" onAction="#cancelBook" prefHeight="37.0" prefWidth="72.0" text="Cancel" />
-      <Button fx:id="reloadBtn" layoutX="83.0" layoutY="409.0" mnemonicParsing="false" onAction="#reloadTable" prefHeight="37.0" prefWidth="72.0" text="Reload" />
-      <Button fx:id="addBookBtn" layoutX="345.0" layoutY="409.0" mnemonicParsing="false" onAction="#addBook" prefHeight="37.0" prefWidth="72.0" text="Add" />
+      <Pane layoutX="170.0" prefHeight="900.0" prefWidth="1339.0" styleClass="childpane" stylesheets="@sidebar.css">
+         <children>
+            <Label layoutX="22.0" layoutY="131.0" text="Administration Panel" textFill="#ff1653">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="153.0" text="Manage Books" textFill="WHITE">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="Calibri Bold" size="28.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="209.0" fitWidth="206.0" layoutX="567.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/booky.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="231.0" layoutY="265.0" prefHeight="574.0" prefWidth="851.0">
+               <children>
+                  <TableView fx:id="table" prefHeight="504.0" prefWidth="324.0">
+                     <columns>
+                        <TableColumn fx:id="label" prefWidth="319.1999816894531" text="Book" />
+                     </columns>
+                  </TableView>
+                  <Label fx:id="labelField" layoutX="506.0" layoutY="133.0" prefHeight="18.0" prefWidth="324.0" textFill="WHITE" />
+                  <Label fx:id="bookdetailslabel" layoutX="385.0" layoutY="88.0" text="Book Details :" textFill="WHITE" />
+                  <Label layoutX="387.0" layoutY="134.0" text="Label :" textFill="WHITE" />
+                  <Label layoutX="387.0" layoutY="170.0" text="Price :" textFill="WHITE" />
+                  <Label fx:id="priceField" layoutX="506.0" layoutY="169.0" prefHeight="18.0" prefWidth="324.0" textFill="WHITE" />
+                  <Label layoutX="387.0" layoutY="205.0" text="Description :" textFill="WHITE" />
+                  <Label fx:id="descField" layoutX="506.0" layoutY="204.0" prefHeight="18.0" prefWidth="324.0" textFill="WHITE" />
+                  <Label layoutX="388.0" layoutY="240.0" text="In Stock :" textFill="WHITE" />
+                  <Label fx:id="stockField" layoutX="506.0" layoutY="236.0" prefHeight="18.0" prefWidth="324.0" textFill="WHITE" />
+                  <Label layoutX="388.0" layoutY="275.0" text="Rating : " textFill="WHITE" />
+                  <Label fx:id="ratingField" layoutX="506.0" layoutY="271.0" prefHeight="18.0" prefWidth="324.0" textFill="WHITE" />
+                  <Label layoutX="388.0" layoutY="309.0" text="Language :" textFill="WHITE" />
+                  <Label fx:id="langField" layoutX="506.0" layoutY="305.0" prefHeight="18.0" prefWidth="324.0" textFill="WHITE" />
+                  <Label layoutX="388.0" layoutY="340.0" text="Author : " textFill="WHITE" />
+                  <Label fx:id="authField" layoutX="506.0" layoutY="336.0" prefHeight="18.0" prefWidth="324.0" textFill="WHITE" />
+                  <Label layoutX="389.0" layoutY="370.0" text="Image :" textFill="WHITE" />
+                  <Label fx:id="imgField" layoutX="506.0" layoutY="366.0" prefHeight="18.0" prefWidth="324.0" textFill="WHITE" />
+                  <Label layoutX="389.0" layoutY="400.0" text="Categories" textFill="WHITE" />
+                  <Label fx:id="categField" layoutX="506.0" layoutY="396.0" prefHeight="18.0" prefWidth="266.0" textFill="WHITE" />
+                  <Button fx:id="editBtn" layoutX="583.0" layoutY="513.0" mnemonicParsing="false" onAction="#editBook" prefHeight="37.0" prefWidth="72.0" text="Edit" />
+                  <Button fx:id="deleteBtn" layoutX="665.0" layoutY="513.0" mnemonicParsing="false" onAction="#deleteBook" prefHeight="39.0" prefWidth="78.0" styleClass="button-delete" text="Delete" />
+                  <Button fx:id="cancelBtn" layoutX="752.0" layoutY="513.0" mnemonicParsing="false" onAction="#cancelBook" prefHeight="39.0" prefWidth="78.0" text="Cancel" />
+                  <Button fx:id="reloadBtn" layoutX="120.0" layoutY="513.0" mnemonicParsing="false" onAction="#reloadTable" prefHeight="39.0" prefWidth="84.0" text="Reload" />
+                  <Button fx:id="addBookBtn" layoutX="504.0" layoutY="513.0" mnemonicParsing="false" onAction="#addBook" prefHeight="37.0" prefWidth="72.0" text="Add" />
+               </children>
+            </Pane>
+            <Text fx:id="searchbox" fill="WHITE" layoutX="747.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Box" />
+            <TextField fx:id="filterfield" layoutX="828.0" layoutY="229.0" prefHeight="25.0" prefWidth="175.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="-1.0" prefHeight="900.0" prefWidth="171.0" styleClass="sidebar" stylesheets="@sidebar.css">
+         <children>
+            <Circle fill="#ff6d53" layoutX="25.0" layoutY="22.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#ffec26" layoutX="42.0" layoutY="22.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#2fea37" layoutX="59.0" layoutY="22.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+            <HBox layoutX="16.0" layoutY="235.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bookshelf.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="indexBtn" styleClass="sidebar-btn-text" text="Shop">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="274.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/recommended.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="For you">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="313.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/charity.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="booksWithCharityLabel" styleClass="sidebar-btn-text" text="Charity">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="352.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/author.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label styleClass="sidebar-btn-text" text="Authors">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="474.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/profile.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="orderPanelBtn" styleClass="sidebar-btn-text" text="Orders">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="508.0" prefHeight="30.0" prefWidth="147.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/donations.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="donationsPage" prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="Donations">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <ImageView fitHeight="72.0" fitWidth="80.0" layoutX="47.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/maha.jpg" />
+               </image>
+            </ImageView>
+            <HBox layoutX="32.0" layoutY="145.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <Label styleClass="sidebar-profile-name" text="Bacha Maha">
+                     <HBox.margin>
+                        <Insets left="7.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Calibri Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="696.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/about.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="About">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="731.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/contact.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="Contact">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="860.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/signout.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="Sign out">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Line endX="89.4000244140625" endY="3.0517578125E-5" layoutX="81.0" layoutY="505.0" startX="-83.99999237060547" stroke="WHITE" />
+            <Line endX="85.39999389648438" endY="-6.103515625E-5" layoutX="85.0" layoutY="727.0" startX="-84.99999237060547" startY="-6.103515625E-5" stroke="WHITE" />
+            <Line endX="83.4000244140625" layoutX="87.0" layoutY="269.0" startX="-87.00001525878906" stroke="WHITE" />
+            <Line endX="84.4000244140625" layoutX="86.0" layoutY="307.0" startX="-87.00001525878906" stroke="WHITE" />
+            <Line endX="85.4000244140625" layoutX="85.0" layoutY="347.0" startX="-87.00001525878906" stroke="WHITE" />
+            <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="65.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/vip.png" />
+               </image>
+            </ImageView>
+            <HBox layoutX="16.0" layoutY="542.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/archive.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="libraryBtn" styleClass="sidebar-btn-text" text="Library">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Line endX="89.4000244140625" endY="3.0517578125E-5" layoutX="81.0" layoutY="538.0" startX="-83.99999237060547" stroke="WHITE" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

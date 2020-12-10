@@ -180,6 +180,14 @@ public class Book {
     public void setCharity(Charity charity) {
         this.charity = charity;
     }
+    
+    public String getCategory (){
+        String ch= "";
+        for (int i=0; i<Categories.size();i++){
+            ch = ch + Categories.get(i);
+        }
+        return ch;
+    }
 
     @Override
     public String toString() {
