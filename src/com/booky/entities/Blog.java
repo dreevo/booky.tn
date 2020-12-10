@@ -32,6 +32,24 @@ public class Blog {
         this.author = author;
     }
 
+    public Blog(int id) {
+        this.id = id;
+    }
+
+    public Blog(String title) {
+        this.title = title;
+    }
+
+    public Blog(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+    
+
+    public Blog() {
+    }
+    
+
     public int getId() {
         return id;
     }
