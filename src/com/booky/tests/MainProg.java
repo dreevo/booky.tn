@@ -117,8 +117,8 @@ public class MainProg {
         customers.add(C2);
         ArrayList<Customer> customers2 = new ArrayList<>();
         customers2.add(C3);
-        Event e = new Event("Father's day", "father's day description", date, date, null, customers);
-        Event e1 = new Event(6, "Mother's day", "mother's day description", date, date, null, customers2);
+//        Event e = new Event("Father's day", "father's day description", date, date, null, customers);
+//        Event e1 = new Event(6, "Mother's day", "mother's day description", date, date, null, customers2);
         EventService es = new EventService();
         //es.createEvent(e);
         //es.updateEvent(e1);

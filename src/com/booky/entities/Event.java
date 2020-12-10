@@ -17,28 +17,39 @@ public class Event {
     private int id;
     private String title;
     private String description;
-    private Date beginDate;
-    private Date endDate;
+    private String beginDate;
+    private String endDate;
     private String imageUrl;
-    private ArrayList<Customer> participatns;
+    private ArrayList<Customer> customers;
 
-    public Event(int id, String title, String description, Date beginDate, Date endDate, String imageUrl, ArrayList<Customer> participatns) {
+    public Event(String title, String description, String beginDate, String endDate , String imageUrl) {
+        this.title = title;
+        this.description = description;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.imageUrl = imageUrl;
+    }
+
+    public Event(int id, String title, String description,  String beginDate, String endDate, String imageUrl) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.imageUrl = imageUrl;
-        this.participatns = participatns;
     }
 
-    public Event(String title, String description, Date beginDate, Date endDate, String imageUrl, ArrayList<Customer> participatns) {
+    public Event(String title, String description, String beginDate, String endDate, String imageUrl, ArrayList<Customer> customers) {
         this.title = title;
         this.description = description;
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.imageUrl = imageUrl;
-        this.participatns = participatns;
+        this.customers = customers;
+    }
+
+    public Event() {
+        
     }
 
     public int getId() {
@@ -65,19 +76,19 @@ public class Event {
         this.description = description;
     }
 
-    public Date getBeginDate() {
+    public String getBeginDate() {
         return beginDate;
     }
 
-    public void setBeginDate(Date beginDate) {
+    public void setBeginDate(String beginDate) {
         this.beginDate = beginDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -89,13 +100,16 @@ public class Event {
         this.imageUrl = imageUrl;
     }
 
-    public ArrayList<Customer> getParticipatns() {
-        return participatns;
+    public ArrayList<Customer> getCustomers() {
+        return customers;
     }
 
-    public void setParticipatns(ArrayList<Customer> participatns) {
-        this.participatns = participatns;
+    public void setCustomers(ArrayList<Customer> customers) {
+        this.customers = customers;
     }
+
+
+    
 
     @Override
     public int hashCode() {
@@ -124,6 +138,9 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" + "id=" + id + ", title=" + title + ", description=" + description + ", beginDate=" + beginDate + ", endDate=" + endDate + ", imageUrl=" + imageUrl + ", participatns=" + participatns + '}';
+        return "Event{" + "id=" + id + ", title=" + title + ", description=" + description + ", beginDate=" + beginDate + ", endDate=" + endDate + ", imageUrl=" + imageUrl + ", customers=" + customers + '}';
     }
+
+
+
 }
