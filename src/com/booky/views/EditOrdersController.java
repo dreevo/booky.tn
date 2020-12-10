@@ -22,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -39,14 +40,14 @@ public class EditOrdersController implements Initializable {
     @FXML
     private TableColumn<Order, String> customerColumn;
     @FXML
-    private TableColumn<Order, Double> orderTotalColumn;
-    @FXML
     private TableColumn<Order, String> isDoneColumn;
     ObservableList<Order> orderList = FXCollections.observableArrayList();
     @FXML
     private TableColumn<Order, String> orderDateColumn;
     @FXML
     private Label indexBtn;
+    @FXML
+    private ImageView backBtn;
 
     /**
      * Initializes the controller class.
@@ -58,7 +59,7 @@ public class EditOrdersController implements Initializable {
         os.readOrders(orderList);
         isDoneColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("IsDoneMessage"));
         customerColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("CustomerEmail"));
-        orderTotalColumn.setCellValueFactory(new PropertyValueFactory<Order, Double>("CartTotal"));
+        //orderTotalColumn.setCellValueFactory(new PropertyValueFactory<Order, Double>("CartTotal"));
         orderDateColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("DateOfOrder"));
         isDoneColumn.setCellFactory(ComboBoxTableCell.forTableColumn("Awaiting", "Done"));
         table.getItems().setAll(orderList);
@@ -81,15 +82,34 @@ public class EditOrdersController implements Initializable {
                 }
             }
         });
-    }    
+        backBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    Stage stage1 = (Stage) backBtn.getScene().getWindow();
+                    stage1.close();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/Index.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setTitle("booky.tn");
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
+    }
 
     @FXML
     private void updateOrder(TableColumn.CellEditEvent event) {
-         Order orderSelected = table.getSelectionModel().getSelectedItem();
-         System.out.println(event.getNewValue().toString());
+        Order orderSelected = table.getSelectionModel().getSelectedItem();
+        System.out.println(event.getNewValue().toString());
         orderSelected.setIsDoneMessage(event.getNewValue().toString());
         OrderService os = new OrderService();
         os.updateOrderForAdmin(orderSelected);
     }
-    
+
 }

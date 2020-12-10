@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="0 0 671 996" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<style type="text/css"><![CDATA[
+.g0_22{
+}
+.g1_22{
+fill: none;
+stroke: #FFFFFF;
+stroke-width: 1.527;
+stroke-linecap: round;
+stroke-linejoin: miter;
+stroke-miterlimit: 8;
+}
+]]></style>
+<path d="M681,0L568,357L202,276L455,552L202,828L568,747l113,357L793,747l366,81L906,552L1159,276L793,357L681,0Z"
+id="f0_42"
+transform="scale(0.001,-0.001)"/>
+
+</defs>
+<path fill-rule="evenodd" d="M76.4,78.7l1.1,6.2l-4.6,2l5.2,1.9L79.2,95l2.1,-5l5.1,1.8L82.6,86.9l2.2,-5.2l-4.6,2Z" class="g0_22"/>
+<path d="M76.4,78.7l1.1,6.2l-4.6,2l5.2,1.9L79.2,95l2.1,-5l5.1,1.8L82.6,86.9l2.2,-5.2l-4.6,2Z" class="g1_22"/>
+<path fill-rule="evenodd" d="M89.9,91.9l-2.4,5.8l-4.9,-.8l3.5,4.4l-2.5,5.8l4.5,-3l3.4,4.2l-.6,-6.2L95.4,99l-4.8,-.9Z" class="g0_22"/>
+<path d="M89.9,91.9l-2.4,5.8l-4.9,-.8l3.5,4.4l-2.5,5.8l4.5,-3l3.4,4.2l-.6,-6.2L95.4,99l-4.8,-.9Z" class="g1_22"/>
+<path fill-rule="evenodd" d="M92.9,82l2.3,4.6l-3.3,3l4.8,-.2L99,94l.6,-4.6l4.7,-.2L100,86.5l.6,-4.8l-3.3,3Z" class="g0_22"/>
+<path d="M92.9,82l2.3,4.6l-3.3,3l4.8,-.2L99,94l.6,-4.6l4.7,-.2L100,86.5l.6,-4.8l-3.3,3Z" class="g1_22"/>
+<path fill-rule="evenodd" d="M595.4,78.7l-1.1,6.2l4.5,2l-5.3,1.9L592.4,95l-2.1,-5l-5.1,1.8l3.9,-4.9l-2.2,-5.2l4.5,2Z" class="g0_22"/>
+<path d="M595.4,78.7l-1.1,6.2l4.5,2l-5.3,1.9L592.4,95l-2.1,-5l-5.1,1.8l3.9,-4.9l-2.2,-5.2l4.5,2Z" class="g1_22"/>
+<path fill-rule="evenodd" d="M581.7,91.9l2.4,5.8l5,-.8l-3.4,4.4l2.3,5.8l-4.4,-3l-3.4,4.2l.6,-6.2L576.2,99l5,-.9Z" class="g0_22"/>
+<path d="M581.7,91.9l2.4,5.8l5,-.8l-3.4,4.4l2.3,5.8l-4.4,-3l-3.4,4.2l.6,-6.2L576.2,99l5,-.9Z" class="g1_22"/>
+<path fill-rule="evenodd" d="M578.8,82l-2.4,4.6l3.4,3L575,89.4L572.6,94l-.5,-4.6l-4.7,-.2l4.3,-2.7l-.6,-4.8l3.3,3Z" class="g0_22"/>
+<path d="M578.8,82l-2.4,4.6l3.4,3L575,89.4L572.6,94l-.5,-4.6l-4.7,-.2l4.3,-2.7l-.6,-4.8l3.3,3Z" class="g1_22"/>
+<g fill="#000000" >
+<use xlink:href="#f0_42" transform="matrix(8,0,0,8,313.1,913.1)"/>
+<use xlink:href="#f0_42" transform="matrix(8,0,0,8,347.6,913.1)"/>
+</g>
+</svg>

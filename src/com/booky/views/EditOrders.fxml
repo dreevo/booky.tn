@@ -282,15 +282,32 @@
                   <Image url="@images/booky.png" />
                </image>
             </ImageView>
-            <TableView fx:id="table" editable="true" layoutX="37.0" layoutY="215.0" prefHeight="575.0" prefWidth="748.0" style="-fx-border-color: black;" styleClass="tableview">
+            <TableView fx:id="table" editable="true" layoutX="71.0" layoutY="217.0" prefHeight="575.0" prefWidth="696.0" style="-fx-border-color: black;" styleClass="tableview">
               <columns>
                 <TableColumn fx:id="customerColumn" prefWidth="254.93338012695312" text="Customer" />
-                <TableColumn fx:id="orderTotalColumn" prefWidth="158.93328857421875" text="Order Total" />
-                  <TableColumn fx:id="orderDateColumn" prefWidth="198.66668701171875" text="Order Date" />
-                  <TableColumn fx:id="isDoneColumn" onEditCommit="#updateOrder" prefWidth="128.5333251953125" text="Done" />
+                  <TableColumn fx:id="orderDateColumn" prefWidth="264.7999572753906" text="Order Date" />
+                  <TableColumn fx:id="isDoneColumn" onEditCommit="#updateOrder" prefWidth="173.60003662109375" text="Done" />
               </columns>
             </TableView>
-            <Line endX="-87.0" endY="606.1333618164062" layoutX="949.0" layoutY="228.0" startX="-87.0" startY="-12.533340454101562" stroke="WHITE" />
+            <Line endX="-87.0" endY="606.1333618164062" layoutX="898.0" layoutY="228.0" startX="-87.0" startY="-12.533340454101562" stroke="WHITE" />
+            <ImageView fitHeight="124.0" fitWidth="88.0" layoutX="1027.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/manage-users.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="983.0" layoutY="514.0" text="Manage Users" textFill="WHITE">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="Calibri Bold" size="28.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="backBtn" fitHeight="54.0" fitWidth="54.0" layoutX="1156.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" styleClass="cart">
+               <image>
+                  <Image url="@images/backtoindex.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

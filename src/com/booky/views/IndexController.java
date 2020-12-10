@@ -271,6 +271,9 @@ public class IndexController implements Initializable {
         ratingLabel.getStyleClass().add("price-rating-container");
         pageBox.getChildren().add(priceAndRating);
         pageBox.getStyleClass().add("card");
+        if(bookLabel.equals("Harry Potter and the Goblet of Fire")){
+            pageBox.setStyle("-fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);-fx-background-radius: 10;");
+        }
         pageBox.setPrefWidth(ELEMENT_SIZE + 30);
         pageBox.getStyleClass().add("book-container");
         imageView = null;
