@@ -44,6 +44,19 @@ public class Donation {
         this.charity = charity;
     }
 
+    public Donation(int id, String message, double amount) {
+        this.id = id;
+        this.message = message;
+        this.amount = amount;
+    }
+
+    public Donation() {
+    }
+    
+    public Donation(int id) {
+        this.id = id;
+    }
+    
     public int getId() {
         return id;
     }

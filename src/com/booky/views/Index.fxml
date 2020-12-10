@@ -69,13 +69,13 @@
                <children>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/archive.png" />
+                        <Image url="@images/charity.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label styleClass="sidebar-btn-text" text="Bookshelf">
+                  <Label fx:id="booksWithCharityLabel" styleClass="sidebar-btn-text" text="Charity">
                      <HBox.margin>
                         <Insets left="5.0" top="3.0" />
                      </HBox.margin>
@@ -134,17 +134,17 @@
                   </Label>
                </children>
             </HBox>
-            <HBox layoutX="16.0" layoutY="508.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+            <HBox layoutX="16.0" layoutY="508.0" prefHeight="30.0" prefWidth="147.0" styleClass="sidebar-btn">
                <children>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/settings.png" />
+                        <Image url="@images/donations.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="Settings">
+                  <Label fx:id="donationsPage" prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="Donations">
                      <HBox.margin>
                         <Insets left="5.0" top="3.0" />
                      </HBox.margin>

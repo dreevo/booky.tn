@@ -85,6 +85,10 @@ public class IndexController implements Initializable {
     private Label addedMessageLabel;
     @FXML
     private Label orderPanelBtn;
+    @FXML
+    private Label donationsPage;
+    @FXML
+    private Label booksWithCharityLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -138,6 +142,44 @@ public class IndexController implements Initializable {
                     Stage stage1 = (Stage) cartBtn.getScene().getWindow();
                     stage1.close();
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/EditOrders.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setTitle("Manage Orders");
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
+        donationsPage.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    Stage stage1 = (Stage) cartBtn.getScene().getWindow();
+                    stage1.close();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/ReadDonations.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setTitle("Donations List");
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
+        booksWithCharityLabel.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    Stage stage1 = (Stage) booksWithCharityLabel.getScene().getWindow();
+                    stage1.close();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/BooksWithCharity.fxml"));
                     Parent root1 = (Parent) fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.initModality(Modality.APPLICATION_MODAL);
@@ -271,6 +313,9 @@ public class IndexController implements Initializable {
         ratingLabel.getStyleClass().add("price-rating-container");
         pageBox.getChildren().add(priceAndRating);
         pageBox.getStyleClass().add("card");
+        if(bookLabel.equals("Harry Potter and the Goblet of Fire")){
+            pageBox.setStyle("-fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);-fx-background-radius: 10;");
+        }
         pageBox.setPrefWidth(ELEMENT_SIZE + 30);
         pageBox.getStyleClass().add("book-container");
         imageView = null;

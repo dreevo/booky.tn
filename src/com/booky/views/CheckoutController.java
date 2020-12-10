@@ -56,12 +56,16 @@ import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
 import com.stripe.model.Customer;
 import com.stripe.param.CustomerRetrieveParams;
+import java.io.File;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Map;
 import java.util.Properties;
+import javafx.scene.layout.StackPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -339,7 +343,7 @@ public class CheckoutController implements Initializable {
                 OrderService os = new OrderService();
                 Order or = new Order();
                 if (discount == true) {
-                    or.setDiscount(20);
+                    or.setDiscount(50);
                 } else {
                     or.setDiscount(0);
                 }
@@ -374,8 +378,8 @@ public class CheckoutController implements Initializable {
                     }
                     doc.add(new Paragraph("Order Total : " + cartTotal + " DT."));
                     if (discount == true) {
-                        doc.add(new Paragraph("Discount : 20%"));
-                        doc.add(new Paragraph("Total with discount : " + (cartTotal - cartTotal * 0.2) + " DT."));
+                        doc.add(new Paragraph("Discount : 50%"));
+                        doc.add(new Paragraph("Total with discount : " + (cartTotal - cartTotal * 0.5) + " DT."));
                     }
                     doc.add(new Paragraph("Customer's telephone : " + telephoneField.getText()));
                     doc.add(new Paragraph("Customer's address : " + addressField.getText()));
@@ -416,7 +420,7 @@ public class CheckoutController implements Initializable {
                         Customer a = Customer.retrieve("cus_IWVxV1HYobPjvS", retrieveParams, null);
                         Map<String, Object> chargeParameter = new HashMap<String, Object>();
                         if (discount == true) {
-                            cartTotal = cartTotal - cartTotal * 0.2;
+                            cartTotal = cartTotal - cartTotal * 0.5;
                         }
                         chargeParameter.put("amount", Math.round(cartTotal * 100));
                         chargeParameter.put("currency", "usd");
@@ -432,7 +436,7 @@ public class CheckoutController implements Initializable {
                     OrderService os = new OrderService();
                     Order or = new Order();
                     if (discount == true) {
-                        or.setDiscount(20);
+                        or.setDiscount(50);
                     } else {
                         or.setDiscount(0);
                     }
@@ -454,6 +458,7 @@ public class CheckoutController implements Initializable {
                     cis.deleteCartItemsAfterOrder(1);
                     CartService cs = new CartService();
                     cs.updateCart(new Cart(1, 0));
+                    boolean bookIsNumeric = false;
                     try {
                         Document doc = new Document();
                         PdfWriter.getInstance(doc, new FileOutputStream("F:/bill.pdf"));
@@ -463,12 +468,15 @@ public class CheckoutController implements Initializable {
                         doc.add(new Paragraph("Type of order : " + "Bank Card."));
                         doc.add(new Paragraph("Order items : "));
                         for (int i = 0; i < bookList.size(); i++) {
+                            if (bookList.get(i).getLabel().equals("Harry Potter and the Goblet of Fire")) {
+                                bookIsNumeric = true;
+                            }
                             doc.add(new Paragraph("Item :  " + bookList.get(i).getLabel() + " , Price : " + bookList.get(i).getPrice() + " DT , Quantity : " + bookQuantities.get(bookList.get(i).getId())));
                         }
                         doc.add(new Paragraph("Order Total : " + cartTotal + " DT."));
                         if (discount == true) {
-                            doc.add(new Paragraph("Discount : 20%"));
-                            doc.add(new Paragraph("Total with discount : " + (cartTotal - cartTotal * 0.2) + " DT."));
+                            doc.add(new Paragraph("Discount : 50%"));
+                            doc.add(new Paragraph("Total with discount : " + (cartTotal - cartTotal * 0.5) + " DT."));
                         }
                         doc.add(new Paragraph("Customer's telephone : " + telephoneField.getText()));
                         doc.add(new Paragraph("Customer's address : " + addressField.getText()));
@@ -479,6 +487,20 @@ public class CheckoutController implements Initializable {
 
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
+                    }
+                    if (bookIsNumeric == true) {
+                        billGeneratedLabel.setText("Downloading the numeric book & bill");
+                        File file = new File("harry_potter/index.html");
+                        WebView webView = new WebView();
+                        WebEngine webEngine = webView.getEngine();
+                        webEngine.load(file.toURI().toString());
+                        StackPane root = new StackPane();
+                        root.getChildren().add(webView);
+                        Scene scene = new Scene(root,1500,900);
+                        Stage stage = new Stage();
+                        stage.setTitle("Harry Potter & The Goblet of Fire");
+                        stage.setScene(scene);
+                        stage.show();
                     }
                     billGeneratedLabel.setVisible(true);
                     fadeIn.setNode(billGeneratedLabel);
@@ -498,7 +520,7 @@ public class CheckoutController implements Initializable {
                 OrderService os = new OrderService();
                 Order or = new Order();
                 if (discount == true) {
-                    or.setDiscount(20);
+                    or.setDiscount(50);
                 } else {
                     or.setDiscount(0);
                 }
@@ -533,8 +555,8 @@ public class CheckoutController implements Initializable {
                     }
                     doc.add(new Paragraph("Order Total : " + cartTotal + " DT."));
                     if (discount == true) {
-                        doc.add(new Paragraph("Discount : 20%"));
-                        doc.add(new Paragraph("Total with discount : " + (cartTotal - cartTotal * 0.2) + " DT."));
+                        doc.add(new Paragraph("Discount : 50%"));
+                        doc.add(new Paragraph("Total with discount : " + (cartTotal - cartTotal * 0.5) + " DT."));
                     }
                     doc.add(new Paragraph("Customer's telephone : " + telephoneField.getText()));
                     doc.add(new Paragraph("Customer's address : " + addressField.getText()));

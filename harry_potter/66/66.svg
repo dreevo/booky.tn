@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="0 0 671 996" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<path d="M681,0L568,357L202,276L455,552L202,828L568,747l113,357L793,747l366,81L906,552L1159,276L793,357L681,0Z"
+id="f0_42"
+transform="scale(0.001,-0.001)"/>
+
+</defs>
+<image preserveAspectRatio="none" x="228" y="104" width="216" height="238" xlink:href="img/1.jpg"/>
+<g fill="#000000" >
+<use xlink:href="#f0_42" transform="matrix(8,0,0,8,306.7,913.1)"/>
+<use xlink:href="#f0_42" transform="matrix(8,0,0,8,354.1,913.1)"/>
+</g>
+</svg>

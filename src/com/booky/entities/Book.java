@@ -23,6 +23,7 @@ public class Book {
     private ArrayList<Category> Categories;
     private Language language;
     private int rating;
+    private ArrayList<Charity> charities;
     private Charity charity;
 
     public Book(int id, String label, double price, String description, int isInStock, String imageUrl, Author author, ArrayList<Category> Categories, Language language, int rating) {
@@ -102,6 +103,14 @@ public class Book {
 
     public double getPrice() {
         return price;
+    }
+
+    public ArrayList<Charity> getCharities() {
+        return charities;
+    }
+
+    public void setCharities(ArrayList<Charity> charities) {
+        this.charities = charities;
     }
 
     public void setPrice(double price) {

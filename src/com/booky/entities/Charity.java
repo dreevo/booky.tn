@@ -20,6 +20,11 @@ public class Charity {
     private String imageUrl;
     private Book book;
 
+    public Charity(int id) {
+        this.id = id;
+    }
+
+    
     public Charity(int id, String title, String description, ArrayList<Donation> donations, String imageUrl, Book book) {
         this.id = id;
         this.title = title;
@@ -28,6 +33,11 @@ public class Charity {
         this.imageUrl = imageUrl;
         this.book = book;
     }
+
+    public Charity(String title) {
+        this.title = title;
+    }
+    
 
     public Charity(String title, String description, ArrayList<Donation> donations, String imageUrl, Book book) {
         this.title = title;
@@ -49,6 +59,16 @@ public class Charity {
         this.description = description;
         this.imageUrl = imageUrl;
     }
+
+    public Charity(int id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
+    public Charity() {
+    }
+
+    
     
     public int getId() {
         return id;

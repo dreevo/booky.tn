@@ -5,6 +5,7 @@
  */
 package com.booky.services;
 
+import com.booky.entities.Charity;
 import com.booky.entities.Customer;
 import com.booky.entities.Donation;
 import com.booky.utils.DataSource;
@@ -12,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -62,7 +64,8 @@ public class DonationService {
             System.out.println(e.getMessage());
         }
     }
-
+    
+    
     public Donation readDonation(int donationId) {
         Donation don = null;
         try {
@@ -99,4 +102,22 @@ public class DonationService {
         }
         return don;
     }
-}
+
+  public void readDonations(ObservableList<Donation> donationList) {
+        try {
+            String req = "select message,amount from donation";
+            PreparedStatement st = cnx.prepareStatement(req);
+            ResultSet res = st.executeQuery();
+            Donation d;
+            while (res.next()) {
+                d = new Donation();
+                d.setMessage(res.getString(1));
+                d.setAmount(res.getDouble(2));
+                donationList.add(d);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+   }
