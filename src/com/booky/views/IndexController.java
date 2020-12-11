@@ -97,6 +97,8 @@ public class IndexController implements Initializable {
     private Label profileBtn;
     @FXML
     private Label eventBtn;
+    @FXML
+    private Label blogBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -245,6 +247,25 @@ public class IndexController implements Initializable {
                     Stage stage1 = (Stage) booksWithCharityLabel.getScene().getWindow();
                     stage1.close();
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/ReadEvents.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setTitle("Manage Events");
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
+        blogBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    Stage stage1 = (Stage) booksWithCharityLabel.getScene().getWindow();
+                    stage1.close();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/ReadBlogs.fxml"));
                     Parent root1 = (Parent) fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.initModality(Modality.APPLICATION_MODAL);

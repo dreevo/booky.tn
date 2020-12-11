@@ -148,7 +148,7 @@ public class CustomerService {
             PreparedStatement st = cnx.prepareStatement(req);
             ResultSet res = st.executeQuery(req);
             while (res.next()) {
-                c = new Customer(res.getString("firstname"), res.getString("lastname"), res.getInt("age"), res.getString("email"), res.getString("password"), res.getString("address"), res.getString("telephone"), res.getString("imageUrl"));
+                c = new Customer(res.getString("firstname"), res.getString("lastname"), res.getInt("age"), res.getString("email"),res.getString("address"),res.getString("telephone"),res.getString("imageUrl"), res.getString("password") );
 
             }
 

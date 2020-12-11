@@ -26,6 +26,9 @@ public class Comment {
         this.customer = customer;
     }
 
+    public Comment() {
+    }
+
     public Comment(int id, String description, Customer customer, Blog blog) {
         this.id = id;
         this.description = description;

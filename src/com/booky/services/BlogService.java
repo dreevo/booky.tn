@@ -5,6 +5,7 @@
  */
 package com.booky.services;
 
+import com.booky.entities.Author;
 import com.booky.entities.Blog;
 import com.booky.entities.Comment;
 import com.booky.entities.Customer;
@@ -15,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -39,7 +41,7 @@ public class BlogService {
         }
     }
 
-    public void deleteCartItem(int blogId) {
+    public void deleteBlog(int blogId) {
         try {
             String req = "delete from blog where id=?";
             PreparedStatement st = cnx.prepareStatement(req);
@@ -64,7 +66,7 @@ public class BlogService {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     public void readBlog(int blogId) {
         try {
             // GETTING THE PACK OBJECT
@@ -73,7 +75,7 @@ public class BlogService {
             st.setInt(1, blogId);
             ResultSet res = st.executeQuery();
             ArrayList<Comment> comments = new ArrayList<>();
-            String title,content,description;
+            String title, content, description;
             while (res.next()) {
                 title = res.getString(1);
                 content = res.getString(2);
@@ -84,7 +86,7 @@ public class BlogService {
                 st1.setInt(1, commentId);
                 st1.setInt(2, res.getInt(4));
                 ResultSet res1 = st1.executeQuery();
-                while(res1.next()){
+                while (res1.next()) {
                     String customerFirstName = res1.getString(1);
                     String customerLastName = res1.getString(2);
                     Customer c = new Customer(customerFirstName, customerLastName);
@@ -95,5 +97,37 @@ public class BlogService {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void readBlogs(ObservableList<Blog> blogList) {
+        try {
+            String req = "select b.title,b.id,b.content,a.firstname,a.lastname from blog b join author a on b.authorid=a.id";
+            PreparedStatement st = cnx.prepareStatement(req);
+            ResultSet res = st.executeQuery();
+            while (res.next()) {
+                Blog b = new Blog();
+                b.setTitle(res.getString(1));
+                b.setId(res.getInt(2));
+                b.setContent(res.getString(3));
+                b.setAuthor(new Author(res.getString(4), res.getString(5)));
+                String req2 = "select c.description,cu.firstname,cu.lastname from comment c join customer cu where c.blogid=? and c.customerid=cu.id";
+                PreparedStatement st2 = cnx.prepareStatement(req2);
+                st2.setInt(1, res.getInt(2));
+                ResultSet res2 = st2.executeQuery();
+                ArrayList<Comment> comments = new ArrayList<>();
+                while (res2.next()) {
+                    System.out.println(res2.getString(1));
+                    System.out.println(res2.getString(2));
+                    System.out.println(res2.getString(3));
+                    comments.add(new Comment(res2.getString(1), new Customer(res2.getString(2), res2.getString(3))));
+                }
+                //System.out.println(comments);
+                b.setComments(comments);
+                blogList.add(b);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }

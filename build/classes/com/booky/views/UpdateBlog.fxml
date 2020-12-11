@@ -2,8 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,7 +17,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.ParticipateInEventController">
+
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.booky.views.UpdateBlogController">
    <children>
       <Pane layoutX="-1.0" prefHeight="900.0" prefWidth="171.0" styleClass="sidebar" stylesheets="@sidebar.css">
          <children>
@@ -162,12 +165,12 @@
             </HBox>
             <ImageView fitHeight="72.0" fitWidth="80.0" layoutX="45.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/houcem.jpg" />
+                  <Image url="@images/baha.jpg" />
                </image>
             </ImageView>
             <HBox layoutX="19.0" layoutY="146.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
                <children>
-                  <Label styleClass="sidebar-profile-name" text="Ghiloufi Houcem">
+                  <Label styleClass="sidebar-profile-name" text="Sahli Bahaddine">
                      <HBox.margin>
                         <Insets left="7.0" top="3.0" />
                      </HBox.margin>
@@ -270,7 +273,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label fx:id="libraryBtn1" styleClass="sidebar-btn-text" text="Events">
+                  <Label fx:id="eventBtn" styleClass="sidebar-btn-text" text="Events">
                      <HBox.margin>
                         <Insets left="5.0" top="3.0" />
                      </HBox.margin>
@@ -284,11 +287,35 @@
                </children>
             </HBox>
             <Line endX="89.4000244140625" endY="3.0517578125E-5" layoutX="86.0" layoutY="571.0" startX="-83.99999237060547" stroke="WHITE" />
+            <HBox layoutX="16.0" layoutY="603.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/blog.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="blogBtn" styleClass="sidebar-btn-text" text="Blogs">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Line endX="89.4000244140625" endY="3.0517578125E-5" layoutX="83.0" layoutY="601.0" startX="-83.99999237060547" stroke="WHITE" />
          </children>
       </Pane>
       <Pane layoutX="170.0" prefHeight="900.0" prefWidth="1339.0" styleClass="childpane" stylesheets="@sidebar.css">
          <children>
-            <Label layoutX="22.0" layoutY="131.0" text="Participate in an event" textFill="#ff1653">
+            <Label layoutX="22.0" layoutY="131.0" text="Administration Panel" textFill="#ff1653">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -296,7 +323,7 @@
                   <Font name="Calibri Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="22.0" layoutY="153.0" text="Event Selection" textFill="WHITE">
+            <Label layoutX="22.0" layoutY="153.0" text="Update Blog" textFill="WHITE">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -309,18 +336,23 @@
                   <Image url="@images/booky.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="139.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Id" wrappingWidth="129.99999999999994">
+            <Button fx:id="cancelBtn" layoutX="472.0" layoutY="672.0" mnemonicParsing="false" onAction="#cancelRegister" prefHeight="37.0" prefWidth="114.0" style="-fx-background-color: #78798a;" text="Cancel" />
+            <TableView fx:id="table" layoutX="40.0" layoutY="225.0" prefHeight="427.0" prefWidth="206.0">
+               <columns>
+                  <TableColumn fx:id="titlefiled" prefWidth="205.19996643066406" text="Blog Title" />
+               </columns>
+            </TableView>
+            <TextField fx:id="tftitle" layoutX="282.0" layoutY="266.0" prefHeight="25.0" prefWidth="427.0" />
+            <TextArea fx:id="tfcontent" layoutX="285.0" layoutY="352.0" prefHeight="301.0" prefWidth="427.0" />
+            <Button fx:id="btn" layoutX="594.0" layoutY="672.0" mnemonicParsing="false" onAction="#UpdateBlog" text="Update Blog" />
+            <Text fill="WHITE" layoutX="285.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update Title">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold Italic" size="16.0" />
                </font>
             </Text>
-            <Button fx:id="close" layoutX="468.0" layoutY="372.0" mnemonicParsing="false" onAction="#close" prefHeight="39.0" prefWidth="86.0" style="-fx-background-color: #78798a;" text="Cancel" />
-            <TextField fx:id="customerIdField" layoutX="285.0" layoutY="251.0" prefHeight="36.0" prefWidth="271.0" />
-            <Button fx:id="addevent" layoutX="308.0" layoutY="372.0" mnemonicParsing="false" onAction="#AddEvent" prefHeight="39.0" prefWidth="130.0" text="Participate " />
-            <ComboBox fx:id="eventfield" layoutX="283.0" layoutY="314.0" prefHeight="25.0" prefWidth="271.0" />
-            <Text fill="WHITE" layoutX="136.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event" wrappingWidth="129.99999999999994">
+            <Text fill="WHITE" layoutX="282.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update Blog">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold Italic" size="16.0" />
                </font>
             </Text>
          </children>
