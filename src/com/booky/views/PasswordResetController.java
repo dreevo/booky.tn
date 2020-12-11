@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
 /**
  * FXML Controller class
  *
- * @author gharbimedaziz
+ * @author J.Maroua
  */
 public class PasswordResetController implements Initializable {
 

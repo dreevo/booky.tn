@@ -20,7 +20,7 @@ import javafx.collections.ObservableList;
 
 /**
  *
- * @author gharbimedaziz
+ * @author J.Maroua
  */
 public class CharityService {
 
