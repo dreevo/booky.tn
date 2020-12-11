@@ -83,6 +83,7 @@ public class CreateDonationController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //HIDING LABEL 
         requiredFieldLabel.setVisible(false);
         requiredFieldLabel.setText("Please fill all the required fields !");
         // GETTING THE LIST OF THE CHARITIES FOR THE CHARITY COMBO BOX
