@@ -34,6 +34,8 @@ import javax.swing.JOptionPane;
 /**
  * FXML Controller class
  *
+ *
+ *
  * @author yanisInfo
  */
 public class AddBlogController implements Initializable {
