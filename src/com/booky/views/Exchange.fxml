@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="myAnchor" prefHeight="684.0" prefWidth="1157.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booky.views.ExchangeController">
+   <children>
+      <Pane layoutX="-1.0" prefHeight="688.0" prefWidth="181.0" styleClass="sidebar" stylesheets="@sidebar.css">
+         <children>
+            <Circle fill="#ff6d53" layoutX="25.0" layoutY="22.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#ffec26" layoutX="42.0" layoutY="22.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#2fea37" layoutX="59.0" layoutY="22.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+            <HBox layoutX="18.0" layoutY="180.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../views/images/bookshelf.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label styleClass="sidebar-btn-text" text="Shop">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="12.0" layoutY="212.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../views/images/recommended.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="For you">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="14.0" layoutY="265.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../views/images/archive.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label styleClass="sidebar-btn-text" text="Bookshelf">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="18.0" layoutY="295.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../views/images/author.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label styleClass="sidebar-btn-text" text="Authors">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="340.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../views/images/profile.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label styleClass="sidebar-btn-text" text="Orders">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="374.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../views/images/settings.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="Settings">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <ImageView fitHeight="72.0" fitWidth="80.0" layoutX="45.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../views/images/profileimage.JPG" />
+               </image>
+            </ImageView>
+            <HBox layoutX="19.0" layoutY="146.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn" />
+            <HBox layoutX="22.0" layoutY="583.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+               <children>
+                  <HBox prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../views/images/signout.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="Sign out">
+                           <HBox.margin>
+                              <Insets left="5.0" top="3.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox layoutX="16.0" layoutY="731.0" prefHeight="30.0" prefWidth="130.0" styleClass="sidebar-btn" />
+            <Line endX="89.4000244140625" endY="3.0517578125E-5" layoutX="81.0" layoutY="505.0" startX="-83.99999237060547" stroke="WHITE" />
+            <Line endX="85.39999389648438" endY="-6.103515625E-5" layoutX="81.0" layoutY="565.0" startX="-84.99999237060547" startY="-6.103515625E-5" stroke="WHITE" />
+            <Line endX="83.4000244140625" layoutX="88.0" layoutY="208.0" startX="-87.00001525878906" stroke="WHITE" />
+            <Line endX="90.00001525878906" layoutX="81.0" layoutY="370.0" startX="-87.00001525878906" stroke="WHITE" />
+            <Line endX="85.4000244140625" layoutX="82.0" layoutY="293.0" startX="-87.00001525878906" stroke="WHITE" />
+            <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="65.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../views/images/vip.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="57.0" layoutY="512.0" prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="About">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="34.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../views/images/about.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="52.0" layoutY="476.0" prefHeight="18.0" prefWidth="109.0" styleClass="sidebar-btn-text" text="Contact">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="33.0" layoutY="477.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../views/images/contact.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="44.0" layoutY="144.0" styleClass="sidebar-profile-name" text="Malik Nairi">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="Calibri Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="178.0" prefHeight="688.0" prefWidth="983.0" styleClass="sidebar" stylesheets="@sidebar.css">
+         <children>
+            <Pane layoutX="-28.0" layoutY="5.0" prefHeight="598.0" prefWidth="966.0" styleClass="sidebar">
+               <children>
+                  <Pane fx:id="Creationpane" layoutX="562.0" layoutY="171.0" prefHeight="238.0" prefWidth="368.0">
+                     <children>
+                        <TextField fx:id="idTf" layoutX="108.0" layoutY="46.0" style="-fx-background-color: white; -fx-text-fill: black;" />
+                        <Label layoutX="130.0" layoutY="71.0" style="-fx-text-fill: white;" text="Please Enter your id" />
+                        <TextField fx:id="descriptionTf" layoutX="108.0" layoutY="96.0" style="-fx-text-fill: black; -fx-background-color: white;" />
+                        <Label layoutX="91.0" layoutY="121.0" style="-fx-text-fill: white;" text="Enter the description of your exchange" />
+                        <Button fx:id="validatebtn" layoutX="156.0" layoutY="150.0" mnemonicParsing="false" onAction="#createExchange" text="validate" />
+                        <Label fx:id="requiredFieldLabel" layoutX="91.0" layoutY="201.0" text="please fill all the required fields." textFill="#f81f1f" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="myPane" layoutX="94.0" layoutY="90.0" prefHeight="492.0" prefWidth="538.0">
+                     <children>
+                        <TableView fx:id="table" layoutX="4.0" layoutY="45.0" prefHeight="213.0" prefWidth="492.0">
+                          <columns>
+                            <TableColumn fx:id="description" prefWidth="350.99998474121094" text="exchange description" />
+                            <TableColumn fx:id="status" prefWidth="137.0" text="exchange status" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="creationBtn" layoutX="12.0" layoutY="277.0" mnemonicParsing="false" onAction="#goToCreation" text="Create an offer of exchange" />
+                        <Button fx:id="selectBtn" layoutX="267.0" layoutY="279.0" mnemonicParsing="false" onAction="#selectExchange" text="select an offer and proceed" />
+                        <Button fx:id="cancelBtn" layoutX="292.0" layoutY="335.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: red;" text="Cancel" />
+                        <Label fx:id="updateMsg" layoutX="355.0" layoutY="407.0" prefHeight="51.0" prefWidth="492.0" text="An email has been sent to the person who made this offer" textFill="#02f802" visible="false">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="reloadBtn" layoutX="77.0" layoutY="337.0" mnemonicParsing="false" onAction="#reloadTable" text="Reload exchanges table" />
+                     </children>
+                  </Pane>
+                  <Label layoutX="31.0" layoutY="51.0" text="Book exchange" textFill="#ee0f22">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
